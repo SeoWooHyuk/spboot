@@ -39,13 +39,6 @@ public class InfoService {
             }
 
         }
-
-    
-
-
-
-
-
         return lgchek;
     }
 }

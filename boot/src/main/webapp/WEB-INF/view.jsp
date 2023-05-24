@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <% request.setCharacterEncoding("utf-8"); %>
+<%@taglib prefix="c" uri = "http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fmt" uri = "http://java.sun.com/jsp/jstl/fmt"%>
 
 <!DOCTYPE html>
 <html>
@@ -41,23 +43,26 @@
 		</tr>
 		</thead>	
 	
-			
 		<tbody style ="height:40px">
+		<c:forEach var="list" items="${boardList}">
 		<tr>
             <td class="frm">
-
+				
             </td>
             <td class="num">
-
+				<c:out value="${list.boardnum}" />
             </td>
             <td class="title">
-
+				<c:out value="${list.title}" />
             </td>
-        
+			<td class="title">
+				<c:out value="${list.id}" />
+            </td>
             <td class="date">
-                
+				<c:out value="${list.date}" />
             </td>
 		</tr>
+		</c:forEach>
 		</tbody>
 	
 		

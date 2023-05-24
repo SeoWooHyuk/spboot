@@ -4,6 +4,6 @@ import lombok.Data;
 
 @Data
 public class Information {
-    public String id;
-    public String pw;
+    private String id;
+    private String pw;
 }
