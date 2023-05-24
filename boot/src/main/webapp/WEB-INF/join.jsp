@@ -11,18 +11,12 @@
 	<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="css/login.css">
 </head>
-<script type="text/javascript">
-</script>
 
-<style type="text/css">
-
-
-</style>
 <body>		
 	<div id="logo" align="center">
-		<img src="./image/logo_beta_purple.png" style="width:200px; height:auto; margin-top:100px;"/ onclick="location.href='/learnup'"></div>	
-	<div id="login_main">		
-		<form name="login" method="POST" action="login_check">	
+		
+	<div id="login_main">					<!-- 아이디, 비밀번호 입력창, 로그인 버튼 영역 -->
+		<form name="login" method="POST" action="joininsert">	<!-- 로그인 버튼으로 userID 값, userPW 값을 Login_cont 로 전달 -->
 			<table align="center" border="0" id="login_action">
 				<tr><td><input type="text" id="id" class="txt_input" name="id" placeholder="아이디"></td></tr>
 				<tr><td><input type="password" id="passwd" class="txt_input" name="pw" placeholder="비밀번호" ></td></tr>
@@ -31,18 +25,11 @@
 		</form>
 	</div>
 	
-	<div id="login_sub1">
-		<a href="#self"><div class="naverlogin"><span>네이버 로그인</span></div></a>
-		<a href="#self"><div class="cacaologin"><span>카카오 로그인</span></div></a>
-		<a href="#self"><div class="googlelogin"><span>구글 로그인</span></div></a>
-		<a href="#self"><div class="facebooklogin"><span>페이스북 로그인</span></div></a>	
-	</div>
-	
 	<!-- 아이디, 비밀번호 찾기, 회원가입 링크 영역 -->
 	<div id="login_sub2">
-		<span id="find_id"><a href="">아이디 찾기</a></span>
-		<span id="find_pw"><a href="">비밀번호 찾기</a></span>
-		<span id="join"><a href="join">회원가입</a></span>			
+		<span id="find_id"><a href=""></a></span>
+		<span id="find_pw"><a href="login">회원가입 취소</a></span>
+		<span id="join"><a href=""></a></span>			
 	</div>
 			
 			

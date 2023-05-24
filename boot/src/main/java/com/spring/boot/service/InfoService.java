@@ -16,20 +16,20 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class InfoService {
     @Autowired
-    InfoDao ido;
+    InfoDao lg;
 
-    public boolean loginslist(Information login)
+    public boolean loginslist(Information login2)
     {
 
         boolean lgchek = false;
 
-        Information info = new Information();
+        Information login = new Information();
         List<Information> list = new ArrayList<Information>();
-        list = ido.loginslist(login);
+        list = lg.loginslist(login2);
 
         for (int i = 0; i < list.size(); i++) {
             
-            if(login.getId().equals(list.get(i).getId()) && login.getPw().equals(list.get(i).getPw()))
+            if(login2.getId().equals(list.get(i).getId()) && login2.getPw().equals(list.get(i).getPw()))
             {
                 lgchek =true;
                 break;
@@ -39,14 +39,13 @@ public class InfoService {
             }
 
         }
+
+    
+
+
+
+
+
         return lgchek;
-    }
-
-
-
-    public int joininsert(Information join)
-    {
-        int intI = ido.joininsert(join);
-        return 0;
     }
 }

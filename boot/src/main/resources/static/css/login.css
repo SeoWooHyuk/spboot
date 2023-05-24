@@ -1,0 +1,189 @@
+*{font-family: 'Noto Sans KR', sans-serif;}
+a{
+	color: black;
+	text-decoration: none;
+}
+html {
+	margin-left: 0;
+	margin-right: 0;
+}
+body {
+	display: block;
+	margin: 0;
+	width: auto;
+}
+
+#login_action {
+	width:420px;
+	margin-top:50px;
+	
+}
+
+#login_sub2 {
+	width:410px;
+	text-align:center;
+	margin: 0 auto;
+	font-height:bold;
+}
+
+#find_id {
+	float:left;
+	display:inline;
+}
+
+#find_pw {
+	float:center;
+	display:inline;
+}
+
+#join {
+	float:right;
+	display:inline;
+}
+#login_button{
+ 	background-color:#8041D9;
+ 	border:solid 1px #8041D9;
+ 	border-radius:5px;
+ 	color:white;
+ 	width:100%;
+ 	height:40px;
+ 	margin-top:30px;
+ 	font-size:12pt;
+ 	font-weight:bold;
+}
+#login_button:hover{
+	background-color:#3F0099;
+}
+
+.txt_input {
+	width:100%;
+	height:50px;
+	border:solid 1px black;
+	border-radius:5px;
+}
+
+#checkbox{
+	margin-top:10px;
+}
+
+
+#login_sub1{
+	width:410px;
+	text-align:center;
+	margin: 40px auto;
+}
+
+.naverlogin{
+	width:100%;
+	height:40px;
+	background-color:#05BE34;
+	border:solid 2px #05BE34;
+	border-radius:5px;
+	background-image: url(image/naverlogo.png);
+	background-repeat: no-repeat;
+	background-position: left;
+	background-size: 40px 40px;
+	margin-top:5px;
+}
+.naverlogin span{
+	display:inline-block;
+	width:370px;
+	height:40px;
+	float:right;
+	background-color:white;
+	color:#05BE34;
+	font-weight:bold;
+	border-radius:5px;
+	line-height:40px;
+}
+.naverlogin span:hover{
+	background-color:#05BE34;
+	color:white;
+}
+
+.cacaologin{
+	width:100%;
+	height:40px;
+	background-color:#FFE617;
+	border:solid 2px #FFE617;
+	border-radius:5px;
+	background-image: url(image/cacaologo.png);
+	background-repeat: no-repeat;
+	background-position: left;
+	background-size: 40px 40px;
+	margin-top:5px;
+}
+.cacaologin span{
+	display:inline-block;
+	width:370px;
+	height:40px;
+	float:right;
+	background-color:white;
+	color:#FFE617;
+	font-weight:bold;
+	border-radius:5px;
+	line-height:40px;
+}
+.cacaologin span:hover{
+	background-color:#FFE617;
+	color:white;
+}
+
+.googlelogin{
+	width:100%;
+	height:40px;
+	background-color:#DC4A38;
+	border:solid 2px #DC4A38;
+	border-radius:5px;
+	background-image: url(image/googlelogo.png);
+	background-repeat: no-repeat;
+	background-position: left;
+	background-size: 40px 40px;
+	margin-top:5px;
+}
+.googlelogin span{
+	display:inline-block;
+	width:370px;
+	height:40px;
+	float:right;
+	background-color:white;
+	color:#DC4A38;
+	font-weight:bold;
+	border-radius:5px;
+	line-height:40px;
+}
+.googlelogin span:hover{
+	background-color:#DC4A38;
+	color:white;
+}
+
+.facebooklogin{
+	width:100%;
+	height:40px;
+	background-color:#3A559F;
+	border:solid 2px #3A559F;
+	border-radius:5px;
+	background-image: url(image/facebooklogo.png);
+	background-repeat: no-repeat;
+	background-position: left;
+	background-size: 40px 40px;
+	margin-top:5px;
+}
+.facebooklogin span{
+	display:inline-block;
+	width:370px;
+	height:40px;
+	float:right;
+	background-color:white;
+	color:#3A559F;
+	font-weight:bold;
+	border-radius:5px;
+	line-height:40px;
+}
+.facebooklogin span:hover{
+	background-color:#3A559F;
+	color:white;
+}
+img{
+	cursor:pointer;
+}
