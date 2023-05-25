@@ -6,12 +6,27 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.spring.boot.dao.BoardDao"> 
 	
         <select id="getList" resultType="com.spring.boot.vo.BoardVo">
-                select * from boards
+                select *
+                from boards 
+               <where>
+                <if test="searchKeyword != null and searchKeyword != ''">
+                title LIKE CONCAT('%', #{searchKeyword}, '%')
+                </if>
+                </where>
+                ORDER BY id DESC
+                LIMIT #{recordCountPerPage} OFFSET #{firstIndex} 
         </select>
 
-        <insert id="boardinsert" >
+         <select id="viewdetail" parameterType ="int">
+                select * from boards where boardnum= #{boardnum}
+        </select>
+
+        <insert id="boardinsert">
                 insert into  boards(id,writes,title) values(#{id},#{writes},#{title})
         </insert>
 
+        <delete id="viewdetaildelete">
+                DELETE FROM boards WHERE boardnum=#{boardnum}
+        </delete>
 
 </mapper>

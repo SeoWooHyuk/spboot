@@ -17,12 +17,13 @@
 		
   
 <section class="board">
+	<span>총게시물 ${totCnt} / 페이지 (${searchVO.pageIndex} / ${totalPageCnt})</span>
 		<h2 style="text-align: center; font-size: 30px; margin-bottom: 20px; margin-top: 30px;">스프링부트 jsp게시판 ${sessionid}회원</h2>
  
         <div id ="box" style="flex-basis: 675px; height: 73px; float: right;  ">
             <div  action="board_select" class="search_form"style="float :left;">
                 <form class="search">
-                <input class="searchTerm" placeholder="검색하세여"  name = "searchs" /><input class="searchButton" type="submit" />
+                <input class="searchTerm" placeholder="검색하세여"  name = "searchKeyword"  value="${searchVO.searchKeyword}"/><input class="searchButton" type="submit" />
                 </form>
             </div>     
         </div>
@@ -53,7 +54,7 @@
 				<c:out value="${list.boardnum}" />
             </td>
             <td class="title">
-				<c:out value="${list.title}" />
+				<a href="viewdetail?boardnum=${list.boardnum}"><c:out value="${list.title}" /></a>
             </td>
 			<td class="title">
 				<c:out value="${list.id}" />
@@ -64,23 +65,43 @@
 		</tr>
 		</c:forEach>
 		</tbody>
-	
-		
-
-
 		</table>
+
+<!-- Paging[s] -->
+
+<div class="col-sm-12 col-md-7" style="text-align:right">
+	<div class="dataTables_paginate paging_simple_numbers" id="dataTable_paginate">
+	  <ul class="pagination">
+	  
+	  <c:if test="${searchVO.prev}">
+	  <li class="paginate_button page-item previous" id="dataTable_previous">
+			  <a href="javascript:void(0);" onclick="fn_go_page(${searchVO.startDate - 1}); return false;" aria-controls="dataTable" data-dt-idx="0" tabindex="0" class="page-link">Previous</a>
+	  </li>
+	  </c:if>
+	  
+	  <c:forEach var="num" begin="${searchVO.startDate}" end="${searchVO.endDate}">
+	  <li class="paginate_button page-item">
+			  <a href="javascript:void(0);" onclick="fn_go_page(${num}); return false;" aria-controls="dataTable" data-dt-idx="0" tabindex="0" class="page-link">${num}</a>
+	  </li>
+	  </c:forEach>
+	  
+	  <c:if test="${searchVO.next}">
+	  <li class="paginate_button page-item next" id="dataTable_next">
+			  <a href="javascript:void(0);" onclick="fn_go_page(${searchVO.endDate + 1}); return false;" aria-controls="dataTable" data-dt-idx="0" tabindex="0" class="page-link">Next</a>
+	  </li>
+	  </c:if>
+	  </ul>
+	</div>
+	</div>
+	<!-- Paging[e] -->
+
 <!-- //UI Object -->            
 </section>
-
-
-
 <section class="board2">
-
-	
 		<input type="button" id = "submi"  value="+로그아웃" onclick="location.href= 'logout'" ;>
+		<c:if test="${sessionid != null}">
   		<input type="button" id = "submi"  value="+등록하기" onclick="location.href= 'viewinsert'" ;>
- 
-
+		</c:if>
 <style>
     #submi
     {
@@ -95,9 +116,11 @@
 	}
 </style>
    <div class="pageContainer">   
-   
+	
 	</div>
 </section>
+
+
 
 
 </body>

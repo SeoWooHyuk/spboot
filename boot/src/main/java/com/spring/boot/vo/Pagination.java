@@ -2,8 +2,8 @@ package com.spring.boot.vo;
 
 import lombok.Data;
 
-@Data
-public class Pageination {
+
+public class Pagination {
 
     private int currentPageNo;			//현재 페이지 번호
 	private int recordCountPerPage;		//한 페이지당 게시되는 게시물 수
