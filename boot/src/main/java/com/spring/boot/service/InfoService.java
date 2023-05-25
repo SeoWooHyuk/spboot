@@ -18,18 +18,16 @@ public class InfoService {
     @Autowired
     InfoDao lg;
 
-    public boolean loginslist(Information login2)
+    public boolean loginslist(Information login)
     {
 
         boolean lgchek = false;
-
-        Information login = new Information();
         List<Information> list = new ArrayList<Information>();
-        list = lg.loginslist(login2);
+        list = lg.loginslist(login);
 
         for (int i = 0; i < list.size(); i++) {
             
-            if(login2.getId().equals(list.get(i).getId()) && login2.getPw().equals(list.get(i).getPw()))
+            if(login.getId().equals(list.get(i).getId()) && login.getPw().equals(list.get(i).getPw()))
             {
                 lgchek =true;
                 break;
@@ -40,5 +38,11 @@ public class InfoService {
 
         }
         return lgchek;
+    }
+
+    public int joininsert(Information info)
+    {
+        int intI = lg.joininsert(info);
+        return intI;
     }
 }

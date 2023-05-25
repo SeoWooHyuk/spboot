@@ -20,4 +20,15 @@ public class BoardService {
         List<BoardVo> list = bd.getList(searchVO);
         return list;
     }
+
+    public int boardinsert(BoardVo searchVO)
+    {
+        int intI = bd.boardinsert(searchVO);
+        return intI;
+    }
+
+
+
+
+    
 }

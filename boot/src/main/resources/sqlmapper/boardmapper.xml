@@ -9,6 +9,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
                 select * from boards
         </select>
 
-       
+        <insert id="boardinsert" >
+                insert into  boards(id,writes,title) values(#{id},#{writes},#{title})
+        </insert>
+
 
 </mapper>

@@ -27,8 +27,8 @@ $(document).ready(function() {
  <body>
 
    	<h1 style="text-align:center; margin-bottom: 5px; margin-top: 30px;" class="con">게시글 작성</h1>
-	<form action="board_insert2.jsp " method="post" enctype="multipart/form-data">
-                 
+	<form action="viewinsert_ok" method="post" >
+    <input type="hidden" name=id  size=50   value='${sessionid}' required>           
 	<section class="article-detail table-common con row"> 	
         <table class="cell" border="1">
             <colgroup>
@@ -38,12 +38,12 @@ $(document).ready(function() {
              <!-- //의미없는 파일 -->
              	<th>제목 <span style="color: red;">*</span> </th>
                 <tr class="article-title">
-                    <td colspan="3"><input type=text name=title style="width: 100%; height: 32px; border: 2px solid #8041D9; " size=50   value='${TITLE}' required></td>
+                    <td colspan="3"><input type=text name=title style="width: 100%; height: 32px; border: 2px solid #8041D9; " size=50  required></td>
                 </tr>
                  <th>게시글 <span style="color: red;  ">*</span> <div id="test_cnt" style="float:right;">(0 / 100)</div></th>
                 <tr class="article-body">
-                    <td colspan="4"><textarea id="write" name="write" style="width: 100%; height: 500px; border: 2px solid #8041D9; resize : none; font-size: 1.0em;" required></textarea> </td> 
-	             </tr>
+                    <td colspan="4"><textarea id="write" name="writes" style="width: 100%; height: 500px; border: 2px solid #8041D9; resize : none; font-size: 1.0em;" required></textarea> </td> 
+	            </tr>
 	       </tbody>
 	    </table>
 	</section>    
@@ -51,8 +51,8 @@ $(document).ready(function() {
 	 	<input type="file" name="file1" id = "file1" style="border:none;" multiple">
 	 </div>
 	<div class="ass">
-        <input type="button" id="moc" value="목록" style="" onclick="location.href= 'views'" >
-        <input type="submit" id="submi" value="문의 작성" style="" "> 
+        <input type="button" id="moc" value="목록"  onclick="location.href= 'views'" >
+        <input type="submit" id="submi" value="문의 작성" > 
     </div>
     </form>
     

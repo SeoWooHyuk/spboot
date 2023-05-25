@@ -17,7 +17,7 @@
 		
   
 <section class="board">
-		<h2 style="text-align: center; font-size: 30px; margin-bottom: 20px; margin-top: 30px;">스프링부트 jsp게시판</h2>
+		<h2 style="text-align: center; font-size: 30px; margin-bottom: 20px; margin-top: 30px;">스프링부트 jsp게시판 ${sessionid}회원</h2>
  
         <div id ="box" style="flex-basis: 675px; height: 73px; float: right;  ">
             <div  action="board_select" class="search_form"style="float :left;">
@@ -76,7 +76,9 @@
 
 <section class="board2">
 
-  		<input type="button" id = "submi"  value="+등록하기" onclick="location.href= ''" ;>
+	
+		<input type="button" id = "submi"  value="+로그아웃" onclick="location.href= 'logout'" ;>
+  		<input type="button" id = "submi"  value="+등록하기" onclick="location.href= 'viewinsert'" ;>
  
 
 <style>

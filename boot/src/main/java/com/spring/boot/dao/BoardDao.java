@@ -11,4 +11,6 @@ public interface BoardDao {
 
     public List<BoardVo> getList(BoardVo  searchvo);
 
+    public int boardinsert(BoardVo searchvo);
+
 }
