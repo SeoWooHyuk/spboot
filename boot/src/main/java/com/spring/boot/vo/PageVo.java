@@ -6,10 +6,10 @@ import lombok.Data;
 public class PageVo {
     
     private int pageIndex = 1;				    //현재페이지
-	private int pageUnit = 10;				    //페이지갯수
-	private int pageSize = 10;	    			//페이지사이즈
+	private int pageUnit = 10;				    //페이지갯수 //한 페이지당 게시되는 게시물 수
+	private int pageSize = 10;	    			//페이지사이즈 //페이지 리스트에 게시되는 페이지 수
 	private int firstIndex = 1;		    		//firstIndex
-	private int recordCountPerPage = 10;		//recordCountPerPage
+	private int recordCountPerPage = 5;		//recordCountPerPage 
 	private int totCnt = 0;				      	//총갯수
 	private int startDate = 0;			    	//시작데이터
 	private int endDate = 0;				    //종료데이터

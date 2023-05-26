@@ -29,10 +29,50 @@ function fn_search(){
 	return false;
 }
 
+var viewsallselect = {
+ 	// 최초 실행
+	init: function(){
+		viewsallselect.viewsallselectajax();	// 게시판 조회
+	},
+    // 이벤트 바인딩
+	bind: function(){
+		
+	},
+    // 게시판 조회 ajax 호출
+	viewsallselectajax: function(){
+		$.ajax({
+			url: '/viewsallselectajax',
+			type: 'post',
+			dataType: 'json',
+			data: {},
+			success: function(res) {
+				//viewsallselect.drawBoardList(res.boardMap);
+				alert(res.boardMap);
+		
+			}
+		});
+	},
+    // 게시판 조회 데이터 html 로 화면에 그려주기
+	drawBoardList: function(data){
 
-</script>
-<script>
-	
+		var html = '';
+		$.each(data.viewsallselect, function(i, v){
+            html += '<tr>';
+            html += '	<td>'+v.boardnum+'</td>';
+            html += '   <td>'+v.id+'</td>';
+            html += '   <td>'+v.title+'</td>';
+            html += '   <td>'+v.writes+'</td>';
+            html += '   <td>'+v.date+'</td>';
+            html += '</tr>';
+		});
+		$("#tbody_boardList").html(html);
+	}
+}
+
+$(function(){
+
+	viewsallselect.init();
+});
 </script>
 		
   
@@ -73,34 +113,16 @@ function fn_search(){
 					$(".pagination").find("li").eq(idx).addClass("active");
 				}
 			});
-
-
-		});
+			
+			});
 		</script>
 		<tbody style ="height:40px">
-		<c:set var="count" value="${fn:length(boardList)+1}" />
-		<c:forEach var="list" items="${boardList}">
-		<c:set var="count" value="${count-1}" />
-	
-	
-		<tr>
-            <td class="frm">
-				
-            </td>
-            <td class="num">
-				<!--<c:out value="${list.boardnum}" /> -->		<c:out value="${count}" />
-            </td>
-            <td class="title">
-				<a href="viewdetail?boardnum=${list.boardnum}"><c:out value="${list.title}" /></a>
-            </td>
-			<td class="title">
-				<c:out value="${list.id}" />
-            </td>
-            <td class="date">
-				<c:out value="${list.date}" />
-            </td>
-		</tr>
-		</c:forEach>
+		
+
+			<tbody id="tbody_boardList">
+
+
+
 		</tbody>
 		</table>
 

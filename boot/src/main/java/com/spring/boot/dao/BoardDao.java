@@ -9,12 +9,16 @@ import com.spring.boot.vo.BoardVo;
 @Mapper
 public interface BoardDao {
 
-    public List<BoardVo> getList(BoardVo  searchvo);
+    public List<BoardVo> viewsallselect(BoardVo  searchvo);
 
-    public BoardVo viewdetail(int boardnum);
+    public Integer getListcount();
 
-    public int boardinsert(BoardVo searchvo);
+    public Integer getListmax();
 
-    public int viewdetaildelete(int boardnum);
+    public BoardVo viewdetail(Integer boardnum);
+
+    public Integer boardinsert(BoardVo searchvo);
+
+    public Integer viewdetaildelete(int boardnum);
 
 }

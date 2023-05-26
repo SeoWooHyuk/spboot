@@ -1,10 +1,7 @@
 package com.spring.boot.vo;
 
-import lombok.Data;
-
 
 public class Pagination {
-
     private int currentPageNo;			//현재 페이지 번호
 	private int recordCountPerPage;		//한 페이지당 게시되는 게시물 수
 	private int pageSize;				//페이지 리스트에 게시되는 페이지 수
@@ -32,7 +29,7 @@ public class Pagination {
 	public int getTotalRecordCount() {
 		return totalRecordCount;
 	}
-	public void setTotalRecordCount(int totalRecordCount) {
+	public void setTotalRecordCount(int totalRecordCount) { //토탈 리스트 크기
 		this.totalRecordCount = totalRecordCount;
 	}
 	
@@ -45,9 +42,9 @@ public class Pagination {
 	
 
 	public int getFirstPageNoOnPageList() {
-		lastPageNoOnPageList = (int)(Math.ceil(currentPageNo/10.0)) * 10;
+		lastPageNoOnPageList = (int)(Math.ceil(currentPageNo/5.0)) * 5;
 		
-		firstPageNoOnPageList = lastPageNoOnPageList - 9;
+		firstPageNoOnPageList = lastPageNoOnPageList - 4;
 		return firstPageNoOnPageList;
 	}
 	
@@ -56,7 +53,7 @@ public class Pagination {
 	}
 	
 	public int getLastPageNoOnPageList() {
-		lastPageNoOnPageList = (int)(Math.ceil(getCurrentPageNo()/10.0)) * 10;
+		lastPageNoOnPageList = (int)(Math.ceil(getCurrentPageNo()/5.0)) * 5;
 		
 		int realEnd = (int)(Math.ceil((getTotalRecordCount() * 1.0) / getRecordCountPerPage()));
 		

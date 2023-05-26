@@ -18,7 +18,7 @@
 	<link rel="stylesheet" type="text/css" href="css/board_deatil.css">
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-	<script src="js/notice.js"></script>
+
 	<link
 		href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;400&display=swap"
 		rel="stylesheet">
@@ -26,7 +26,14 @@
 		src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 </head>
 <script>
-$(document).ready(function() {
+
+	
+	var msg = "${msg}";
+	
+	if(msg != ""){
+		alert(msg);	
+	}
+	
 	function deleteConfirm(){
 	if(!confirm("삭제 하시겠습니까?")){
 	return false;
@@ -34,7 +41,7 @@ $(document).ready(function() {
 	location.href="${pageContext.request.contextPath}viewdelete?boardnum=${board.boardnum}";
 	}
 	}
-});	
+
 </script>
 <body>
 	<h1 style="text-align:center; margin-bottom: 5px; margin-top: 30px;" class="con">
@@ -88,9 +95,7 @@ $(document).ready(function() {
 			<!--
 			<input type="button" id="de" value="삭제" onclick="location.href= 'viewdelete?boardnum=${board.boardnum}'">
 			-->
-			
-
-			<input type="button" id="de" onclick="deleteConfirm()" value="삭제" onclick="location.href= 'javascript:void(0);' ">
+			<input type="button" id="de" onclick="deleteConfirm()" value="삭제" >
 
 			<input type="button" id="up" value="수정" style=""
 				onclick="location.href= 'board_update.jsp?id='">
