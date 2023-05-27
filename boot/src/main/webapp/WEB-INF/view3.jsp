@@ -16,7 +16,6 @@
 	<link href="css/sb-admin-2.min.css" rel="stylesheet">
 </head>
 <body>
-
 <script>
 	function fn_go_page(pageNo) {
 	$("#pageIndex").val(pageNo);
@@ -31,99 +30,12 @@ function fn_search(){
 }
 
 
-
-/*
-function viewsallselectajax(){
-
-		$.ajax({
-		type:"get",
-		url:"viewsallselectajax",
-		dataType:"json",
-		success: function(data){
-			console.log("통신성공");
-			console.log(data);
-			var html = '';
-				$.each( data.boardMap.boardList, function(i){
-					console.log(i);
-					html += '<tr>';
-					html += '	<td></td>';
-					html += '	<td>'+i+'</td>';
-					html += '	<td>'+data.boardMap.boardList[i].title+'</td>';
-					html += '	<td>'+data.boardMap.boardList[i].id+'</td>';
-					html += '	<td>'+data.boardMap.boardList[i].date+'</td>';
-					html += '</tr>';
-				});
-			$('#tbody_boardList').append(html);
-		},
-		error:function(){
-			console.log("통신에러");
-		}
-	})
-}
-*/
-
 </script>
-
-<script type="text/javascript">
-
-
-var viewsallselect = {
-    // 최초 실행
-    init: function(){
-        viewsallselect.bind();  // 이벤트 바인딩
-        viewsallselect.viewsallselectajax();    // 게시판 조회
-    },
-    // 이벤트 바인딩
-    bind: function(){
-        // 이벤트 바인딩 코드 작성
-    },
-    // 게시판 조회 ajax 호출
-    viewsallselectajax: function(){
-        $.ajax({
-            url: '/viewsallselectajax',
-            type: 'post',
-            dataType: 'json',
-            data: {},
-            success: function(res) {
-                if (res.boardMap) {
-                    viewsallselect.drawBoardList(res);
-                }
-            },
-            error: function(xhr, status, error) {
-                console.error(error);
-            }
-        });
-    },
-    // 게시판 조회 데이터 html 로 화면에 그려주기
-    drawBoardList: function(data){
-        var html = '';
-        $.each( data.boardMap.boardList, function(i){
-            console.log(i);
-            html += '<tr>';
-            html += '    <td></td>';
-            html += '    <td>'+i+'</td>';
-            html += '    <td>'+data.boardMap.boardList[i].title+'</td>';
-            html += '    <td>'+data.boardMap.boardList[i].id+'</td>';
-            html += '    <td>'+data.boardMap.boardList[i].date+'</td>';
-            html += '</tr>';
-        });
-        $("#tbody_boardList").html(html);
-    }
-}
-
-$(function(){
-    viewsallselect.init();
-});
-
-
-
-</script>
+<script>
 	
-
-
-
-<!--<button type="button" onclick="viewsallselectajax(); " style="width: 250px; height: 250px;"> </button> -->
-
+</script>
+		
+  
 <section class="board">
 	<span>총게시물 ${totCnt} / 페이지 (${searchVO.pageIndex} / ${totalPageCnt})</span>
 		<h2 style="text-align: center; font-size: 30px; margin-bottom: 20px; margin-top: 30px;">스프링부트 jsp게시판 ${sessionid}회원</h2>
@@ -161,13 +73,36 @@ $(function(){
 					$(".pagination").find("li").eq(idx).addClass("active");
 				}
 			});
-			
-			});
+
+
+		});
 		</script>
-		<tbody style ="height:40px" id="tbody_boardList">
+		<tbody style ="height:40px">
+		<c:set var="count" value="${fn:length(boardList)+1}" />
+		<c:forEach var="list" items="${boardList}">
+		<c:set var="count" value="${count-1}" />
+	
+	
+		<tr>
+            <td class="frm">
+				
+            </td>
+            <td class="num">
+				<!--<c:out value="${list.boardnum}" /> -->		<c:out value="${count}" />
+            </td>
+            <td class="title">
+				<a href="viewdetail?boardnum=${list.boardnum}"><c:out value="${list.title}" /></a>
+            </td>
+			<td class="title">
+				<c:out value="${list.id}" />
+            </td>
+            <td class="date">
+				<c:out value="${list.date}" />
+            </td>
+		</tr>
+		</c:forEach>
 		</tbody>
 		</table>
-
 
 <!-- Paging[s] -->
 <div class="col-sm-12 col-md-7" style="text-align:right">

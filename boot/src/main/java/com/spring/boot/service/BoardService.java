@@ -11,17 +11,34 @@ import org.springframework.stereotype.Service;
 import com.spring.boot.dao.BoardDao;
 import com.spring.boot.vo.BoardVo;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Service
+@Slf4j
 public class BoardService {
 
     @Autowired
     BoardDao bd;
 
+
+    //ajax 보드게시판 불러오기 비동기 처리
+    public Map<String, Object> viewsallselectajax(BoardVo searchVO) {
+
+        List<BoardVo> boardList=bd.viewsallselect(searchVO);
+       // log.info(""+ boardList.size()  +"viewsallselectajax 서비스 ");
+        Map<String, Object> boardMap = new HashMap<>();
+        boardMap.put("boardList", boardList);
+        return boardMap;
+    }
+
     public List<BoardVo> viewsallselect(BoardVo searchVO)
     {
         List<BoardVo> list = bd.viewsallselect(searchVO);
+       // log.info(""+ list.size()  +"viewsallselect 서비스 ");
         return list;
     }
+
+   
 
     public Integer getListcount()
     {
@@ -55,13 +72,7 @@ public class BoardService {
         return intI;
     }
 
-    //ajax 보드게시판 불러오기 비동기 처리
-    public Map<String, Object> viewsallselectajax(BoardVo searchVO) {
-        List<BoardVo> boardList =  bd.viewsallselect(searchVO);
-        Map<String, Object> boardMap = new HashMap<>();
-        boardMap.put("boardList", boardList);
-        return boardMap;
-    }
+
 
 
 

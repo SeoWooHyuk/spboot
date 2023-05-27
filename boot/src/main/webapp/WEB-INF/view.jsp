@@ -16,31 +16,143 @@
 	<link href="css/sb-admin-2.min.css" rel="stylesheet">
 </head>
 <body>
-<script>
-	function fn_go_page(pageNo) {
-	$("#pageIndex").val(pageNo);
-	$("#listForm").submit();
-	return false;
-}
 
-function fn_search(){
-	$("#pageIndex").val("1");
-	$("#listForm").submit();
-	return false;
-}
-
-
-</script>
-<script>
+<!-- ajax 게시판 호출 -->
+<script type="text/javascript">
+	var keyword = ""; 
+	var pageindexjs = "1"; // 검색어 변수
 	
-</script>
+	function fn_search(){
+    keyword = $('.searchTerm').val(); // 검색어 저장
+    $("#pageIndex").val("1");
+    viewsallselect.viewsallselectajax(); // 게시판 조회
+	}
+
+	function fn_go_page(pageNo) {
+	pageindexjs = pageNo.toString();
+	$("#pageIndex").val(pageNo);
+	viewsallselect.viewsallselectajax(); 
+	}
+
+	
+	var viewsallselect = {
+		// 최초 실행
+		init: function(){
+			viewsallselect.bind();  // 이벤트 바인딩
+			viewsallselect.viewsallselectajax();    // 게시판 조회
+		},
+		// 이벤트 바인딩
+		bind: function(){
+			// 이벤트 바인딩 코드 작성
 		
-  
+        // 엔터키 입력 시
+        $('.searchTerm').on('keyup', function(e) {
+            if (e.keyCode == 13/* 엔터키 */) {
+                fn_search();
+				
+            }
+        });
+
+
+		},
+		// 게시판 조회 ajax 호출
+		viewsallselectajax: function(){
+			var submitObj = new Object();
+			console.log(pageindexjs);
+			submitObj.searchKeyword= keyword ;
+			submitObj.pageIndex = pageindexjs;
+			$.ajax({
+				url: '/viewsallselectajax',
+				type: 'post',
+				contentType: "application/json;charset=UTF-8",
+				dataType: 'json',
+				data: JSON.stringify(submitObj),
+				success: function(res) {
+					if (res.boardMap) {
+						viewsallselect.bootstrap();
+						viewsallselect.drawBoardList(res);
+						viewsallselect.drawtoboardcount(res);
+					}
+				},
+				error: function(xhr, status, error) {
+					console.error(error);
+				}
+			});
+		},
+		// 게시판 조회 데이터 html 로 화면에 그려주기
+		drawBoardList: function(data){
+			var html = '';
+			$.each( data.boardMap.boardList, function(i){
+				//console.log(i);
+				html += '<tr>';
+				html += '    <td></td>';
+				html += '    <td>'+i+'</td>';
+				html += '    <td>'+data.boardMap.boardList[i].title+'</td>';
+				html += '    <td>'+data.boardMap.boardList[i].id+'</td>';
+				html += '    <td>'+data.boardMap.boardList[i].date+'</td>';
+				html += '</tr>';
+			});
+			$("#tbody_boardList").html(html);
+		},
+
+		drawtoboardcount: function(data){
+
+			//console.log(data.pagination); 
+			const totCnt = data.totalPagewrite.totCnt;  //총게시글수 
+			const pageindex =  data.boardMap.boardList[0].pageIndex; //현제페이지
+			const totalPageCnt = data.totalPagewrite.totalPageCnt;
+			var html = '총게시물 ' + totCnt + '/  (페이지' +pageindex + '/' + totalPageCnt+')' ;
+		
+			$("#toboardcount").html(html);
+		},
+
+		bootstrap: function() {
+		var thisIndex = pageindexjs;
+		var $paginationLinks = $(".pagination li a");
+		$paginationLinks.each(function() {
+			var $this = $(this);
+			var linkIndex = $this.parent().index();
+			var linkPageNo = $this.attr("title");
+			if (linkPageNo === thisIndex && !$this.parent().hasClass("active")) {
+			$paginationLinks.parent().removeClass("active");
+			$this.parent().addClass("active");
+			}
+		}); 
+		}
+
+	}
+	
+	$(function(){
+		viewsallselect.init();
+	});
+
+/*
+	$(document).ready(function() { //부트스트랩내장 강조표시
+
+		var thisIndex ="${searchVO.pageIndex}";
+			$(".pagination li a").each(function(){
+				var idx = $(this).parent().index();
+				var thistitle = $(this).attr("title");
+				console.log(typeof thistitle);
+				console.log(typeof thisIndex);
+
+				if(thistitle == thisIndex){
+					$(".pagination").find("li").eq(idx).addClass("active");
+				}
+			});
+	});
+*/
+	
+	
+	
+	</script>
+		
+		<!-- 총게시물 ${totCnt} / 페이지 (${searchVO.pageIndex} / ${totalPageCnt}) -->
 <section class="board">
-	<span>총게시물 ${totCnt} / 페이지 (${searchVO.pageIndex} / ${totalPageCnt})</span>
+	<span id="toboardcount"></span>
 		<h2 style="text-align: center; font-size: 30px; margin-bottom: 20px; margin-top: 30px;">스프링부트 jsp게시판 ${sessionid}회원</h2>
 		<form class="search" method="get"  id="listForm">
-		<input type="hidden" id="pageIndex" name="pageIndex" val="" />
+		<!-- <input type="hidden" id="pageIndex" name="pageIndex" val="" /> -->
         <div id ="box" style="flex-basis: 675px; height: 73px; float: right;  ">
             <div  action="board_select" class="search_form"style="float :left;">
                 <input class="searchTerm" placeholder="검색하세여"  name = "searchKeyword"  value="${searchVO.searchKeyword}"/><input class="searchButton" onclick="fn_search();"  />
@@ -53,7 +165,7 @@ function fn_search(){
 		<col width="10"><col width="15">
 		<col width="115"><col width="55"><col width="40">
 		</colgroup>
-		<thead>
+		<thead style="text-align: center;">
 		<tr>
 		<th scope="col"></th>
 		<th scope="col">No</th>
@@ -61,47 +173,8 @@ function fn_search(){
 		<th scope="col">글쓴이</th>
 		<th scope="col">작성날짜</th> 
 		</tr>
-		</thead>	
-		<script>
-		$(document).ready(function() { //부트스트랩내장 강조표시
-	
-			var thisIndex = "${searchVO.pageIndex}"
-			$(".pagination li a").each(function(){
-				var idx = $(this).parent().index();
-				var thistitle = $(this).attr("title");
-				if(thistitle == thisIndex){
-					$(".pagination").find("li").eq(idx).addClass("active");
-				}
-			});
-
-
-		});
-		</script>
-		<tbody style ="height:40px">
-		<c:set var="count" value="${fn:length(boardList)+1}" />
-		<c:forEach var="list" items="${boardList}">
-		<c:set var="count" value="${count-1}" />
-	
-	
-		<tr>
-            <td class="frm">
-				
-            </td>
-            <td class="num">
-				<!--<c:out value="${list.boardnum}" /> -->		<c:out value="${count}" />
-            </td>
-            <td class="title">
-				<a href="viewdetail?boardnum=${list.boardnum}"><c:out value="${list.title}" /></a>
-            </td>
-			<td class="title">
-				<c:out value="${list.id}" />
-            </td>
-            <td class="date">
-				<c:out value="${list.date}" />
-            </td>
-		</tr>
-		</c:forEach>
-		</tbody>
+		</thead>
+		<tbody style ="height:40px; text-align: center;"  id="tbody_boardList"></tbody>
 		</table>
 
 <!-- Paging[s] -->
