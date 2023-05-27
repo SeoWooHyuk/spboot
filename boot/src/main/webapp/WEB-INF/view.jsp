@@ -87,7 +87,7 @@
 				html += '<tr>';
 				html += '    <td></td>';
 				html += '    <td>'+i+'</td>';
-				html += '    <td>'+data.boardMap.boardList[i].title+'</td>';
+				html += '    <td> <a href="viewdetail?boardnum='+data.boardMap.boardList[i].boardnum+'">' +data.boardMap.boardList[i].title+ '<a>  </td>';
 				html += '    <td>'+data.boardMap.boardList[i].id+'</td>';
 				html += '    <td>'+data.boardMap.boardList[i].date+'</td>';
 				html += '</tr>';
@@ -99,9 +99,8 @@
 
 			//console.log(data.pagination); 
 			const totCnt = data.totalPagewrite.totCnt;  //총게시글수 
-			const pageindex =  data.boardMap.boardList[0].pageIndex; //현제페이지
 			const totalPageCnt = data.totalPagewrite.totalPageCnt;
-			var html = '총게시물 ' + totCnt + '/  (페이지' +pageindex + '/' + totalPageCnt+')' ;
+			var html = '총게시물 ' + totCnt + '/  (페이지' +pageindexjs + '/' + totalPageCnt+')' ;
 		
 			$("#toboardcount").html(html);
 		},
