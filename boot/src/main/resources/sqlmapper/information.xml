@@ -9,6 +9,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
                 select * from information
         </select>
 
+        <select id="loginscheck" parameterType="String" resultType="com.spring.boot.vo.InfoMember">
+                select * from information where id = #{id}
+
+                
+        </select>
+
         <insert id="joininsert">
                 insert into information values(#{id},#{pw})
         </insert>

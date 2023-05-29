@@ -20,9 +20,11 @@
 </style>
 <body>		
 	<div id="logo" align="center">
-		<img src="./image/logo_beta_purple.png" style="width:200px; height:auto; margin-top:100px;"/ onclick="location.href='/learnup'"></div>	
+		<p class="text-center">
+            <img src="/images/nahwasa-profile.png" class="img-thumbnail" style="width: 200px;" alt="이 글이 보인다면 시큐리티 설정 잘못한거임!">
+        </p>
 	<div id="login_main">		
-		<form name="login" method="POST" action="login_check">	
+		<form name="login" method="POST" action="/login-process">	<!-- 시큐리티로 로그인정보 보냄 -->
 			<table align="center" border="0" id="login_action">
 				<tr><td><input type="text" id="id" class="txt_input" name="id" placeholder="아이디"></td></tr>
 				<tr><td><input type="password" id="passwd" class="txt_input" name="pw" placeholder="비밀번호" ></td></tr>
