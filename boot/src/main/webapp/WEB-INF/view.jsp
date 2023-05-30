@@ -52,7 +52,8 @@
                 <input class="searchTerm" placeholder="검색하세여"  name = "searchKeyword"  value="${searchVO.searchKeyword}"/><input class="searchButton" onclick="fn_search();"  />
             </div>     
         </div>
-	
+		</form>
+
 		<table cellspacing="0" border="1" summary="게시판의 글제목 리스트" class="tbl_type" id="myTable">
 		<caption>게시판 리스트</caption>
 		<colgroup>
@@ -71,6 +72,22 @@
 		<tbody style ="height:40px; text-align: center;"  id="tbody_boardList"></tbody>
 		</table>
 
+
+<!-- //UI Object -->            
+</section>
+
+<section class="board2">
+	<c:if test="${pageContext.request.userPrincipal.name != null}"> 
+	<input type="button" id = "submi"  value="+등록하기" onclick="location.href= 'viewinsert'" ;>
+	</c:if>
+<div class="pageContainer">   
+	
+</div>
+
+	
+</section>
+
+<section class="board2">
 <!-- Paging[s] -->
 <div class="col-sm-12 col-md-7" style="text-align:right">
 	<div class="dataTables_paginate paging_simple_numbers" id="dataTable_paginate">
@@ -96,21 +113,7 @@
 	  </ul>
 	</div>
 	</div>
-</form>
 	<!-- Paging[e] -->
-
-<!-- //UI Object -->            
-</section>
-
-<section class="board2">
-		<c:if test="${pageContext.request.userPrincipal.name != null}"> 
-  		<input type="button" id = "submi"  value="+등록하기" onclick="location.href= 'viewinsert'" ;>
-		</c:if>
-<div class="pageContainer">   
-	
-</div>
-
-	
 </section>
 
 
