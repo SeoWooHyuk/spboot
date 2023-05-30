@@ -37,8 +37,17 @@ public class ViewController {
 
     @Autowired
     BoardService boardService;
+
+
+/*
+    @GetMapping("/view2")
+    public String join()
+    {
+        return "view";
+    }
+ */
  
-    //@GetMapping("/view")  //게시글 셀렉창 //페이지번호 만 보내는역활 for사용해서
+    //게시글 셀렉창 //페이지번호 만 보내는역활 for사용해서
     @RequestMapping(value = "/view", method = {RequestMethod.GET, RequestMethod.POST})
     public ModelAndView  viewsallselect(@ModelAttribute("searchVO") BoardVo searchVO, Model model , HttpSession session)
     {

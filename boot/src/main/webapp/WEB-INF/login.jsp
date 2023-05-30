@@ -27,7 +27,7 @@
 		<form name="login" method="POST" action="/login-process">	<!-- 시큐리티로 로그인정보 보냄 -->
 			<table align="center" border="0" id="login_action">
 				<tr><td><input type="text" id="id" class="txt_input" name="id" placeholder="아이디"></td></tr>
-				<tr><td><input type="password" id="passwd" class="txt_input" name="pw" placeholder="비밀번호" ></td></tr>
+				<tr><td><input type="password" id="pw" class="txt_input" name="pw" placeholder="비밀번호" ></td></tr>
 				<tr><td><input type="submit" id="login_button" name="" value="로그인"></td></tr>
 			</table>
 		</form>

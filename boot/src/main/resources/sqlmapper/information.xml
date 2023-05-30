@@ -11,8 +11,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
         <select id="loginscheck" parameterType="String" resultType="com.spring.boot.vo.InfoMember">
                 select * from information where id = #{id}
+        </select>
 
-                
+         <select id="findByUserid" parameterType="String" resultType="com.spring.boot.vo.InfoMember">
+                select * from information where id = #{id}
         </select>
 
         <insert id="joininsert">

@@ -45,8 +45,6 @@ public class InfoController {
     @PostMapping("/joininsert")
     public ResponseEntity<String> joininsert(@RequestBody Information info) 
     {
-       // log.info(""+ info.getId()  +"아이디");
-       // log.info(""+ info.getPw()  +"비번");
         try {
 
             int intI = infoService.joininsert(info);
@@ -59,9 +57,10 @@ public class InfoController {
         // HTTP 상태코드 200(OK)와 메시지 "join success"를 함께 응답합니다.
         //  이는 클라이언트가 회원가입이 성공적으로 이루어졌음을 알리는 응답입니다.
 
-
-
     }
+
+
+
 /* 
     @PostMapping("/login_check")
     public String login_check(@ModelAttribute Information info, HttpSession session)

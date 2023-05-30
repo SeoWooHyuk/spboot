@@ -22,8 +22,8 @@ public class InfoMember {
     protected InfoMember() {}
 
     public static InfoMember createUser(String id, String pw, PasswordEncoder passwordEncoder) {
-        log.info(""+ id +"인포멤버 크리에트 유저아디 체크");
-        log.info(""+ passwordEncoder +"인포멤버 크리에트 유저비번 체크");
+        //log.info(""+ id +"인포멤버 크리에트 유저아디 체크");
+        //log.info(""+ passwordEncoder +"인포멤버 크리에트 유저비번 체크");
         return new InfoMember(null, id, passwordEncoder.encode(pw));
     }
 
