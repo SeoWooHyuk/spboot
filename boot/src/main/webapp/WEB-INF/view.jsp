@@ -10,146 +10,41 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>공지사항</title>
-	<link rel="stylesheet" type="text/css" href="css/board_select.css">
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;400&display=swap" rel="stylesheet">
 	<link href="css/sb-admin-2.min.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="css/board_select.css">
+	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+	<script src="js/view.js" type="text/javascript"></script>
+	
 </head>
 <body>
 
 <!-- ajax 게시판 호출 -->
 <script type="text/javascript">
-	var keyword = ""; 
-	var pageindexjs = "1"; // 검색어 변수
-	
-	function fn_search(){
-    keyword = $('.searchTerm').val(); // 검색어 저장
-    $("#pageIndex").val("1");
-    viewsallselect.viewsallselectajax(); // 게시판 조회
-	}
-
-	function fn_go_page(pageNo) {
-	pageindexjs = pageNo.toString();
-	$("#pageIndex").val(pageNo);
-	viewsallselect.viewsallselectajax(); 
-	}
-
-	
-	var viewsallselect = {
-		// 최초 실행
-		init: function(){
-			viewsallselect.bind();  // 이벤트 바인딩
-			viewsallselect.viewsallselectajax();    // 게시판 조회
-		},
-		// 이벤트 바인딩
-		bind: function(){
-			// 이벤트 바인딩 코드 작성
 		
-        // 엔터키 입력 시
-        $('.searchTerm').on('keyup', function(e) {
-            if (e.keyCode == 13/* 엔터키 */) {
-                fn_search();
-				
-            }
-        });
-
-
-		},
-		// 게시판 조회 ajax 호출
-		viewsallselectajax: function(){
-			var submitObj = new Object();
-			console.log(pageindexjs);
-			submitObj.searchKeyword= keyword ;
-			submitObj.pageIndex = pageindexjs;
-			$.ajax({
-				url: '/viewsallselectajax',
-				type: 'post',
-				contentType: "application/json;charset=UTF-8",
-				dataType: 'json',
-				data: JSON.stringify(submitObj),
-				success: function(res) {
-					if (res.boardMap) {
-						viewsallselect.bootstrap();
-						viewsallselect.drawBoardList(res);
-						viewsallselect.drawtoboardcount(res);
-					}
-				},
-				error: function(xhr, status, error) {
-					console.error(error);
-				}
-			});
-		},
-		// 게시판 조회 데이터 html 로 화면에 그려주기
-		drawBoardList: function(data){
-			var html = '';
-			$.each( data.boardMap.boardList, function(i){
-				//console.log(i);
-				html += '<tr>';
-				html += '    <td></td>';
-				html += '    <td>'+i+'</td>';
-				html += '    <td> <a href="viewdetail?boardnum='+data.boardMap.boardList[i].boardnum+'">' +data.boardMap.boardList[i].title+ '<a>  </td>';
-				html += '    <td>'+data.boardMap.boardList[i].id+'</td>';
-				html += '    <td>'+data.boardMap.boardList[i].date+'</td>';
-				html += '</tr>';
-			});
-			$("#tbody_boardList").html(html);
-		},
-
-		drawtoboardcount: function(data){
-
-			//console.log(data.pagination); 
-			const totCnt = data.totalPagewrite.totCnt;  //총게시글수 
-			const totalPageCnt = data.totalPagewrite.totalPageCnt;
-			var html = '총게시물 ' + totCnt + '/  (페이지' +pageindexjs + '/' + totalPageCnt+')' ;
-		
-			$("#toboardcount").html(html);
-		},
-
-		bootstrap: function() {
-		var thisIndex = pageindexjs;
-		var $paginationLinks = $(".pagination li a");
-		$paginationLinks.each(function() {
-			var $this = $(this);
-			var linkIndex = $this.parent().index();
-			var linkPageNo = $this.attr("title");
-			if (linkPageNo === thisIndex && !$this.parent().hasClass("active")) {
-			$paginationLinks.parent().removeClass("active");
-			$this.parent().addClass("active");
-			}
-		}); 
-		}
-
+	
+</script>
+<style type="text/css">
+    #submi
+    {
+   
+       height: 35px;
+       width: 100px;
+    }
+    #submi:hover
+	{
+	    border-style: solid;
+	    border-color: blueviolet;
 	}
-	
-	$(function(){
-		viewsallselect.init();
-	});
-
-/*
-	$(document).ready(function() { //부트스트랩내장 강조표시
-
-		var thisIndex ="${searchVO.pageIndex}";
-			$(".pagination li a").each(function(){
-				var idx = $(this).parent().index();
-				var thistitle = $(this).attr("title");
-				console.log(typeof thistitle);
-				console.log(typeof thisIndex);
-
-				if(thistitle == thisIndex){
-					$(".pagination").find("li").eq(idx).addClass("active");
-				}
-			});
-	});
-*/
-	
-	
-	
-	</script>
+</style>
 		
 		<!-- 총게시물 ${totCnt} / 페이지 (${searchVO.pageIndex} / ${totalPageCnt}) -->
 <section class="board">
+	<jsp:include page ="./header.jsp"/>	 
 	<span id="toboardcount"></span>
-		<h2 style="text-align: center; font-size: 30px; margin-bottom: 20px; margin-top: 30px;">스프링부트 jsp게시판 ${sessionid}회원</h2>
+		<h2 style="text-align: center; font-size: 30px; margin-bottom: 20px; margin-top: 30px;">스프링부트 jsp게시판${pageContext.request.userPrincipal.name} 회원</h2>
 		<form class="search" method="get"  id="listForm">
 		<!-- <input type="hidden" id="pageIndex" name="pageIndex" val="" /> -->
         <div id ="box" style="flex-basis: 675px; height: 73px; float: right;  ">
@@ -206,27 +101,16 @@
 
 <!-- //UI Object -->            
 </section>
+
 <section class="board2">
-		<input type="button" id = "submi"  value="+로그아웃" onclick="location.href= 'logout'" ;>
-		<c:if test="${sessionid != null}">
+		<c:if test="${pageContext.request.userPrincipal.name != null}"> 
   		<input type="button" id = "submi"  value="+등록하기" onclick="location.href= 'viewinsert'" ;>
 		</c:if>
-<style>
-    #submi
-    {
-   
-       height: 35px;
-       width: 100px;
-    }
-    #submi:hover
-	{
-	    border-style: solid;
-	    border-color: blueviolet;
-	}
-</style>
-   <div class="pageContainer">   
+<div class="pageContainer">   
 	
-	</div>
+</div>
+
+	
 </section>
 
 

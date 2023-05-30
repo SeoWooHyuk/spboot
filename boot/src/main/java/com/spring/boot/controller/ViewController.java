@@ -38,14 +38,6 @@ public class ViewController {
     @Autowired
     BoardService boardService;
 
-
-/*
-    @GetMapping("/view2")
-    public String join()
-    {
-        return "view";
-    }
- */
  
     //게시글 셀렉창 //페이지번호 만 보내는역활 for사용해서
     @RequestMapping(value = "/view", method = {RequestMethod.GET, RequestMethod.POST})
@@ -70,8 +62,6 @@ public class ViewController {
         searchVO.setNext(pagination.getXnext());
 
         model.addAttribute("searchVO",searchVO);
-
-
     /*      
         model.addAttribute("boardList",boardList);
         model.addAttribute("totCnt",totCnt);
@@ -79,11 +69,6 @@ public class ViewController {
         model.addAttribute("pagination",pagination);
     */ 
         ModelAndView mv = new ModelAndView();
-        if(session.getAttribute("sessionid") ==  null) //로그인정보가없으면 로그인창으로 돌아가라
-        {
-            mv.setViewName("redirect:/login");
-		    return mv;
-        }
 
         mv.setViewName("view");
         return mv;

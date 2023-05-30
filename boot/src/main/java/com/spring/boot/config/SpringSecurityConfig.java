@@ -33,7 +33,8 @@ public class SpringSecurityConfig {
         http.csrf().disable().cors().disable()
                 .authorizeHttpRequests(request -> request
                         .dispatcherTypeMatchers(DispatcherType.FORWARD).permitAll()
-                        .requestMatchers("/status", "/images/**","/status", "/css/**", "/join", "/joininsert","/index.html" ).permitAll() //: URL 패턴 지정을 통해 인증 없이 접근을 허용합니다.
+                        .requestMatchers("/status", "/images/**","/status", "/css/**","/js/**",
+                         "/join", "/joininsert","/index.html", "/login","/view","/viewsallselectajax").permitAll() //: URL 패턴 지정을 통해 인증 없이 접근을 허용합니다.
                         .anyRequest().authenticated()  //나머지 요청은 인증이 필요합니다.
                 )
                 .formLogin(login -> login

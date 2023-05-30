@@ -42,7 +42,7 @@
 	
 	<!-- 아이디, 비밀번호 찾기, 회원가입 링크 영역 -->
 	<div id="login_sub2">
-		<span id="find_id"><a href="">아이디 찾기</a></span>
+		<span id="find_id"><a href="test">아이디 찾기</a></span>
 		<span id="find_pw"><a href="">비밀번호 찾기</a></span>
 		<span id="join"><a href="join">회원가입</a></span>			
 	</div>

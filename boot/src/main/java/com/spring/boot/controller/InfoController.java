@@ -23,6 +23,12 @@ public class InfoController {
     @Autowired
     InfoService infoService; 
 
+    @GetMapping("/main")
+    public String main()
+    {
+        return "main";
+    }
+
     @GetMapping("/login")
     public String login()
     {
@@ -31,7 +37,6 @@ public class InfoController {
 
     @GetMapping("/logout")
     public String logout(HttpSession session) {
-        session.invalidate();
         return "redirect:/login";
     }
     
@@ -58,25 +63,5 @@ public class InfoController {
         //  이는 클라이언트가 회원가입이 성공적으로 이루어졌음을 알리는 응답입니다.
 
     }
-
-
-
-/* 
-    @PostMapping("/login_check")
-    public String login_check(@ModelAttribute Information info, HttpSession session)
-    {
-    
-        //log.info(""+ info.getId()  +"아이디");
-        boolean chek =  is.loginslist(info);
-
-        if(chek)
-        {
-            session.setAttribute("sessionid", info.getId());
-            return "redirect:/view";
-        }
-
-        return "redirect:/login";
-    }
-*/
-   
 }
+

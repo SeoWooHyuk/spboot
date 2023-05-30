@@ -28,7 +28,7 @@ $(document).ready(function() {
 
    	<h1 style="text-align:center; margin-bottom: 5px; margin-top: 30px;" class="con">게시글 작성</h1>
 	<form action="viewinsert_ok" method="post" >
-    <input type="hidden" name=id  size=50   value='${sessionid}' required>           
+    <input type="hidden" name=id  size=50   value='${pageContext.request.userPrincipal.name}' required>           
 	<section class="article-detail table-common con row"> 	
         <table class="cell" border="1">
             <colgroup>
