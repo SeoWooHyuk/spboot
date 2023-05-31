@@ -48,7 +48,7 @@
 	<jsp:include page ="/header"/>	 
 	<h1 style="text-align:center; margin-bottom: 5px; margin-top: 30px;" class="con">
 		상세 게시글 </h1>
-	<section class="article-detail table-common con row">
+	<section class="article-detail table-common con">
 		<table class="cell" border="1">
 			<tbody>
 				<colgroup>
