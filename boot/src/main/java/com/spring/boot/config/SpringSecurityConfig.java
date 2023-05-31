@@ -61,13 +61,18 @@ public class SpringSecurityConfig {
                         .passwordParameter("pw")
                         .successHandler((request, response, authentication) ->{
                             HttpSession session = request.getSession();
-                            String prevPage = (String) request.getSession().getAttribute("prevPage");
-                        
-                            log.info(""+ prevPage +"리페어값 확인");
 
-                            if (session != null) {
+                            String prevPage = (String) request.getSession().getAttribute("prevPage");
+                            String referer = request.getHeader("Referer");  
+                            log.info(""+ prevPage +"리페어값 확인");
+                            if(prevPage.equals(referer))
+                            {
+                                response.sendRedirect("/main");
+                            }else
+                            {
                                 response.sendRedirect(prevPage);
                             }
+                            
                         })
                        .failureUrl("/login").permitAll()
                     //.defaultSuccessUrl("/view", true).permitAll() //로그인 페이지는 인증 없이 접근이 가능합니다.
