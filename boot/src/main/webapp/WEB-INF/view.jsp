@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
-<% request.setCharacterEncoding("utf-8"); %>
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 <%@taglib prefix="c" uri = "http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fmt" uri = "http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
@@ -41,8 +41,12 @@
 </style>
 		
 		<!-- 총게시물 ${totCnt} / 페이지 (${searchVO.pageIndex} / ${totalPageCnt}) -->
+
+<sec:authorize access="permitAll">
+	<jsp:include page ="/header"/>	 
+</sec:authorize>
+
 <section class="board">
-	<jsp:include page ="./header.jsp"/>	 
 	<span id="toboardcount"></span>
 		<h2 style="text-align: center; font-size: 30px; margin-bottom: 20px; margin-top: 30px;">스프링부트 jsp게시판${pageContext.request.userPrincipal.name} 회원</h2>
 		<form class="search" method="get"  id="listForm">

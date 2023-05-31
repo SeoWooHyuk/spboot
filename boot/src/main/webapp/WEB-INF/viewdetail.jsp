@@ -44,6 +44,8 @@
 
 </script>
 <body>
+
+	<jsp:include page ="/header"/>	 
 	<h1 style="text-align:center; margin-bottom: 5px; margin-top: 30px;" class="con">
 		상세 게시글 </h1>
 	<section class="article-detail table-common con row">
@@ -89,16 +91,14 @@
 	</section>
 
 	<div class="ass">
-		<input type="button" id="moc" value="목록" style=""
-			onclick="location.href= 'view'">
+		<input type="button" id="moc" value="목록" onclick="location.href= 'view'">
 		<div class="box1">
 			<!--
 			<input type="button" id="de" value="삭제" onclick="location.href= 'viewdelete?boardnum=${board.boardnum}'">
 			-->
 			<input type="button" id="de" onclick="deleteConfirm()" value="삭제" >
 
-			<input type="button" id="up" value="수정" style=""
-				onclick="location.href= 'board_update.jsp?id='">
+			<input type="button" id="up" value="수정" onclick="location.href= 'board_update.jsp?id='">
 		</div>
 	</div>
 

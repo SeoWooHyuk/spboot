@@ -25,11 +25,13 @@ $(document).ready(function() {
 
 </script>
  <body>
-
+    <jsp:include page ="/header"/>	 
    	<h1 style="text-align:center; margin-bottom: 5px; margin-top: 30px;" class="con">게시글 작성</h1>
+    
 	<form action="viewinsert_ok" method="post" >
+    
     <input type="hidden" name=id  size=50   value='${pageContext.request.userPrincipal.name}' required>           
-	<section class="article-detail table-common con row"> 	
+	<section class="article-detail table-common con "> 	
         <table class="cell" border="1">
             <colgroup>
                 <col width="100px">
@@ -38,7 +40,7 @@ $(document).ready(function() {
              <!-- //의미없는 파일 -->
              	<th>제목 <span style="color: red;">*</span> </th>
                 <tr class="article-title">
-                    <td colspan="3"><input type=text name=title style="width: 100%; height: 32px; border: 2px solid #8041D9; " size=50  required></td>
+                    <td colspan="3"><input type=text name=title style="width: 100%; height: 32px; border: 2px solid #8041D9; font-size: 1.0em;" size=50  required></td>
                 </tr>
                  <th>게시글 <span style="color: red;  ">*</span> <div id="test_cnt" style="float:right;">(0 / 100)</div></th>
                 <tr class="article-body">
@@ -51,7 +53,7 @@ $(document).ready(function() {
 	 	<input type="file" name="file1" id = "file1" style="border:none;" multiple">
 	 </div>
 	<div class="ass">
-        <input type="button" id="moc" value="목록"  onclick="location.href= 'views'" >
+        <input type="button" id="moc" value="목록"  onclick="location.href= 'view'" >
         <input type="submit" id="submi" value="문의 작성" > 
     </div>
     </form>

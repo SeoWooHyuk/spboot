@@ -23,10 +23,10 @@ public class InfoController {
     @Autowired
     InfoService infoService; 
 
-    @GetMapping("/main")
+    @GetMapping("/header")
     public String main()
     {
-        return "main";
+        return "header";
     }
 
     @GetMapping("/login")
@@ -35,10 +35,7 @@ public class InfoController {
         return "login";
     }
 
-    @GetMapping("/logout")
-    public String logout(HttpSession session) {
-        return "redirect:/login";
-    }
+  
     
     
     @GetMapping("/join")
