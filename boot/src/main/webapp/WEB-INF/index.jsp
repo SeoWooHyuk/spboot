@@ -61,25 +61,30 @@
 						style="width: 1280px; height: 380px; list-style: none; margin-left: auto; margin-right: auto;">
 						<div class="banner_sec1">
 							<h1>
-								재능판매, 오프라인강의, 강의실대여<br>지금 바로 시작해보세요.
+								 스프링부트 3.10
 							</h1>
 							<div method="get" action="/search" id="search2">
-								<input type="text" size="20" placeholder="검색해주세요">
+								<input type="text" size="20" placeholder="개인프로젝트 사용기술 ↕">
 							</div>
 							<ul>
-								<a href="#self"><li>#피트니스</li></a>
-								<a href="#self"><li>#보컬</li></a>
-								<a href="#self"><li>#필라테스</li></a>
-								<a href="#self"><li>#스포츠</li></a>
-								<a href="#self"><li>#공예</li></a>
-								<a href="#self"><li>#메이크업</li></a>
-								<a href="#self"><li>#베이킹</li></a>
+								<a href="#self"><li>#gradle</li></a>
+								<a href="#self"><li>#mybatis</li></a>
+								<a href="#self"><li>#mysql</li></a>
+								<a href="#self"><li>#jsp</li></a>
+								<a href="#self"><li>#json</li></a>
+								<a href="#self"><li>#ajax</li></a>
+								<a href="#self"><li>#lombook</li></a>
+								<a href="#self"><li>#Security</li></a>
+								<a href="#self"><li>#jstl </li></a>
+								<a href="#self"><li>#jstl </li></a>
+								<a href="#self"><li>#tomcat </li></a>
+								<a href="#self"><li>#se-taglibs </li></a>
 							</ul>
 						</div>
 						<div class="banner_sec2">
 							<a href="#self">
 								<div>
-									<img src="image/mainbaner.png">
+									<img src="data:image/png;base64,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">
 								</div>
 							</a>
 						</div>
@@ -91,282 +96,44 @@
 		</div>
 	</section>
 
-	<!--    재능    -->
 	<div style="height: 50px;"></div>
-	<section class="jaeneung">
+	<section class="janso">
 
-		<div class="boxxxxd">
+		<div class="janso_box">
 			<div style="float: left">
 				<span
-					style="color: #8A2BE2; font-size: 20pt; position: relative; top: 10px; left: 50px; font-weight: bold;">위클리
-					재능 추천</span>
+					style="color: #8A2BE2; font-size: 20pt; position: relative; top: 10px; left: 50px; font-weight: bold;">
+					공사중
+					</span>
 			</div>
 			<div style="text-align: right;">
 				<button class="custom-btn btn-15"
-					onclick="location.href='TalentList.learn?category=1' "
-					style="background-color: #D1B2FF; border-radius: 5px; position: relative; top: 30px; right: 60px; font-size: 15px; font-weight: bold; padding: 5px 10px;">전체보기</button>
-			</div>
-		</div>
-		<div class="link-boxd">
-
-			<div class="box-controll">
-				<div class="box-0d">
-					<div class="box-0-1d">
-						<a href="" class="imgbox"> <span style="position: absolute;">
-								<img src="image/talentimage/13.jpg" id="talent-1" alt=""
-								class="imgs">
-						</span> <span style="position: absolute; margin-left: 200px;"> <a
-								href="javascript:;" class="icon heart"
-								style="text-decoration: none; color: inherit; cursor: pointer;">
-									<img src="image/heart1.png" alt="찜하기">
-							</a>
-						</span>
-						</a>
-					</div>
-
-					<div class="box-0-2d">
-						<div class="nick">강아지전문가</div>
-						<div class="title">우리 강아지의 행복지수 높이는 방법을 알려드립니다.</div>
-						<div class="money">500,000원~</div>
-						<div class="review">
-							<span class="star">★</span>4.9<span class="bordleft"></span><span>154개의
-								평가</span>
-						</div>
-					</div>
-
-				</div>
-
-
-
-				<div class="box-0d">
-					<div class="box-0-1d">
-						<a href="" class="imgbox"> <span style="position: absolute;">
-								<img src="image/talentimage/14.jpg" id="talent-2" alt=""
-								class="imgs">
-						</span> <span style="position: absolute; margin-left: 200px;"> <a
-								href="javascript:;" class="icon heart"
-								style="text-decoration: none; color: inherit; cursor: pointer;">
-									<img src="image/heart1.png" alt="찜하기">
-							</a>
-						</span>
-						</a>
-					</div>
-
-					<div class="box-0-2d">
-						<div class="nick">강아지전문가</div>
-						<div class="title">우리 강아지의 행복지수 높이는 방법을 알려드립니다.</div>
-						<div class="money">500,000원~</div>
-						<div class="review">
-							<span class="star">★</span>4.9<span class="bordleft"></span><span>154개의
-								평가</span>
-						</div>
-					</div>
-
-				</div>
-
-				<div class="box-0d">
-					<div class="box-0-1d">
-						<a href="" class="imgbox"> <span style="position: absolute;">
-								<img src="image/talentimage/17.jpg" id="talent-3" alt=""
-								class="imgs">
-						</span> <span style="position: absolute; margin-left: 200px;"> <a
-								href="javascript:;" class="icon heart"
-								style="text-decoration: none; color: inherit; cursor: pointer;">
-									<img src="image/heart1.png" alt="찜하기">
-							</a>
-						</span>
-						</a>
-					</div>
-
-					<div class="box-0-2d">
-						<div class="nick">강아지전문가</div>
-						<div class="title">우리 강아지의 행복지수 높이는 방법을 알려드립니다.</div>
-						<div class="money">500,000원~</div>
-						<div class="review">
-							<span class="star">★</span>4.9<span class="bordleft"></span><span>154개의
-								평가</span>
-						</div>
-					</div>
-
-				</div>
-
-
-				<div class="box-0d">
-					<div class="box-0-1d">
-						<a href="" class="imgbox"> <span style="position: absolute;">
-								<img src="image/talentimage/18.jpg" id="talent-4" alt=""
-								class="imgs">
-						</span> <span style="position: absolute; margin-left: 200px;"> <a
-								href="javascript:;" class="icon heart"
-								style="text-decoration: none; color: inherit; cursor: pointer;">
-									<img src="image/heart1.png" alt="찜하기">
-							</a>
-						</span>
-						</a>
-					</div>
-
-					<div class="box-0-2d">
-						<div class="nick">강아지전문가</div>
-						<div class="title">우리 강아지의 행복지수 높이는 방법을 알려드립니다.</div>
-						<div class="money">500,000원~</div>
-						<div class="review">
-							<span class="star">★</span>4.9<span class="bordleft"></span><span>154개의
-								평가</span>
-						</div>
-					</div>
-
-				</div>
-
-
-			</div>
-		</div>
-		</div>
-	</section>
-
-	<!--오프라인-->
-	<div style="height: 50px;"></div>
-	<section class="off">
-
-		<div class="off_box">
-			<div style="float: left">
-				<span
-					style="color: #8A2BE2; font-size: 20pt; position: relative; top: 10px; left: 50px; font-weight: bold;">위클리
-					오프라인 강의 추천</span>
-			</div>
-			<div style="text-align: right;">
-				<button class="custom-btn btn-15"
-					onclick="location.href='off_total_main.off' "
+					onclick="location.href='jangso.learnup.com' "
 					style="background-color: #D1B2FF; border-radius: 5px; position: relative; top: 30px; right: 60px; font-size: 15px; font-weight: bold; padding: 5px 10px;">전체보기</button>
 			</div>
 		</div>
 
-		<div class="link-boxd3">
+		<div class="link-boxd2">
 
-			<div class="box-controll3">
-				<div class="box-0d3">
-					<div class="box-0-1d3">
-						<a href="#self" class="imgbox"> <span
-							style="position: absolute;"> <img src="image/lesson3.jpg"
-								alt="" class="off_imgs">
-						</span> <span style="position: absolute; margin-left: 200px;"> <a
-								href="javascript:;" class="icon heart"
-								style="text-decoration: none; color: inherit; cursor: pointer;">
-									<img src="image/heart1.png" alt="찜하기">
-							</a>
-						</span>
-						</a>
-					</div>
+			<div class="box-controll2">
 
-					<div class="box-0-2d3">
-						<p class="off_area">강남구</p>
-						<p class="off_title">그린컴퓨터아카데미 풀스텍(java, database, css,
-							javascript)</p>
-						<p class="off_nickname">유깹</p>
-						<p class="off_price">10,000원</p>
-						<p class="off_jjimreview_wrap">
-							<img src="image/heart2.png" class="off_jjim">
-						<div class="off_jjimcount">5.0</div>
-						<div class="off_review">리뷰</div>
-						<div class="off_reviewcount">1,000+</div>
+				<div class="box-0d2" style="margin-left: 15px;">
+
+					<p style="background-color: #8A2BE2; width: 100%; height: 100%;"></p>
+					<div class="box-0-1d2" style="width: 1180px; height: 380px;">
+						<p style=" width: 100%; height: 100%;">
+						<img style="width: 100%; height: 100%;" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRU8WhcNWFFeFiCbuJ-phfV1apGpeMioAT5Tw&usqp=CAU">
+						
+						
+						
 						</p>
 					</div>
-
 				</div>
-
-				<div class="box-0d3">
-					<div class="box-0-1d3">
-						<a href="" class="imgbox"> <span style="position: absolute;">
-								<img src="image/lesson4.jpg" alt="" class="off_imgs">
-						</span> <span style="position: absolute; margin-left: 200px;"> <a
-								href="javascript:;" class="icon heart"
-								style="text-decoration: none; color: inherit; cursor: pointer;">
-									<img src="image/heart1.png" alt="찜하기">
-							</a>
-						</span>
-						</a>
-					</div>
-
-					<div class="box-0-2d3">
-						<p class="off_area">강남구</p>
-						<p class="off_title">그린컴퓨터아카데미 풀스텍(java, database, css,
-							javascript)</p>
-						<p class="off_nickname">유깹</p>
-						<p class="off_price">10,000원</p>
-						<p class="off_jjimreview_wrap">
-							<img src="image/heart2.png" class="off_jjim">
-						<div class="off_jjimcount">5.0</div>
-						<div class="off_review">리뷰</div>
-						<div class="off_reviewcount">1,000+</div>
-						</p>
-					</div>
-
-				</div>
-
-				<div class="box-0d3">
-					<div class="box-0-1d3">
-						<a href="" class="imgbox"> <span style="position: absolute;">
-								<img src="image/lesson5.jpg" alt="" class="off_imgs">
-						</span> <span style="position: absolute; margin-left: 200px;"> <a
-								href="javascript:;" class="icon heart"
-								style="text-decoration: none; color: inherit; cursor: pointer;">
-									<img src="image/heart1.png" alt="찜하기">
-							</a>
-						</span>
-						</a>
-					</div>
-
-					<div class="box-0-2d3">
-						<p class="off_area">강남구</p>
-						<p class="off_title">그린컴퓨터아카데미 풀스텍(java, database, css,
-							javascript)</p>
-						<p class="off_nickname">유깹</p>
-						<p class="off_price">10,000원</p>
-						<p class="off_jjimreview_wrap">
-							<img src="image/heart2.png" class="off_jjim">
-						<div class="off_jjimcount">5.0</div>
-						<div class="off_review">리뷰</div>
-						<div class="off_reviewcount">1,000+</div>
-						</p>
-					</div>
-
-				</div>
-
-				<div class="box-0d3">
-					<div class="box-0-1d3">
-						<a href="" class="imgbox"> <span style="position: absolute;">
-								<img src="image/lesson6.jpg" alt="" class="off_imgs">
-						</span> <span style="position: absolute; margin-left: 200px;"> <a
-								href="javascript:;" class="icon heart"
-								style="text-decoration: none; color: inherit; cursor: pointer;">
-									<img src="image/heart1.png" alt="찜하기">
-							</a>
-						</span>
-						</a>
-					</div>
-
-					<div class="box-0-2d3">
-						<p class="off_area">강남구</p>
-						<p class="off_title">그린컴퓨터아카데미 풀스텍(java, database, css,
-							javascript)</p>
-						<p class="off_nickname">유깹</p>
-						<p class="off_price">10,000원</p>
-						<p class="off_jjimreview_wrap">
-							<img src="image/heart2.png" class="off_jjim">
-						<div class="off_jjimcount">5.0</div>
-						<div class="off_review">리뷰</div>
-						<div class="off_reviewcount">1,000+</div>
-						</p>
-					</div>
-
-				</div>
-
-
 			</div>
-		</div>
 		</div>
 	</section>
 
-
+	
 	<!--장소추천-->
 	<div style="height: 50px;"></div>
 	<section class="janso">
@@ -374,8 +141,9 @@
 		<div class="janso_box">
 			<div style="float: left">
 				<span
-					style="color: #8A2BE2; font-size: 20pt; position: relative; top: 10px; left: 50px; font-weight: bold;">위클리
-					오늘의 장소 추천</span>
+					style="color: #8A2BE2; font-size: 20pt; position: relative; top: 10px; left: 50px; font-weight: bold;">
+					이스터에그 런업
+					</span>
 			</div>
 			<div style="text-align: right;">
 				<button class="custom-btn btn-15"
@@ -399,7 +167,7 @@
 						</span> <span style="position: absolute; margin-left: 200px;"> <a
 								href="javascript:;" class="icon heart"
 								style="text-decoration: none; color: inherit; cursor: pointer;">
-									<img src="image/heart1.png" alt="찜하기">
+									
 							</a>
 						</span>
 						</a>
@@ -410,14 +178,10 @@
 						<div class="box-0-2d2">
 							<div style="padding-left: 5px; padding-top: 6px;">
 								<strong style="font-size: 18px; padding-top: 10px;">00스터디룸</strong>
-								<span style="font-size: 12px; padding-top: 10px;">(최소인원
-									1명/ </span> <span style="font-size: 12px; padding-top: 10px;">최대인원
-									8명) </span> <span style="position: absolute; z-index: 9"> <a
-									href="javascript:;" class="icon heart"
-									style="text-decoration: none; color: inherit; cursor: pointer;">
-										<img src="image/heart1.png" alt="찜하기" style="">
-								</a>
-								</span>
+								<span style="font-size: 12px; padding-top: 10px;">(최소인원1명/ </span> 
+								<span style="font-size: 12px; padding-top: 10px;">최대인원8명) </span> 
+									
+							
 
 							</div>
 
@@ -450,7 +214,7 @@
 						</span> <span style="position: absolute; margin-left: 200px;"> <a
 								href="javascript:;" class="icon heart"
 								style="text-decoration: none; color: inherit; cursor: pointer;">
-									<img src="image/heart1.png" alt="찜하기">
+								
 							</a>
 						</span>
 						</a>
@@ -501,7 +265,7 @@
 						</span> <span style="position: absolute; margin-left: 200px;"> <a
 								href="javascript:;" class="icon heart"
 								style="text-decoration: none; color: inherit; cursor: pointer;">
-									<img src="image/heart1.png" alt="찜하기">
+									
 							</a>
 						</span>
 						</a>
@@ -555,7 +319,7 @@
 						</span> <span style="position: absolute; margin-left: 200px;"> <a
 								href="javascript:;" class="icon heart"
 								style="text-decoration: none; color: inherit; cursor: pointer;">
-									<img src="image/heart1.png" alt="찜하기">
+							
 							</a>
 						</span>
 						</a>
@@ -571,7 +335,7 @@
 									8명) </span> <span style="position: absolute; z-index: 9"> <a
 									href="javascript:;" class="icon heart"
 									style="text-decoration: none; color: inherit; cursor: pointer;">
-										<img src="image/heart1.png" alt="찜하기" style="">
+										
 								</a>
 								</span>
 
@@ -610,29 +374,8 @@
 
 </body>
 <script type="text/javascript">
-	$(function() {
-		var $likeBtn = $('.icon.heart');
 
-		$likeBtn.click(function() {
-			$likeBtn.toggleClass('active');
 
-			if ($likeBtn.hasClass('active')) {
-				$(this).find('img').attr({
-					'src' : 'image/heart2.png',
-					alt : '찜하기 완료'
-				});
-			} else {
-				$(this).find('i').removeClass('fas').addClass('far')
-				$(this).find('img').attr({
-					'src' : 'image/heart1.png',
-					alt : "찜하기"
-				});
-			}
-		})
-	});
-
-	$(function() {
-		//  이미지 클릭시 해당 이미지 모달
 	$(function() {
 		for (let i = 1; i <= 4; i++) {
 

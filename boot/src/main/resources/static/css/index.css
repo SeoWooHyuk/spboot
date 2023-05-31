@@ -85,7 +85,7 @@ body {
 }
 .banner_sec2 img{
 	width: 565px;
-	height: 405px;
+	height: 378px;
 
 }
 
@@ -108,7 +108,7 @@ body {
 
 .link-boxd
 {
-    margin-top: 10px;
+	margin-top: 10px;
 	width: 100%;
 	height: 380px;
 	margin: 0 auto;
@@ -117,10 +117,11 @@ body {
 
 .link-boxd .box-0d
 {
+	width:300px;
     float: left;
-    width: 240px;
-    margin-top : 10px;
-    padding: 0 35px;
+    padding : 0 16px;   
+	align-items: center;
+	margin-top:10px;
 }
 
 .box-controll
@@ -159,72 +160,6 @@ body {
 }
 
 
-/*------------------------------오프라인 강의 영역------------------------------*/
-.off
-{
-  	width: 1280px;
-    display: block; 
-    margin: 0 auto;
-  
-}
-
-/*----------최상단 오프라인 타이틀----------*/
-.off_box
-{
-	margin-top: 10px;
-	width: 100%;
-	margin: 0 auto;
-}
-
-.off_imgs{
-	width: 240px;
-	height: 160px;
-	border-radius:10px;
-}
-.link-boxd3
-{
-	margin-top: 10px;
-	width: 100%;
-	height: 380px;
-	margin: 0 auto;
-}
-
-
-.link-boxd3 .box-0d3
-{
-    float: left;
-    width: 240px;
-    padding: 0 35px;   
-	align-items: center;
-	margin-top:10px;
-}
-
-.box-controll3
-{
-	margin-top: 40px;
-	margin-left: 15px
-}
-
-/*----------이미지 박스 영역----------*/
-.box-0d3 .box-0-1d3
-{
-  	width: 240px;
-	height: 160px;
-	border-radius: 10px;
-	position: relative;
-}
-
-.box-0-1d3 .imgbox3
-{
-    text-decoration: none; 
-    box-sizing: border-box;
-    height: 200px;
-}
-
-.imgbox3 .imgs3
-{
-    width: 100%; height: 100% ;
-}
 
 /*----------상품 상세정보 영역----------*/
 /*-----상세정보 박스------*/
@@ -366,7 +301,7 @@ body {
 
 .link-boxd2 .box-0d2
 {	
-	width:270px;
+	width:300px;
     float: left;
     padding : 0 16px;   
 	align-items: center;
