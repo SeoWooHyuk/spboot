@@ -1,16 +1,13 @@
 package com.spring.boot.controller;
 
-import java.io.PrintWriter;
+import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
+import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,17 +15,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
-
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
+import com.spring.boot.config.Myfileupload;
 import com.spring.boot.service.BoardService;
 import com.spring.boot.vo.BoardVo;
 import com.spring.boot.vo.Pagination;
-
-import jakarta.annotation.Resource;
+import jakarta.servlet.ServletContext;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
@@ -38,11 +32,11 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class ViewController {
 
+	private String uploadPath; //업로드된 파일 저장 경로
     
     @Autowired
     BoardService boardService;
 
- 
     //게시글 셀렉창 //페이지번호 만 보내는역활 for사용해서
     @RequestMapping(value = "/view", method = {RequestMethod.GET, RequestMethod.POST})
     public ModelAndView  viewsallselect(@ModelAttribute("searchVO") BoardVo searchVO, Model model , HttpSession session)
@@ -78,9 +72,6 @@ public class ViewController {
         return mv;
     }
 
-
-    
-    
     // 게시판 목록 조회  ajax비동기 통신전달
 	@RequestMapping(value = "/viewsallselectajax", method = {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView viewsallselectajax(@ModelAttribute("searchVO") BoardVo searchVO, @RequestBody BoardVo searchVO2 )  {
@@ -130,19 +121,43 @@ public class ViewController {
         return "viewinsert";
     }
 
-    @PostMapping("/viewinsert_ok")  //게시글 인설트  확인
-    public String viewsinsertok(@ModelAttribute BoardVo searchVO)
+    @PostMapping("/viewinsert_ok")  //게시글 인설트  + 파일첨부 확인
+    public String viewsinsertok(@ModelAttribute BoardVo searchVO, @RequestParam("file") MultipartFile file, 
+    HttpServletRequest request,HttpServletResponse response ) throws Exception
     {
         BoardVo bo = searchVO;
         Integer maxnum = 0; 
-        if(boardService.getListmax() != null){
+        
+        String realFolder="";
+		String saveFolder="/boardupload";
+		
+		ServletContext context = request.getServletContext();
+		String directory = context.getRealPath("/boardupload"); 
+		File dir = new File(directory);  //boardupload 폴더가 없는 경우 폴더를 만들어라
+		if (!dir.exists()) dir.mkdirs();
+        realFolder = context.getRealPath(saveFolder);   //web에 폴더를 생성해라
+        String savedName = new Myfileupload().uploadFile(file.getOriginalFilename(), file.getBytes());
+
+        String filePath = ResourceUtils.getFile(realFolder) + savedName;  //boot + webapp 안 파일이 두개씩생성
+
+        // 저장할 파일 객체를 생성합니다. 
+        File dest = new File(filePath);
+		
+        
+        log.info(""+ saveFolder +"파일위치 확인");
+        log.info(""+ savedName +"파일변환 이름 확인");
+        log.info(""+ file.getOriginalFilename() +"오리지널 파일 확인");
+
+        file.transferTo(dest);
+        
+        if(boardService.getListmax() != null){   //오토인크리먼트 역활 처리
             maxnum =boardService.getListmax() + 1;
         }
-        else {
-            maxnum = 1;
-        }
+        else { maxnum = 1; }
+   
+
         bo.setBoardnum(maxnum);
-        int intI = boardService.boardinsert(searchVO);
+        //int intI = boardService.boardinsert(searchVO); 
         return "redirect:/view";
     }
 
@@ -171,7 +186,7 @@ public class ViewController {
     }
 
 
-    @GetMapping("/viewdelete")  //게시글 딜리트
+    @GetMapping("/viewdelete")  //게시글 삭제
     public String viewdetaildelete(@RequestParam int boardnum)
     {
         int intI = boardService.viewdetaildelete(boardnum);

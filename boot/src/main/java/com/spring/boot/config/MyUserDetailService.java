@@ -24,7 +24,7 @@ public class MyUserDetailService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String id) throws UsernameNotFoundException {
-        Optional<InfoMember> findOne = memberService.findOne(id);
+        Optional<InfoMember> findOne = memberService.findOne(id); //로그인시 셀렉으로 조회
         //log.info(""+ id +" 파라미터전달 체크");
         //log.info(""+ findOne +"파라미터전달 체크2");
 

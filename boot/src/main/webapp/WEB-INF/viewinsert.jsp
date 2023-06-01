@@ -50,13 +50,15 @@ $(document).ready(function() {
 	    </table>
 	</section>    
 	<div class="ass">  
-	 	<input type="file" name="files" id = "file1" style="border:none;" multiple">
+	 	<input type="file" name="file" id = "file" style="border:none;" multiple" value="파일첨부">
 	 </div>
+ 
 	<div class="ass">
-        <input type="button" id="moc" value="목록"  onclick="location.href= 'view'" >
+        <input type="button" id="moc" value="목록"  onclick="location.href= '/view'" >
         <input type="submit" id="submi" value="문의 작성" > 
     </div>
-    </form>
+</form>
+    
     
 </body>
 </html>
