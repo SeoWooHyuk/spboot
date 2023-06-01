@@ -1,13 +1,11 @@
 package com.spring.boot.controller;
 
-import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,7 +19,6 @@ import com.spring.boot.config.Myfileupload;
 import com.spring.boot.service.BoardService;
 import com.spring.boot.vo.BoardVo;
 import com.spring.boot.vo.Pagination;
-import jakarta.servlet.ServletContext;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
@@ -31,11 +28,12 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 @Slf4j
 public class ViewController {
-
-	private String uploadPath; //업로드된 파일 저장 경로
     
     @Autowired
     BoardService boardService;
+
+    @Autowired
+    Myfileupload myfileupload;
 
     //게시글 셀렉창 //페이지번호 만 보내는역활 for사용해서
     @RequestMapping(value = "/view", method = {RequestMethod.GET, RequestMethod.POST})
@@ -128,28 +126,14 @@ public class ViewController {
         BoardVo bo = searchVO;
         Integer maxnum = 0; 
         
-        String realFolder="";
-		String saveFolder="/boardupload";
-		
-		ServletContext context = request.getServletContext();
-		String directory = context.getRealPath("/boardupload"); 
-		File dir = new File(directory);  //boardupload 폴더가 없는 경우 폴더를 만들어라
-		if (!dir.exists()) dir.mkdirs();
-        realFolder = context.getRealPath(saveFolder);   //web에 폴더를 생성해라
-        String savedName = new Myfileupload().uploadFile(file.getOriginalFilename(), file.getBytes());
+        String savedName = myfileupload.uploadFile(file.getOriginalFilename(), file.getBytes());
 
-        String filePath = ResourceUtils.getFile(realFolder) + savedName;  //boot + webapp 안 파일이 두개씩생성
-
-        // 저장할 파일 객체를 생성합니다. 
-        File dest = new File(filePath);
-		
-        
-        log.info(""+ saveFolder +"파일위치 확인");
         log.info(""+ savedName +"파일변환 이름 확인");
         log.info(""+ file.getOriginalFilename() +"오리지널 파일 확인");
+    
 
-        file.transferTo(dest);
-        
+
+
         if(boardService.getListmax() != null){   //오토인크리먼트 역활 처리
             maxnum =boardService.getListmax() + 1;
         }
