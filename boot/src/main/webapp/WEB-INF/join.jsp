@@ -3,7 +3,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>로그인</title>
+<title>회원가입</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 	<script type="text/javascript"></script>
 	
@@ -37,7 +37,6 @@
 	</div>
 	<script>
         const form = document.getElementById('join_form');
-
         form.addEventListener('submit', e => {
             e.preventDefault();
 

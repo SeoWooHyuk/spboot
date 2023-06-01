@@ -7,6 +7,7 @@ import java.util.Map;
 
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -22,10 +23,12 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
 import com.spring.boot.service.BoardService;
 import com.spring.boot.vo.BoardVo;
 import com.spring.boot.vo.Pagination;
 
+import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
@@ -35,6 +38,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class ViewController {
 
+    
     @Autowired
     BoardService boardService;
 
@@ -76,18 +80,16 @@ public class ViewController {
 
 
     
-    //테스트 ajax사용법
-
-    // 게시판 목록 조회
+    
+    // 게시판 목록 조회  ajax비동기 통신전달
 	@RequestMapping(value = "/viewsallselectajax", method = {RequestMethod.GET, RequestMethod.POST})
-	@ResponseBody
 	public ModelAndView viewsallselectajax(@ModelAttribute("searchVO") BoardVo searchVO, @RequestBody BoardVo searchVO2 )  {
 
 
         searchVO.setSearchKeyword(searchVO2.getSearchKeyword());
         searchVO.setPageIndex(searchVO2.getPageIndex());
-       log.info(""+ searchVO2.getPageIndex() +"페이지 번호");
-       log.info(""+ searchVO2.getSearchKeyword() +"검색키워드 확인");
+        // log.info(""+ searchVO2.getPageIndex() +"페이지 번호");
+        //log.info(""+ searchVO2.getSearchKeyword() +"검색키워드 확인");
       
 
         Pagination pagination = new Pagination();
@@ -97,8 +99,6 @@ public class ViewController {
         searchVO.setFirstIndex(pagination.getFirstRecordIndex()); //페이징 sql의 조건절에 사용되는 시작 rownum
         searchVO.setRecordCountPerPage(pagination.getRecordCountPerPage()); //한 페이지당 게시되는 게시물 수
         
-     
-
         int totCnt = boardService.getListcount();
         pagination.setTotalRecordCount(totCnt);
         
@@ -123,65 +123,58 @@ public class ViewController {
 		return mv;
 	}
  
-
-   
-
-
-
-  
-
-    @GetMapping("/viewinsert")  //게시글 셀렉창인설트
+    @GetMapping("/viewinsert")  //게시글 인설트
     public String viewsinsert(HttpSession session)
     {
        
         return "viewinsert";
     }
 
-    @PostMapping("/viewinsert_ok")  //게시글 셀렉창인설트
+    @PostMapping("/viewinsert_ok")  //게시글 인설트  확인
     public String viewsinsertok(@ModelAttribute BoardVo searchVO)
     {
-
-        Integer maxnum = 0;
-        
-        if(boardService.getListmax() != null)
-        {
+        BoardVo bo = searchVO;
+        Integer maxnum = 0; 
+        if(boardService.getListmax() != null){
             maxnum =boardService.getListmax() + 1;
         }
-        else
-        {
+        else {
             maxnum = 1;
         }
-        log.info(""+ maxnum  +"넘확인");
-
-        BoardVo bo = searchVO;
-
         bo.setBoardnum(maxnum);
-
         int intI = boardService.boardinsert(searchVO);
-
-        //log.info(""+ intI  +"인설트 확인");
-        //log.info(""+ boardVo.getId()  +"아이디");
-        //log.info(""+ boardVo.getTitle()  +"타이틀");
-        //log.info(""+ boardVo.getWrites()  +"게시글");
         return "redirect:/view";
     }
-
 
     @GetMapping("/viewdetail")  //게시글 디테일 창
     public String viewdetail(@RequestParam Integer boardnum, Model model)
     {
-       BoardVo board =  boardService.viewdetail(boardnum);
-
+        BoardVo board =  boardService.viewdetail(boardnum);
         model.addAttribute("board", board);
-        
         return "viewdetail";
     }
+
+
+    @GetMapping("/viewupdate")  //게시글 update 창
+    public String viewupdate(@RequestParam Integer boardnum, Model model)
+    {
+        BoardVo board =  boardService.viewdetail(boardnum);
+        model.addAttribute("board", board);
+        return "viewupdate";
+    }
+
+    @PostMapping("/viewupdatealter")  //게시글 update alter 창
+    public String viewupdateok(@ModelAttribute BoardVo updatevo)
+    {
+        int intI =  boardService.viewupdateok(updatevo);
+        return "redirect:viewdetail?boardnum="+updatevo.getBoardnum();
+    }
+
 
     @GetMapping("/viewdelete")  //게시글 딜리트
     public String viewdetaildelete(@RequestParam int boardnum)
     {
         int intI = boardService.viewdetaildelete(boardnum);
-
         return "redirect:/view";
     }
 

@@ -52,6 +52,7 @@ public class SpringSecurityConfig {
                         .requestMatchers("/viewdetail").permitAll()
                         .requestMatchers("/main").permitAll()
                         .requestMatchers("/viewsallselectajax").permitAll()
+                       
                         .anyRequest().authenticated()  //나머지 요청은 인증이 필요합니다.
                 )
                 .formLogin(login -> login
@@ -64,11 +65,17 @@ public class SpringSecurityConfig {
 
                             String prevPage = (String) request.getSession().getAttribute("prevPage");
                             String referer = request.getHeader("Referer");  
+                            String referer2 = request.getHeader("/join");  
                             log.info(""+ prevPage +"리페어값 확인");
+                            log.info(""+ referer2 +"리페어값2 확인");
                             if(prevPage.equals(referer))
                             {
                                 response.sendRedirect("/main");
-                            }else
+                            }else if(prevPage.equals("/join"))
+                            {
+                                response.sendRedirect(prevPage);
+                            }
+                            else
                             {
                                 response.sendRedirect(prevPage);
                             }

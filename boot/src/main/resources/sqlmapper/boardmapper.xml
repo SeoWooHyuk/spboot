@@ -37,8 +37,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
                 insert into  boards(boardnum,id,writes,title) values(#{boardnum},#{id},#{writes},#{title})
         </insert>
 
-        <delete id="viewdetaildelete">
-                DELETE FROM boards WHERE boardnum=#{boardnum}
-        </delete>
+        <update  id="viewupdateok">
+                update boards set title=#{title} , writes=#{writes}  where boardnum=#{boardnum};
+        </update >
+
 
 </mapper>

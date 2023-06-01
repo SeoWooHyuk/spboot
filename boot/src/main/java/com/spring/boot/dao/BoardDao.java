@@ -23,4 +23,6 @@ public interface BoardDao {
 
     public Integer viewdetaildelete(int boardnum);
 
+    public Integer viewupdateok(BoardVo  updatevo);
+
 }

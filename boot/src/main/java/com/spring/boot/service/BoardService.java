@@ -20,7 +20,6 @@ public class BoardService {
     @Autowired
     BoardDao bd;
 
-
     //ajax 보드게시판 불러오기 비동기 처리
     public Map<String, Object> viewsallselectajax(BoardVo searchVO) {
 
@@ -37,8 +36,6 @@ public class BoardService {
        // log.info(""+ list.size()  +"viewsallselect 서비스 ");
         return list;
     }
-
-   
 
     public Integer getListcount()
     {
@@ -72,7 +69,12 @@ public class BoardService {
         return intI;
     }
 
-
+    public Integer viewupdateok(BoardVo updatevo)
+    {
+        Integer intI = bd.viewupdateok(updatevo);
+        return intI;
+    }
+    
 
 
 

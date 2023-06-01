@@ -23,16 +23,17 @@ public class InfoService {
     //회원가입
     public int joininsert(Information info)
     {
-
-  
+        
         InfoMember infoMember = InfoMember.createUser(info.getId(), info.getPw(), passwordEncoder);
-        validateDuplicateMember(infoMember); 
+        validateDuplicateMember(infoMember);  //회원가입시 중복확인
+
         //  log.info(""+ info.getId()  +"인설트 부분 파라미터전달 체크");
         // log.info(""+ infoMember.getPw() +"비밀번호 보안 처리 확인");
         // log.info(""+ infoMember.getId() +"아이디 보안 처리 확인");
         // log.info(""+ infoMember.getSecuid() +"시크릿 아이디 보안 처리 확인");
+       //  log.info(""+ infoMember.getRoles() +"권한정보확인");
         int intI = lnfodao.joininsert(infoMember);
-        return intI;
+        return 0;
     }
 
 
@@ -53,29 +54,5 @@ public class InfoService {
 
 
 }
-
-    /* 
-    public boolean loginslist(Information login)
-    {
-
-        boolean lgchek = false;
-        List<Information> list = new ArrayList<Information>();
-        list = lg.loginslist(login);
-
-        for (int i = 0; i < list.size(); i++) {
-            
-            if(login.getId().equals(list.get(i).getId()) && login.getPw().equals(list.get(i).getPw()))
-            {
-                lgchek =true;
-                break;
-            }else
-            {
-                lgchek =false;
-            }
-
-        }
-        return lgchek;
-    }
-    */
 
  

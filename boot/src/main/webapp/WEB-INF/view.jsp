@@ -9,8 +9,13 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>공지사항</title>
-	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;400&display=swap" rel="stylesheet">
+	<title>스프링부트 게시판</title>
+	<link
+	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;400&display=swap"
+	rel="stylesheet">
+    <link
+	href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
+	rel="stylesheet">
 	<link href="css/sb-admin-2.min.css" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="css/board_select.css">
 	
@@ -22,11 +27,9 @@
 <body>
 
 <!-- ajax 게시판 호출 -->
-<script type="text/javascript">
-		
-	
-</script>
+<script type="text/javascript"></script>
 <style type="text/css">
+	*{font-family: 'Noto Sans KR', sans-serif;}
     #submi
     {
    
@@ -47,10 +50,13 @@
 </sec:authorize>
 
 <section class="board">
-	<span id="toboardcount"></span>
+
+
 		<h2 style="text-align: center; font-size: 30px; margin-bottom: 20px; margin-top: 30px;">스프링부트 jsp게시판${pageContext.request.userPrincipal.name} 회원</h2>
 		<form class="search" method="get"  id="listForm">
-		<!-- <input type="hidden" id="pageIndex" name="pageIndex" val="" /> -->
+
+		<span id="toboardcount" style="float: left; position: relative; top: 40px;"></span> <!--게시글 몇게인지 표시하는 것 -->
+
         <div id ="box" style="flex-basis: 675px; height: 73px; float: right;  ">
             <div  action="board_select" class="search_form"style="float :left;">
                 <input class="searchTerm" placeholder="검색하세여"  name = "searchKeyword"  value="${searchVO.searchKeyword}"/><input class="searchButton" onclick="fn_search();"  />

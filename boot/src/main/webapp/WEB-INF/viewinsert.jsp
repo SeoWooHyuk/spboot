@@ -5,7 +5,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>공지사항</title>
+	<title>스프링부트 게시판</title>
 	<link rel="stylesheet" type="text/css" href="css/board_deatil.css">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
@@ -28,7 +28,7 @@ $(document).ready(function() {
     <jsp:include page ="/header"/>	 
    	<h1 style="text-align:center; margin-bottom: 5px; margin-top: 30px;" class="con">게시글 작성</h1>
     
-	<form action="viewinsert_ok" method="post" >
+	<form action="viewinsert_ok" method="post" enctype="multipart/form-data" >
     
     <input type="hidden" name=id  size=50   value='${pageContext.request.userPrincipal.name}' required>           
 	<section class="article-detail table-common con "> 	
@@ -49,8 +49,8 @@ $(document).ready(function() {
 	       </tbody>
 	    </table>
 	</section>    
-	<div class="ass">
-	 	<input type="file" name="file1" id = "file1" style="border:none;" multiple">
+	<div class="ass">  
+	 	<input type="file" name="files" id = "file1" style="border:none;" multiple">
 	 </div>
 	<div class="ass">
         <input type="button" id="moc" value="목록"  onclick="location.href= 'view'" >

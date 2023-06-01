@@ -4,20 +4,16 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.RequestContextUtils;
-
+import com.spring.boot.config.AdminAuthorize;
+import com.spring.boot.config.UserAuthorize;
 import com.spring.boot.service.InfoService;
 import com.spring.boot.vo.Information;
-
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 
 
@@ -42,11 +38,11 @@ public class InfoController {
     }
 
     @GetMapping("/login")
-    public String login( HttpServletRequest request)
+    public String login(HttpServletRequest request)
     {
       /* 로그인 성공 시 이전 페이지로 이동 */
 		String uri = request.getHeader("Referer");
-        log.info(""+ uri +"컨트롤러 확인");
+       // log.info(""+ uri +"컨트롤러 확인");
 		// 이전 uri가 null이다 -> 배포 서버에서 나타나는 오류?
 		if (uri==null) {
 			// null일시 이전 페이지에서 addFlashAttribute로 보내준 uri을 저장
@@ -71,7 +67,8 @@ public class InfoController {
     }
 
     @PostMapping("/joininsert")
-    public ResponseEntity<String> joininsert(@RequestBody Information info) 
+    public ResponseEntity<String> joininsert(@RequestBody Information info)  //ResponseEntity란, httpentity를 상속받는, 결과 데이터와 HTTP 상태 코드를 직접 제어할 수 있는 클래스이다.
+    //ResponseEntity에는 사용자의  HttpRequest에 대한 응답 데이터가 포함된다.
     {
         try {
 
@@ -86,5 +83,19 @@ public class InfoController {
         //  이는 클라이언트가 회원가입이 성공적으로 이루어졌음을 알리는 응답입니다.
 
     }
+
+
+    @GetMapping("/setting/admin")
+    @AdminAuthorize
+    public String adminSettingPage() {
+        return "admin_setting";
+    }
+
+    @GetMapping("/setting/user")
+    @UserAuthorize
+    public String userSettingPage() {
+        return "user_setting";
+    }
+    
 }
 

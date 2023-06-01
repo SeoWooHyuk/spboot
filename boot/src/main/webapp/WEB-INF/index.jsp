@@ -1,11 +1,6 @@
-<%@ page import="dao.*"%>
-<%@ page import="vo.*"%>
-<%@ page import="java.util.ArrayList"%>
-<%@ page language="java" contentType="text/html; charset=utf-8"
-	pageEncoding="utf-8"%>
-<%
-	request.setCharacterEncoding("utf-8");
-%>
+
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<% request.setCharacterEncoding("utf-8"); %>
 
 
 <%@page import="java.util.*"%>
@@ -14,7 +9,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>LearnUP 메인페이지</title>
+<title>스프링부트 메인페이지</title>
 <link rel="stylesheet" type="text/css" href="css/index.css">
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -71,6 +66,7 @@
 								<a href="#self"><li>#mybatis</li></a>
 								<a href="#self"><li>#mysql</li></a>
 								<a href="#self"><li>#jsp</li></a>
+								<a href="#self"><li>#jquary</li></a>
 								<a href="#self"><li>#json</li></a>
 								<a href="#self"><li>#ajax</li></a>
 								<a href="#self"><li>#lombook</li></a>
