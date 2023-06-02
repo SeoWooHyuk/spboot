@@ -89,29 +89,28 @@ public class ViewController {
     }
 
     @PostMapping("/viewinsert_ok")  //게시글 인설트  + 파일첨부 확인
-    public String viewsinsertok(@ModelAttribute BoardVo searchVO, @RequestParam("file") MultipartFile file, 
-    HttpServletRequest request,HttpServletResponse response ) throws Exception
+    public String viewsinsertok(@ModelAttribute BoardVo searchVO, @RequestParam("file") MultipartFile file) throws Exception
     {
-        BoardVo bo = searchVO;
         Integer maxnum = 0; 
-
-
-
         String savedName = myfileupload.uploadFile(file.getOriginalFilename(), file.getBytes());
 
-        log.info(""+ savedName +"파일변환 이름 확인");
-        log.info(""+ file.getOriginalFilename() +"오리지널 파일 확인");
+        //log.info(""+ savedName +"파일변환 이름 확인");
+        //log.info(""+ files.getOriginalFilename() +"오리지널 파일 확인");
     
         if(boardService.getListmax() != null){   //오토인크리먼트 역활 처리
             maxnum =boardService.getListmax() + 1;
         }
         else { maxnum = 1; }
-   
 
-        bo.setBoardnum(maxnum);
+        searchVO.setBoardnum(maxnum);
+        searchVO.setFiles(savedName);
+
+        log.info(""+ searchVO.getFiles() +"파일변환 이름 확인");
+
         //int intI = boardService.boardinsert(searchVO); 
         return "redirect:/view";
     }
+
 
     @GetMapping("/viewdetail")  //게시글 디테일 창
     public String viewdetail(@RequestParam Integer boardnum, Model model)
