@@ -3,10 +3,8 @@ package com.spring.boot.vo;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import lombok.Getter;
-import lombok.extern.slf4j.Slf4j;
 
 @Getter
-@Slf4j
 public class InfoMember {
 
     private Long secuid;

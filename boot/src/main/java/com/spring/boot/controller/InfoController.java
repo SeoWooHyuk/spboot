@@ -14,11 +14,9 @@ import com.spring.boot.config.UserAuthorize;
 import com.spring.boot.service.InfoService;
 import com.spring.boot.vo.Information;
 import jakarta.servlet.http.HttpServletRequest;
-import lombok.extern.slf4j.Slf4j;
 
 
 @Controller
-@Slf4j
 public class InfoController {
 
     @Autowired

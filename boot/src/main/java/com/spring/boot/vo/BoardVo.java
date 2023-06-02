@@ -10,6 +10,5 @@ public class BoardVo extends PageVo {
     private String writes;
     private String date;
     private String files;
-
     private String searchKeyword; //검색키워드 생성
 }

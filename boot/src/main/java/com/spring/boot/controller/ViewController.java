@@ -1,8 +1,6 @@
 package com.spring.boot.controller;
 
-import java.io.Console;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,8 +18,6 @@ import com.spring.boot.config.Myfileupload;
 import com.spring.boot.service.BoardService;
 import com.spring.boot.vo.BoardVo;
 import com.spring.boot.vo.Pagination;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 
@@ -72,11 +68,9 @@ public class ViewController {
 		totalPagewrite.put("totalPageCnt", (int)Math.ceil(totCnt / (double)searchVO.getPageUnit())); //
         totalPagewrite.put("totCnt",totCnt); //총게시글수
 
-    
         mv.addObject("totalPagewrite", totalPagewrite); //총게시물
 		mv.addObject("boardMap", boardMap);  //테이블 게시글 셀렉에 이용
         mv.addObject("pagination",pagination); //페이징 스크립트에이용 이용
-
 		mv.setViewName("jsonView"); //클라이언트로
 		return mv;
 	}
@@ -106,8 +100,9 @@ public class ViewController {
         searchVO.setFiles(savedName);
 
         log.info(""+ searchVO.getFiles() +"파일변환 이름 확인");
+        log.info(""+ searchVO.getWrites() +"게시글  확인");
 
-        //int intI = boardService.boardinsert(searchVO); 
+        int intI = boardService.boardinsert(searchVO); 
         return "redirect:/view";
     }
 

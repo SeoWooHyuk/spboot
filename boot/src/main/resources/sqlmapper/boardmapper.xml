@@ -39,6 +39,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
                
         </select>
 
+         <delete id="viewdetaildelete">
+                DELETE FROM boards WHERE boardnum=#{boardnum}
+        </delete>
+
          <select id="viewdetail" parameterType ="Integer">
                 select * from boards where boardnum= #{boardnum}
         </select>
