@@ -1,4 +1,4 @@
-var keyword = ""; 
+	var keyword = ""; 
 	var pageindexjs = "1"; // 검색어 변수
 	
 	function fn_search(){
@@ -39,7 +39,7 @@ var keyword = "";
 		viewsallselectajax: function(){
 			var submitObj = new Object();
 			submitObj.searchKeyword= keyword ;
-			submitObj.pageIndex = pageindexjs;
+			submitObj.pageIndex = pageindexjs; //페이징 버튼클릭 번호
 			$.ajax({
 				url: '/viewsallselectajax',
 				type: 'post',
@@ -48,7 +48,6 @@ var keyword = "";
 				data: JSON.stringify(submitObj),
 				success: function(res) {
 					if (res.boardMap) {
-						viewsallselect.bootstrap(); //페이지 자바스크립트 처리
 						viewsallselect.drawBoardList(res);
 						viewsallselect.drawtoboardcount(res);
 						viewsallselect.pagindata(res);
@@ -125,28 +124,7 @@ var keyword = "";
 			  }
 			});
 
-		},
-
-		bootstrap: function() {
-
-/*
-		let thisIndex = pageindexjs; //페이지리스트내가 클릭한 위치
-		console.log(thisIndex);
-		let $paginationLinks = $(".pagination li a");
-		$paginationLinks.each(function() {
-			let $this = $(this);
-			let linkIndex = $this.parent().index();
-			let linkPageNo = $this.attr("title");
-			if (linkPageNo === thisIndex && !$this.parent().hasClass("active")) {
-			$paginationLinks.parent().removeClass("active");
-			$this.parent().addClass("active");
-			}
-		}); 
-*/
-
-
 		}
-
 	}
 	
 	$(function(){
