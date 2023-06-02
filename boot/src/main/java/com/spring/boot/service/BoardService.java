@@ -37,6 +37,11 @@ public class BoardService {
         return list;
     }
 
+    public Integer viewsallselectlistcount(BoardVo searchVO)
+    {
+        return bd.viewsallselectlistcount(searchVO);
+    }
+
     public Integer getListcount()
     {
       return bd.getListcount();

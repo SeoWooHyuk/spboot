@@ -32,6 +32,7 @@ public class Pagination {
 	public void setTotalRecordCount(int totalRecordCount) { //토탈 리스트 크기
 		this.totalRecordCount = totalRecordCount;
 	}
+
 	
 	private int firstPageNoOnPageList;	//페이지 리스트의 첫 페이지 번호
 	private int lastPageNoOnPageList;	//페이지 리스트의 마지막 페이지 번호
@@ -108,6 +109,6 @@ public class Pagination {
 	public void setRealEnd(int realEnd) {
 		this.realEnd = realEnd;
 	}
-	
+
 
 }

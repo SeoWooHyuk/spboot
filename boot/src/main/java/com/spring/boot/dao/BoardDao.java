@@ -13,6 +13,8 @@ public interface BoardDao {
 
     public List<BoardVo> viewsallselect(BoardVo  searchvo);
 
+    public Integer viewsallselectlistcount(BoardVo  searchvo);
+
     public Integer getListcount();
 
     public Integer getListmax();

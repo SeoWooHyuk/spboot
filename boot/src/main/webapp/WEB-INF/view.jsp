@@ -20,7 +20,6 @@
 	<link rel="stylesheet" type="text/css" href="css/board_select.css">
 	
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
 	<script src="js/view.js" type="text/javascript"></script>
 	
 </head>
@@ -90,44 +89,17 @@
 	<c:if test="${pageContext.request.userPrincipal.name != null}"> 
 	<input type="button" id = "submi"  value="+등록하기" onclick="location.href= 'viewinsert'" ;>
 	</c:if>
-<div class="pageContainer">   
-	
-</div>
-
-	
 </section>
 
 <section class="board2">
+
+
+
 <!-- Paging[s] -->
 <div class="col-sm-12 col-md-7" style="text-align:right">
-	<div class="dataTables_paginate paging_simple_numbers" id="dataTable_paginate">
-	  <ul class="pagination">
-	  
-	  <c:if test="${searchVO.prev}">
-	  <li class="paginate_button page-item previous" id="dataTable_previous">
-			  <a href="javascript:void(0);" onclick="fn_go_page(${searchVO.startDate - 1}); return false;" aria-controls="dataTable" data-dt-idx="0" tabindex="0" class="page-link">Previous</a>
-	  </li>
-	  </c:if>
-	  
-	  <c:forEach var="num" begin="${searchVO.startDate}" end="${searchVO.endDate}">
-	  <li class="paginate_button page-item">
-			  <a href="javascript:void(0);" onclick="fn_go_page(${num}); return false;" aria-controls="dataTable" data-dt-idx="0" tabindex="0" class="page-link" title="${num}">${num}</a>
-	  </li>
-	  </c:forEach>
-	  
-	  <c:if test="${searchVO.next}">
-	  <li class="paginate_button page-item next" id="dataTable_next">
-			  <a href="javascript:void(0);" onclick="fn_go_page(${searchVO.endDate + 1}); return false;" aria-controls="dataTable" data-dt-idx="0" tabindex="0" class="page-link">Next</a>
-	  </li>
-	  </c:if>
-	  </ul>
-	</div>
-	</div>
+	<div id="pageing"> </div>
+</div>
 	<!-- Paging[e] -->
 </section>
-
-
-
-
 </body>
 </html>

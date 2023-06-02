@@ -17,6 +17,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
                 LIMIT #{recordCountPerPage} OFFSET #{firstIndex} 
         </select>
 
+         <select id="viewsallselectlistcount" resultType="java.lang.Integer" parameterType="com.spring.boot.vo.BoardVo">
+                select count(*)
+                from boards 
+               <where>
+                <if test="searchKeyword != null and searchKeyword != ''">
+                title LIKE CONCAT('%', #{searchKeyword}, '%')
+                </if>
+                </where>
+        </select>
+
         <select id="getListcount" parameterType="com.spring.boot.vo.BoardVo" resultType="java.lang.Integer">
                 select count(*)
                 from boards 

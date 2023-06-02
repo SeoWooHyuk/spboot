@@ -89,78 +89,6 @@ body {
 
 }
 
-
-/*------------------------------재능판매 영역------------------------------*/
-.jaeneung
-{
-    width: 1280px;
-    display: block; 
-    margin: 0 auto;
-   
-}
-
-.boxxxxd
-{
-	margin-top: 10px;
-	width: 100%;
-	margin: 0 auto;
-}
-
-.link-boxd
-{
-	margin-top: 10px;
-	width: 100%;
-	height: 380px;
-	margin: 0 auto;
-}
-
-
-.link-boxd .box-0d
-{
-	width:300px;
-    float: left;
-    padding : 0 16px;   
-	align-items: center;
-	margin-top:10px;
-}
-
-.box-controll
-{
-	margin-top: 40px;
-	margin-left: 15px
-}
-.box-0d .box-0-1d
-{
-    width: 240px;
-    height: 180px;
-    position: relative;
-}
-
-.box-0-1d .imgbox
-{
-    text-decoration: none; 
-    box-sizing: border-box;
-    height: 200px; 
-}
-
-.imgbox
-{
-    width: 240px;
-    height: 180px ;
-}
-
-.imgs{
-	width: 240px;
-    height: 180px;
-}
-
-.box-0d .box-0-2d
-{
-    width: 100%;
-}
-
-
-
 /*----------상품 상세정보 영역----------*/
 /*-----상세정보 박스------*/
 .box-0d3 .box-0-2d3
@@ -176,65 +104,6 @@ body {
 	color:#8041D9;
 	font-weight:bold;
 }
-/*-----강의명------*/
-.off_title{
-	margin: 0;
-	font-weight:bold;
-	padding-top:5px;
-}
-/*-----판매자------*/
-.off_nickname{
-	margin: 0;
-	padding-top:5px;
-	font-size:9pt;
-	color: gray;
-}
-/*-----가격------*/
-.off_price{
-	margin: 0; 
-	padding-top: 5px; 
-	color:red; 
-	font-weight:bold;
-}
-/*-----찜,리뷰------*/
-.off_jjimreview_wrap{
-	margin: 0; 
-	padding-top: 10px; 
-	font-size:9pt; 
-}
-/*-----찜 이미지:하트------*/
-.off_jjim{
-	width:20px; 
-	height: 20px; 
-	float:left;"
-}
-/*-----찜 수 영역------*/
-.off_jjimcount{
-	width:30px;
-	height: 15px;
-	font-weight:bold;
-	font-size:9pt;
-	float:left;
-	margin-left: 5px;
-}
-/*-----리뷰 영역------*/
-.off_review{
-	width:25px; 
-	height: 15px; 
-	float:left; 
-	font-size:9pt; 
-	font-weight:bold;
-}
-/*-----리뷰수 수 영역------*/
-.off_reviewcount{
-	width:30px;
-	height: 15px;
-	font-weight:bold;
-	font-size:9pt;
-	float:left;
-	padding-left:5px;
-}
-
 /*-----상품 이미지 위 찜 버튼 영역------*/
 .icon{
 	position: absolute;
@@ -276,7 +145,7 @@ body {
 .janso
 {
     width: 1280px;
-    display: block; 
+
     margin:0 auto;
 }
 
@@ -292,8 +161,7 @@ body {
 .link-boxd2
 {
     margin-top: 10px;
-	width: 100%;
-	height: 380px;
+	width: 100%;;
 	margin: 0 auto;
 	/*background-color: #FFF5EE;*/
 }
@@ -302,7 +170,6 @@ body {
 .link-boxd2 .box-0d2
 {	
 	width:300px;
-    float: left;
     padding : 0 16px;   
 	align-items: center;
 	margin-top:10px;
@@ -317,7 +184,6 @@ body {
 
 .box-0-1d2{
     width: 270px;
-    height: 150px;
     border-width: 0.5px;
 	border-radius: 10px;
 	justify-content: space-around;
@@ -325,27 +191,9 @@ body {
     position: relative;
 }
 
-/*------장소 이미지 크기 영역---------*/
-.janso_img{
-	width: 270px;
-	height: 153px ;
-	border-radius: 10px;
-}
 
-/*------장소 제품상세 섹션 영역---------*/
-.box-0d2 .box-0-2d2
-{
-   	margin-top:5px;
-    height: 100px;
-}
 
-.box-0-2_box
-{
-   padding-top: 10px;
-   padding-left: 5px;
-   padding-right: 10px;
-   height: 30px;
-}
+
 
 
 /*繹먯뮆臾�占쎌뵠占쎈뮉 占쎌뒞�⑨옙*/
