@@ -77,8 +77,11 @@
 				</tr>
 
 				<tr class="article-body">
-					<td colspan="5">
-						첨부파일:
+					<td colspan="5"> 
+						첨부파일:${board.files}
+					
+
+					<img src="/upload/${board.files}" width="50px" height="50px;"> 
 					</td>
 				</tr>
 

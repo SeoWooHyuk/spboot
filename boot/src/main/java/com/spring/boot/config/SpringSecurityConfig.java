@@ -44,6 +44,7 @@ public class SpringSecurityConfig {
                         .requestMatchers("/viewdetail").permitAll()
                         .requestMatchers("/main").permitAll()
                         .requestMatchers("/viewsallselectajax").permitAll()
+                        .requestMatchers("/upload/**").permitAll()
                        
                         .anyRequest().authenticated()  //나머지 요청은 인증이 필요합니다.
                 )

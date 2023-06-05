@@ -3,6 +3,7 @@ package com.spring.boot.controller;
 import java.util.HashMap;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,6 +32,15 @@ public class ViewController {
 
     @Autowired
     Myfileupload myfileupload;
+
+    @Value("${resource}")
+	private String upload; //업로드된 파일 저장 경로
+
+    @Value("${resource.path}")  //propertis 파일의 설정을 읽어온다.
+	private String resourcePath;
+
+    @Value("${upload.path}")
+	private String uploadPath;
 
     //게시글 셀렉창 //페이지번호 만 보내는역활 for사용해서
     @RequestMapping(value = "/view", method = {RequestMethod.GET, RequestMethod.POST})
@@ -75,10 +85,9 @@ public class ViewController {
 		return mv;
 	}
  
-    @GetMapping("/viewinsert")  //게시글 인설트
+    @GetMapping("/viewinsert")  //게시글 인설트 페이지
     public String viewsinsert(HttpSession session)
     {
-       
         return "viewinsert";
     }
 
@@ -86,24 +95,21 @@ public class ViewController {
     public String viewsinsertok(@ModelAttribute BoardVo searchVO, @RequestParam("file") MultipartFile file) throws Exception
     {
         Integer maxnum = 0; 
-        String savedName = myfileupload.uploadFile(file.getOriginalFilename(), file.getBytes());
+        String img = myfileupload.uploadFile(file);
 
-        //log.info(""+ savedName +"파일변환 이름 확인");
-        //log.info(""+ files.getOriginalFilename() +"오리지널 파일 확인");
-    
         if(boardService.getListmax() != null){   //오토인크리먼트 역활 처리
             maxnum =boardService.getListmax() + 1;
         }
         else { maxnum = 1; }
 
         searchVO.setBoardnum(maxnum);
-        searchVO.setFiles(savedName);
+        searchVO.setFiles(img);
 
-        log.info(""+ searchVO.getFiles() +"파일변환 이름 확인");
+        log.info(""+ searchVO.getFiles() +"파일");
         log.info(""+ searchVO.getWrites() +"게시글  확인");
 
         int intI = boardService.boardinsert(searchVO); 
-        return "redirect:/view";
+        return "redirect:viewdetail?boardnum="+searchVO.getBoardnum();
     }
 
 
@@ -111,6 +117,7 @@ public class ViewController {
     public String viewdetail(@RequestParam Integer boardnum, Model model)
     {
         BoardVo board =  boardService.viewdetail(boardnum);
+        log.info(""+ board.getFiles() +"파일이름확인");
         model.addAttribute("board", board);
         return "viewdetail";
     }
