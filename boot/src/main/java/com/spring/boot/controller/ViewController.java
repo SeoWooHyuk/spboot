@@ -33,14 +33,6 @@ public class ViewController {
     @Autowired
     Myfileupload myfileupload;
 
-    @Value("${resource}")
-	private String upload; //업로드된 파일 저장 경로
-
-    @Value("${resource.path}")  //propertis 파일의 설정을 읽어온다.
-	private String resourcePath;
-
-    @Value("${upload.path}")
-	private String uploadPath;
 
     //게시글 셀렉창 //페이지번호 만 보내는역활 for사용해서
     @RequestMapping(value = "/view", method = {RequestMethod.GET, RequestMethod.POST})

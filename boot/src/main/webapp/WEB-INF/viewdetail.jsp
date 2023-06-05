@@ -77,11 +77,13 @@
 				</tr>
 
 				<tr class="article-body">
-					<td colspan="5"> 
-						첨부파일:${board.files}
-					
+					<td colspan="3"> 
+						첨부파일 다운: <a href="http://localhost:8080/download?filename=${board.files}">다운로드</a>
 
-					<img src="/upload/${board.files}" width="50px" height="50px;"> 
+					
+					</td>
+					<td colspan="2"> 
+						<img src="/upload/${board.files}" width="100%" height="100%;"> 
 					</td>
 				</tr>
 
