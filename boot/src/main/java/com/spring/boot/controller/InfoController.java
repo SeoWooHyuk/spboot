@@ -1,12 +1,18 @@
 package com.spring.boot.controller;
 
 import java.io.Console;
+import java.security.Principal;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
+import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -14,6 +20,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.support.RequestContextUtils;
 import com.spring.boot.config.AdminAuthorize;
@@ -22,6 +29,7 @@ import com.spring.boot.service.InfoService;
 import com.spring.boot.vo.InfoMember;
 import com.spring.boot.vo.Information;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 
 import com.spring.boot.service.MemberService;
@@ -72,7 +80,24 @@ public class InfoController {
         return "login";
     }
 
- 
+
+    @GetMapping("/loginsession")
+    @ResponseBody
+    public String loginse(HttpServletRequest request) 
+    {
+        log.info("읽는건가");
+        SecurityContext securityContext = (SecurityContext) request.getSession().getAttribute("SPRING_SECURITY_CONTEXT");
+            if (securityContext != null && securityContext.getAuthentication() != null) {
+            // 로그인 중인 사용자 정보가 존재하는 경우, "valid_session" 문자열 반환
+            return "invalid_session";
+        } else {
+            // 로그인 중인 사용자 정보가 존재하지 않는 경우, "invalid_session" 문자열 반환
+            return "valid_session";
+  }
+    }
+    
+
+
     @RequestMapping(value = "/join", method = {RequestMethod.GET, RequestMethod.POST})
     public ModelAndView infojoinselect()
     {
@@ -89,7 +114,7 @@ public class InfoController {
         String idcheck = id2.replace("\"", ""); // "" 제거
         Optional<InfoMember> findOne = memberService.findOne(idcheck); //로그인시 셀렉으로 조회
 
-        log.info(""+ findOne.isPresent() +"파일");
+       //log.info(""+ findOne.isPresent() +"파일");
 
 		ModelAndView mv = new ModelAndView();
         mv.addObject("check", findOne.isPresent()); //총게시물

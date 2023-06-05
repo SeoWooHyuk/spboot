@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="java.sql.*"%>
+<%@taglib prefix="c" uri = "http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fmt" uri = "http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -10,6 +12,7 @@
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;400&display=swap" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="css/login.css">
+	<script src="js/login.js" type="text/javascript"></script>
 </head>
 <script type="text/javascript">
 </script>
@@ -19,6 +22,7 @@
 
 </style>
 <body>		
+
 	<div id="logo" align="center">
 		<p class="text-center">
             <img src="/images/nahwasa-profile.png" class="img-thumbnail" style="width: 200px;" alt="이 글이 보인다면 시큐리티 설정 잘못한거임!">
@@ -32,6 +36,7 @@
 			</table>
 		</form>
 	</div>
+
 	
 	<div id="login_sub1">
 		<a href="#self"><div class="naverlogin"><span>네이버 로그인</span></div></a>

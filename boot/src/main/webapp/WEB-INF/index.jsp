@@ -23,21 +23,7 @@
 	rel="stylesheet">
 </head>
 <script type="text/javascript">
-	$(function() {
-		$(".banner_sec2").slick({
-			slide : 'div',
-			infinite : true,
-			slidesToShow : 1,
-			slidesToScroll : 1,
-			speed : 100,
-			arrows : true,
-			dots : true,
-			autoplay : true,
-			autoplaySpeed : 3000,
-			pauseOnHover : true,
-			vertical : false,
-		})
-	});
+	
 </script>
 
 <style type="text/css">
