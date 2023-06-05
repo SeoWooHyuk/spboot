@@ -3,13 +3,11 @@
 	
 	function fn_search(){
     keyword = $('.searchTerm').val(); // 검색어 저장
-    $("#pageIndex").val("1");
     viewsallselect.viewsallselectajax(); // 게시판 조회
 	}
 
 	function fn_go_page(pageNo) {
 	pageindexjs = pageNo.toString();
-	$("#pageIndex").val(pageNo);
 	viewsallselect.viewsallselectajax(); 
 	}
 
@@ -27,10 +25,13 @@
         // 엔터키 입력 시
         $('.searchTerm').on('keyup', function(e) {
             if (e.keyCode == 13/* 엔터키 */) {
+				pageindexjs = "1"
                 fn_search();
-				
             }
+			pageindexjs = "1"
 			fn_search();
+			
+
         });
 
 
