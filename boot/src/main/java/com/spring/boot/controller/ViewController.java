@@ -3,7 +3,6 @@ package com.spring.boot.controller;
 import java.util.HashMap;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -97,8 +96,8 @@ public class ViewController {
         searchVO.setBoardnum(maxnum);
         searchVO.setFiles(img);
 
-        log.info(""+ searchVO.getFiles() +"파일");
-        log.info(""+ searchVO.getWrites() +"게시글  확인");
+       // log.info(""+ searchVO.getFiles() +"파일");
+        //log.info(""+ searchVO.getWrites() +"게시글  확인");
 
         int intI = boardService.boardinsert(searchVO); 
         return "redirect:viewdetail?boardnum="+searchVO.getBoardnum();

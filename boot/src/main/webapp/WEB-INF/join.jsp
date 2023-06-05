@@ -1,17 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="java.sql.*"%>
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
+<%@taglib prefix="c" uri = "http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fmt" uri = "http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>회원가입</title>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-	<script type="text/javascript"></script>
-	
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;400&display=swap" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="css/login.css">
+    <script src="js/join.js" type="text/javascript"></script>
 </head>
+<script type="text/javascript">
 
+    
+</script>
 <body>		
     <jsp:include page ="/header"/>	 
 	<div id="logo" align="center">
@@ -22,9 +27,20 @@
 	<div id="login_main">					<!-- 아이디, 비밀번호 입력창, 로그인 버튼 영역 -->
 		<form name="login" id='join_form' method="POST" >	<!-- 로그인 버튼으로 userID 값, userPW 값을 Login_cont 로 전달 -->
 			<table align="center" border="0" id="login_action">
-				<tr><td><input type="text" id="id" class="txt_input" name="id" placeholder="아이디"></td></tr>
-				<tr><td><input type="password" id="passwd" class="txt_input" name="pw" placeholder="비밀번호" ></td></tr>
-				<tr><td><input type="submit" id="login_button"  value="회원가입"></td></tr>
+                <tr><td><b>아이디<font color="#FF0000">*</font></b></td></tr>
+				<tr><td><input type="text" id="id" class="txt_input" name="id" placeholder="아이디"   ></td></tr>
+                <tr><td><div class="error_next_box" id="passidMsg" style="color:red;"></div></td></tr>
+
+                <tr><td><b>패스워드<font color="#FF0000">*</font></b></td></tr>
+                <tr><td> <input type="password" name="pw" size="49" minlength="8" maxlength="15" placeholder="비밀번호를 입력해주세요.(8자 이상 16자 미만)" class="txt_input"></td></tr>
+				<tr><td><div class="error_next_box" id="passMsg" style="color:red;"></div></td></tr>
+
+                
+                <tr><td><b>패스워드 확인<font color="#FF0000">*</font></b></td></tr>
+                <tr><td> <input type="password" size="49" minlength="8" maxlength="15" placeholder="비밀번호를 한번 더 입력해주세요." class="txt_input" name="pw2" ></td></tr>
+                <tr><td><div class="error_next_box" id="pass2Msg" style="color:red;"></div></div></td></tr>
+               
+                <tr><td><input type="submit" id="login_button"  value="회원가입"></td></tr>
 			</table>
 		</form>
 	</div>
@@ -34,37 +50,7 @@
 		<span id="find_id"><a href=""></a></span>
 		<span id="find_pw"><a href="login">회원가입 취소</a></span>
 		<span id="join"><a href=""></a></span>			
-	</div>
-	<script>
-        const form = document.getElementById('join_form');
-        form.addEventListener('submit', e => {
-            e.preventDefault();
-
-            const data = new FormData(form);
-            const param = JSON.stringify(Object.fromEntries(data));
-
-            fetch('/joininsert', {
-                method: 'POST',
-                body: param,
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            })
-            .then(response => {
-                debugger;
-                if (response.status == 200) {
-                    window.location.href = '/login';
-                    alert("회원가입 성공")
-                } else {
-                    alert("회원가입 실패")
-                }
-            })
-            .catch(error => console.log(error))
-        });
-    </script>		
-			
-	
-	
+	</div>	
 </body>
 </html>
 

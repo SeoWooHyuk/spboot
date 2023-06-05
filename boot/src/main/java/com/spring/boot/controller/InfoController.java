@@ -1,26 +1,41 @@
 package com.spring.boot.controller;
 
+import java.io.Console;
+import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.support.RequestContextUtils;
 import com.spring.boot.config.AdminAuthorize;
 import com.spring.boot.config.UserAuthorize;
 import com.spring.boot.service.InfoService;
+import com.spring.boot.vo.InfoMember;
 import com.spring.boot.vo.Information;
 import jakarta.servlet.http.HttpServletRequest;
+import lombok.extern.slf4j.Slf4j;
+
+import com.spring.boot.service.MemberService;
 
 
 @Controller
+@Slf4j
 public class InfoController {
 
     @Autowired
     InfoService infoService; 
+
+    @Autowired
+    MemberService memberService;
 
 
     @GetMapping("/main")
@@ -58,11 +73,30 @@ public class InfoController {
     }
 
  
-    @GetMapping("/join")
-    public String join()
+    @RequestMapping(value = "/join", method = {RequestMethod.GET, RequestMethod.POST})
+    public ModelAndView infojoinselect()
     {
-        return "join";
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("join");
+        return mv;
     }
+
+     //아이디 중복 확인 ajax비동기 통신전달
+	@RequestMapping(value = "/infojoinselectajax", method = {RequestMethod.GET, RequestMethod.POST})
+	public ModelAndView infojoinselectajax(@ModelAttribute("check") String id, @RequestBody String id2)  {
+
+        
+        String idcheck = id2.replace("\"", ""); // "" 제거
+        Optional<InfoMember> findOne = memberService.findOne(idcheck); //로그인시 셀렉으로 조회
+
+        log.info(""+ findOne.isPresent() +"파일");
+
+		ModelAndView mv = new ModelAndView();
+        mv.addObject("check", findOne.isPresent()); //총게시물
+		mv.setViewName("jsonView"); //클라이언트로
+		return mv;
+	}
+
 
     @PostMapping("/joininsert")
     public ResponseEntity<String> joininsert(@RequestBody Information info)  //ResponseEntity란, httpentity를 상속받는, 결과 데이터와 HTTP 상태 코드를 직접 제어할 수 있는 클래스이다.
