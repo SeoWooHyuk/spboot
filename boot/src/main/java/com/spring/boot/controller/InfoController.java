@@ -3,6 +3,7 @@ package com.spring.boot.controller;
 import java.io.Console;
 import java.security.Principal;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -12,6 +13,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.session.SessionInformation;
+import org.springframework.security.core.session.SessionRegistry;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,10 +24,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.support.RequestContextUtils;
 import com.spring.boot.config.AdminAuthorize;
+import com.spring.boot.config.MyUserDetailService;
 import com.spring.boot.config.UserAuthorize;
 import com.spring.boot.service.InfoService;
 import com.spring.boot.vo.InfoMember;
@@ -40,10 +46,16 @@ import com.spring.boot.service.MemberService;
 public class InfoController {
 
     @Autowired
+    SessionRegistry sessionRegistry; // bean에 등록된 세션저장소
+
+    @Autowired
     InfoService infoService; 
 
     @Autowired
     MemberService memberService;
+
+    @Autowired
+    MyUserDetailService myUserDetailService;
 
 
     @GetMapping("/main")
@@ -80,20 +92,18 @@ public class InfoController {
         return "login";
     }
 
-
-    @GetMapping("/loginsession")
+    @GetMapping(value ="/checkUser")
     @ResponseBody
-    public String loginse(HttpServletRequest request) 
-    {
+    public boolean checkUser(@RequestParam(name = "id") String userid) {
         log.info("읽는건가");
-        SecurityContext securityContext = (SecurityContext) request.getSession().getAttribute("SPRING_SECURITY_CONTEXT");
-            if (securityContext != null && securityContext.getAuthentication() != null) {
-            // 로그인 중인 사용자 정보가 존재하는 경우, "valid_session" 문자열 반환
-            return "invalid_session";
-        } else {
-            // 로그인 중인 사용자 정보가 존재하지 않는 경우, "invalid_session" 문자열 반환
-            return "valid_session";
-  }
+        //TODO session 뒤지는 함수 구현필요
+        UserDetails userDetails = myUserDetailService.loadUserByUsername(userid);
+        List<SessionInformation> allSessions  = sessionRegistry.getAllSessions(userDetails,false); 
+            //로그인된 객체가 존재하면 allSessions List의 길이가 1을 넘을 것이다.
+        if(allSessions.size() > 0)
+            return true; // user 존재
+        else
+            return false; // user 존재 x
     }
     
 

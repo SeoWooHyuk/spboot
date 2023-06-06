@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>로그인</title>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<script type="text/javascript"></script>
 	
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;400&display=swap" rel="stylesheet">
@@ -28,11 +28,11 @@
             <img src="/images/nahwasa-profile.png" class="img-thumbnail" style="width: 200px;" alt="이 글이 보인다면 시큐리티 설정 잘못한거임!">
         </p>
 	<div id="login_main">		
-		<form name="login" method="POST" action="/login-process">	<!-- 시큐리티로 로그인정보 보냄 -->
+		<form name="login" id="login-form" method="POST" action="/login-process">	<!-- 시큐리티로 로그인정보 보냄 -->
 			<table align="center" border="0" id="login_action">
 				<tr><td><input type="text" id="id" class="txt_input" name="id" placeholder="아이디"></td></tr>
 				<tr><td><input type="password" id="pw" class="txt_input" name="pw" placeholder="비밀번호" ></td></tr>
-				<tr><td><input type="submit" id="login_button" name="" value="로그인"></td></tr>
+				<tr><td><input type="button" id="login_button" name="" value="로그인"></td></tr>
 			</table>
 		</form>
 	</div>

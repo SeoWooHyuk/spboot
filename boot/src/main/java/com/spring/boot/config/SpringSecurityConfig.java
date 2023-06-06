@@ -33,15 +33,6 @@ public class SpringSecurityConfig {
         return new BCryptPasswordEncoder();
     }
 
-    @Bean
-    public HttpSessionEventPublisher httpSessionEventPublisher() {
-        return new HttpSessionEventPublisher();
-    }
-
-    @Bean
-    public SessionRegistry sessionRegistry() {
-        return new SessionRegistryImpl();
-    }
 
 
     @Bean
@@ -62,14 +53,15 @@ public class SpringSecurityConfig {
                         .requestMatchers("/viewsallselectajax").permitAll()
                         .requestMatchers("/upload/**").permitAll()
                         .requestMatchers("/infojoinselectajax").permitAll()
-                        .requestMatchers("/loginsession").permitAll()
+                       // .requestMatchers("/loginsession").permitAll()
+                        .requestMatchers("/checkUser").permitAll()
                         .anyRequest().authenticated()  //나머지 요청은 인증이 필요합니다.
                 )
                 .sessionManagement(session -> session  //중복로그인 방지
                         
                         .maximumSessions(1)
                         .maxSessionsPreventsLogin(false)
-                        .expiredUrl("/loginsession")
+                        .expiredUrl("/login")
                         .sessionRegistry(sessionRegistry())
                         
                 )
@@ -130,4 +122,15 @@ public class SpringSecurityConfig {
          
         return http.getOrBuild(); //HttpSecurity 객체를 리턴합니다.
     }
+
+    @Bean
+    public HttpSessionEventPublisher httpSessionEventPublisher() {
+        return new HttpSessionEventPublisher();
+    }
+
+    @Bean
+    public SessionRegistry sessionRegistry() {
+        return new SessionRegistryImpl();
+    }
+
 }
