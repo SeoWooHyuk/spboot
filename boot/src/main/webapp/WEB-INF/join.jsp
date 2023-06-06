@@ -71,7 +71,7 @@
 		<form name="login" id='join_form' method="POST" >	<!-- 로그인 버튼으로 userID 값, userPW 값을 Login_cont 로 전달 -->
 			<table align="center" border="0" id="login_action">
                 <tr><td><b>아이디<font color="#FF0000">*</font></b></td></tr>
-				<tr><td><input type="text" id="id" class="txt_input" name="id" placeholder="아이디"   ></td></tr>
+				<tr><td><input type="text" id="id" class="txt_input" name="id" placeholder="아이디(이메일)"   ></td></tr>
                 <tr><td><div class="error_next_box" id="passidMsg" style="color:red;"></div></td></tr>
 
                 <tr><td><b>패스워드<font color="#FF0000">*</font></b></td></tr>

@@ -160,7 +160,8 @@ $(document).ready(function(){
 		},
 		// 게시판 조회 ajax 호출
 		infojoinselectajax: function(){
-            const nicknameRegex = /^[a-zA-Z0-9]+$/;
+            const emailRegex = /^[a-z0-9]+@[^\s@]+\.[^\s@]+$/;
+            //const nicknameRegex = /^[a-zA-Z0-9]+$/;
 			$.ajax({
 				url: '/infojoinselectajax',
 				type: 'post',
@@ -172,20 +173,20 @@ $(document).ready(function(){
 
                     if(keyword ==  "")
                     {
-                        $("#passidMsg").html('아이디를 입력해주세요.');
+                        $("#passidMsg").html('아이디(이메일)를 입력해주세요.');
                         $("#passidMsg").css("color","red");
                     }
-                    else if(!nicknameRegex.test(keyword))
+                    else if(!emailRegex.test(keyword))
                     {
                         $("#passidMsg").html('사용할 수 없는 형식 입니다.');
                         $("#passidMsg").css('color','red');
                     }
                     else if(res.check){
-                        $("#passidMsg").html('사용할 수 없는 아이디 입니다.');
+                        $("#passidMsg").html('사용할 수 없는 이메일형식 입니다.');
                         $("#passidMsg").css('color','red');
                     } 
                     else{
-                        $("#passidMsg").html('사용할 수 있는 아이디 입니다.');
+                        $("#passidMsg").html('사용할 수 있는 이메일형식 입니다.');
                         $("#passidMsg").css('color','green');
                     } 
 
