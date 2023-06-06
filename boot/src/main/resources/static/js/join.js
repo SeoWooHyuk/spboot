@@ -59,7 +59,80 @@ $('input[name=pw2]').keyup(function(){
     }
 });
 
+
+$('select[name=area1]').click(function(){
+    if($('select[name=area1]').val() == '지역 선택'){
+        $('#area1Msg').html('지역을 선택해주세요.');
+        $('#area2Msg').html('시/군/구를 선택해주세요.');
+        $(this).css('border', '2px solid red');
+        $('select[name=area2]').css('border', '2px solid red');
+    }
+    else{
+        $('#area1Msg').html('');
+        $(this).css('border', '2px solid #8041D9');
+    }
 });
+
+$('select[name=area2]').click(function(){
+    if($('select[name=area2]').val() == 0){
+        $('#area2Msg').html('시/군/구를 선택해주세요.');
+        $(this).css('border', '2px solid red');
+    }else{
+        $('#area2Msg').html('');
+        $(this).css('border', '2px solid #8041D9');
+    }
+});
+
+$('input[name=address2]').keyup(function(){
+    const addressRegex = /^[가-힣0-9-\s]*$/;
+    const addressVal = $(this).val();
+
+    if(addressVal.length<10){
+      $('#areaMsg').html('상세 주소를 자세히 입력해주세요.');
+      $(this).css('border', '2px solid red');
+    }else if(!addressRegex.test(addressVal)){
+      $('#areaMsg').html('주소는 한글, 숫자만 입력 가능합니다.');
+      $(this).css('border', '2px solid red');
+    }else{
+      $('#areaMsg').html('');
+      $(this).css('border', '2px solid #8041D9');
+    }
+  });
+
+  $('.access').click(function() {
+    if ($(this).prop('id') === 'accessAll') {
+      $('.access').prop('checked', $(this).prop('checked'));
+    } else {
+      var allChecked = true;
+      $('.access:not(#accessAll)').each(function() {
+        if (!$(this).prop('checked')) {
+          allChecked = false;
+        }
+      });
+      $('#accessAll').prop('checked', allChecked);
+    }
+  
+
+    });
+
+	$("input[name='access']").change(function() {
+	  if($("input[name='access'][value='만 14세	이상입니다.']").is(':checked') 
+	     && $("input[name='access'][value='서비스 이용약관에 동의합니다.']").is(':checked') 
+	     && $("input[name='access'][value='개인정보 수집/이용에 동의합니다.']").is(':checked') 
+	     && $("input[name='access'][value='개인정보 제3자 제공에 동의합니다.']").is(':checked')) {
+	    $('#accessMsg').html('');
+	  } else {	  
+	  	$('#accessMsg').html('필수 동의 사항을 체크해주세요.');	
+	  }
+	});
+
+
+
+});
+
+
+
+
 
 
 $(document).ready(function(){
@@ -87,6 +160,7 @@ $(document).ready(function(){
 		},
 		// 게시판 조회 ajax 호출
 		infojoinselectajax: function(){
+            const nicknameRegex = /^[a-zA-Z0-9]+$/;
 			$.ajax({
 				url: '/infojoinselectajax',
 				type: 'post',
@@ -100,6 +174,11 @@ $(document).ready(function(){
                     {
                         $("#passidMsg").html('아이디를 입력해주세요.');
                         $("#passidMsg").css("color","red");
+                    }
+                    else if(!nicknameRegex.test(keyword))
+                    {
+                        $("#passidMsg").html('사용할 수 없는 형식 입니다.');
+                        $("#passidMsg").css('color','red');
                     }
                     else if(res.check){
                         $("#passidMsg").html('사용할 수 없는 아이디 입니다.');
@@ -125,3 +204,34 @@ $(document).ready(function(){
 	});
  
 });
+
+
+    // 탭바 스크립트
+  //우편번호
+  function sample6_execDaumPostcode() {
+      new daum.Postcode({
+          oncomplete: function(data) {
+              // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+  
+              // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+              // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+              var addr = ''; // 주소 변수
+  
+              //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+              if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+                  addr = data.roadAddress;
+              } else { // 사용자가 지번 주소를 선택했을 경우(J)
+                  addr = data.jibunAddress;
+              }
+  
+              // 우편번호와 주소 정보를 해당 필드에 넣는다.
+              document.getElementById('sample6_postcode').value = data.zonecode;
+              document.getElementById("sample6_address").value = addr;
+              // 커서를 상세주소 필드로 이동한다.
+              document.getElementById("sample6_detailAddress").focus();
+          }
+      }).open();
+  }
+
+
+  

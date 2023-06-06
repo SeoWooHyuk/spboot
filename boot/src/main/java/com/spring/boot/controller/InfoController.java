@@ -107,7 +107,6 @@ public class InfoController {
     }
     
 
-
     @RequestMapping(value = "/join", method = {RequestMethod.GET, RequestMethod.POST})
     public ModelAndView infojoinselect()
     {

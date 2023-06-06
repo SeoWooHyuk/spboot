@@ -53,7 +53,6 @@ public class SpringSecurityConfig {
                         .requestMatchers("/viewsallselectajax").permitAll()
                         .requestMatchers("/upload/**").permitAll()
                         .requestMatchers("/infojoinselectajax").permitAll()
-                       // .requestMatchers("/loginsession").permitAll()
                         .requestMatchers("/checkUser").permitAll()
                         .anyRequest().authenticated()  //나머지 요청은 인증이 필요합니다.
                 )
