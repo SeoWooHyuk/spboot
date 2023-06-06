@@ -1,22 +1,14 @@
 package com.spring.boot.controller;
 
-import java.io.Console;
-import java.security.Principal;
-import java.util.HashMap;
+
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-
-import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContext;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.session.SessionInformation;
 import org.springframework.security.core.session.SessionRegistry;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -35,7 +27,6 @@ import com.spring.boot.service.InfoService;
 import com.spring.boot.vo.InfoMember;
 import com.spring.boot.vo.Information;
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 
 import com.spring.boot.service.MemberService;
@@ -96,7 +87,7 @@ public class InfoController {
     @ResponseBody
     public boolean checkUser(@RequestParam(name = "id") String userid) {
         log.info("읽는건가");
-        //TODO session 뒤지는 함수 구현필요
+        //TODO session 확인하는 함수 구현
         UserDetails userDetails = myUserDetailService.loadUserByUsername(userid);
         List<SessionInformation> allSessions  = sessionRegistry.getAllSessions(userDetails,false); 
             //로그인된 객체가 존재하면 allSessions List의 길이가 1을 넘을 것이다.

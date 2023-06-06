@@ -1,0 +1,38 @@
+resource:
+  nodeValue: C:/filetest/imges/
+  path: file:/C:/filetest/imges/
+spring:
+  devtools:
+    restart:
+      enabled: 'true'
+    livereload:
+      enabled: 'true    '
+  security:
+    user:
+      password: '1234'
+      name: user
+  datasource:
+    password: tjdngur123
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    url: jdbc:mysql://localhost:3306/testboot?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Seoul
+  mvc:
+    view:
+      prefix: /WEB-INF/
+      suffix: .jsp
+mybatis:
+  type-aliases-package: com.spring.boot.model
+  mapper-locations: 'classpath:sqlmapper/*.xml  '
+  configuration:
+    map-underscore-to-camel-case: 'true'
+server:
+  servlet:
+    session:
+      cookie:
+        secure: 'true'
+        http-only: 'true'
+        max-age: '1800'
+        same-site: lax
+  port: '8080'
+upload:
+  path: /upload/**

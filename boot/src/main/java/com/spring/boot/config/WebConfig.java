@@ -22,8 +22,7 @@ public class WebConfig implements WebMvcConfigurer{
 
         registry.addResourceHandler(uploadPath).addResourceLocations(resourcePath); //uploadPath로 요청이 들어오면 resourcePath에서 찾겠다는 의미
         //addResourceLocations 메서드를 이용하여 실제 파일이 있는 경로를 지정해 준다.
-        
-    
+
     }   
 
     

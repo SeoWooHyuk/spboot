@@ -8,7 +8,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.session.SessionRegistry;
 import org.springframework.security.core.session.SessionRegistryImpl;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -33,12 +32,23 @@ public class SpringSecurityConfig {
         return new BCryptPasswordEncoder();
     }
 
-
+    private static final String[] PERMIT_URL_ARRAY = {
+        /* swagger v2 */
+        // "/v2/api-docs",
+        // "/swagger-resources",
+        // "/swagger-resources/**",
+        // "/configuration/ui",
+        // "/configuration/security",
+        // "/swagger-ui.html",
+        // "/webjars/**",
+        /* swagger v3 */
+        "/v3/api-docs/**",
+        "/swagger-ui/**"
+    };
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf().disable().cors().disable(); //csrf 와 cors 보호를 해제한다.
-
             http.authorizeHttpRequests(request -> request //권한 및 역할 기반의 경로에 대한 액세스 규칙을 정의하는 데 사용되는 것으로, HttpSecurity 구성 클래스에서 사용됩니다.
                         //이 메서드는 표현식을 사용해 요청 경로 접근 규칙을 정의할 수 있는 Customizer<AuthorizeHttpRequestsConfigurer> 타입의 Consumer를 매개변수로 받습니다.        
                         .dispatcherTypeMatchers(DispatcherType.FORWARD).permitAll() 
@@ -54,6 +64,8 @@ public class SpringSecurityConfig {
                         .requestMatchers("/upload/**").permitAll()
                         .requestMatchers("/infojoinselectajax").permitAll()
                         .requestMatchers("/checkUser").permitAll()
+                        .requestMatchers(PERMIT_URL_ARRAY).permitAll()
+           
                         .anyRequest().authenticated()  //나머지 요청은 인증이 필요합니다.
                 )
                 .sessionManagement(session -> session  //중복로그인 방지

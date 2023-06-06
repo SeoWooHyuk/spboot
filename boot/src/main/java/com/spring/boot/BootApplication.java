@@ -18,4 +18,5 @@ public class BootApplication {
 		return new MappingJackson2JsonView();
 	}
 
+
 }
