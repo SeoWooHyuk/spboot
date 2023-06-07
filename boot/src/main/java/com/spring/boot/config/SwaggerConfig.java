@@ -2,38 +2,25 @@ package com.spring.boot.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-
-import springfox.documentation.builders.ApiInfoBuilder;
-import springfox.documentation.builders.PathSelectors;
-import springfox.documentation.builders.RequestHandlerSelectors;
-import springfox.documentation.service.ApiInfo;
-import springfox.documentation.spi.DocumentationType;
-import springfox.documentation.spring.web.plugins.Docket;
-import springfox.documentation.swagger2.annotations.EnableSwagger2;
+import io.swagger.v3.oas.models.Components;
+import io.swagger.v3.oas.models.OpenAPI;
+import io.swagger.v3.oas.models.info.Info;
 
 
+/**
+ * Swagger springdoc-ui 구성 파일
+ */
 @Configuration
 public class SwaggerConfig {
 
-    
     @Bean
-    public Docket api()
-    {
-        return new Docket(DocumentationType.OAS_30)
-        .apiInfo(apiInfo())
-        .select()
-        .apis(RequestHandlerSelectors.basePackage("com.spring.boot")) //베이스가되는 패키지명 설정
-        .paths(PathSelectors.any())
-        .build();
-    }
-
-    private ApiInfo apiInfo() {
-        return new ApiInfoBuilder()
-        .title("Around Hub Open Api Test with Swagger")
-        .description("설명부분")
-        .version("1.1.0")
-        .build();
-     
+    public OpenAPI openAPI() {
+        Info info = new Info()
+                .title("스프링부트 3.0.1 개인프로젝트 API Document")
+                .version("v1.0.1")
+                .description("프로젝트의 API 명세서입니다.");
+        return new OpenAPI()
+                .components(new Components())
+                .info(info);
     }
 }

@@ -3,7 +3,7 @@
     $("#login_button").click(function() { // 로그인 버튼이 눌렸을때
         let username = $("#id").val(); // 사용자 id를 가져와서
         $.ajax({ // 서버로 보내서 기존 세션이 존재하는지 (중복인지) 검사해준다.
-            url : "/checkUser",
+            url : "/checkUserajax",
             method : "get",
             contentType: "application/json;charset=UTF-8",
             dataType : "json",

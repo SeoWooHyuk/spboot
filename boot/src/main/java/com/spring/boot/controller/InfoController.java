@@ -26,6 +26,9 @@ import com.spring.boot.config.UserAuthorize;
 import com.spring.boot.service.InfoService;
 import com.spring.boot.vo.InfoMember;
 import com.spring.boot.vo.Information;
+
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 
@@ -34,6 +37,7 @@ import com.spring.boot.service.MemberService;
 
 @Controller
 @Slf4j
+@Tag(name = "InfoController", description = "로그인 로그아웃 회원관리 + 헤더푸터관리 컨트롤러")
 public class InfoController {
 
     @Autowired
@@ -48,13 +52,14 @@ public class InfoController {
     @Autowired
     MyUserDetailService myUserDetailService;
 
-
+    @Operation(summary = "인덱스 화면", description = "템플릿 화면을 출력합니다.")
     @GetMapping("/main")
     public String index()
     {
         return "index";
     }
 
+    @Operation(summary = "헤더 화면", description = "화면 헤더을 출력합니다.")
     @GetMapping("/header")
     public String header()
     {
@@ -83,10 +88,11 @@ public class InfoController {
         return "login";
     }
 
-    @GetMapping(value ="/checkUser")
+    @GetMapping(value ="/checkUserajax")
     @ResponseBody
-    public boolean checkUser(@RequestParam(name = "id") String userid) {
-        log.info("읽는건가");
+    @Operation(summary = "로그인 중복확인 처리", description = "로그인 중복확인 후 alter로 경고.")
+    public boolean checkUserajax(@RequestParam(name = "id") String userid) {
+        //log.info("읽는건가");
         //TODO session 확인하는 함수 구현
         UserDetails userDetails = myUserDetailService.loadUserByUsername(userid);
         List<SessionInformation> allSessions  = sessionRegistry.getAllSessions(userDetails,false); 

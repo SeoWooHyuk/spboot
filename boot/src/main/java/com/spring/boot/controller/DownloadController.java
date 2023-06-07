@@ -19,7 +19,6 @@ import jakarta.servlet.http.HttpServletResponse;
 @Controller
 public class DownloadController  {
     
-
 @Value("${resource}")
 private String upload; //업로드된 파일 저장 경로
 

@@ -45,6 +45,17 @@ public class SpringSecurityConfig {
         "/v3/api-docs/**",
         "/swagger-ui/**"
     };
+    private static final String[] AJAX_URL_ARRAY = {
+        "/viewsallselectajax", "/infojoinselectajax" , "/checkUserajax"
+    };
+
+    private static final String[] CONTROLLER_URL_ARRAY = {
+        "/join", "/joininsert" , "/login" ,"/view" ,"/viewdetail" ,"/main"
+    };
+
+    private static final String[] INCLUDE_URL_ARRAY = {
+        "/header"
+    };
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -53,18 +64,12 @@ public class SpringSecurityConfig {
                         //이 메서드는 표현식을 사용해 요청 경로 접근 규칙을 정의할 수 있는 Customizer<AuthorizeHttpRequestsConfigurer> 타입의 Consumer를 매개변수로 받습니다.        
                         .dispatcherTypeMatchers(DispatcherType.FORWARD).permitAll() 
                         .dispatcherTypeMatchers(DispatcherType.INCLUDE).permitAll() 
-                        .requestMatchers("/header").permitAll()
-                        .requestMatchers("/status", "/images/**","/status", "/css/**","/status","/js/**",
-                         "/join", "/joininsert", "/login").permitAll() //: URL 패턴 지정을 통해 인증 없이 접근을 허용합니다.
-                        .requestMatchers("/view").permitAll()
-                        .requestMatchers("/header").permitAll()
-                        .requestMatchers("/viewdetail").permitAll()
-                        .requestMatchers("/main").permitAll()
-                        .requestMatchers("/viewsallselectajax").permitAll()
+                        .requestMatchers(INCLUDE_URL_ARRAY).permitAll()
+                        .requestMatchers("/status", "/images/**","/status", "/css/**","/status","/js/**").permitAll() //: URL 패턴 지정을 통해 인증 없이 접근을 허용합니다.
+                        .requestMatchers(CONTROLLER_URL_ARRAY).permitAll()
+                        .requestMatchers(AJAX_URL_ARRAY).permitAll() //ajax 사용 한 url 설정
                         .requestMatchers("/upload/**").permitAll()
-                        .requestMatchers("/infojoinselectajax").permitAll()
-                        .requestMatchers("/checkUser").permitAll()
-                        .requestMatchers(PERMIT_URL_ARRAY).permitAll()
+                        .requestMatchers(PERMIT_URL_ARRAY).permitAll() //스웨거 url 인식 설정
            
                         .anyRequest().authenticated()  //나머지 요청은 인증이 필요합니다.
                 )

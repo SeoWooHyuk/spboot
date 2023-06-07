@@ -5,6 +5,7 @@
 <%@taglib prefix="c" uri = "http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fmt" uri = "http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 
 <!DOCTYPE html>
 <html>
@@ -16,10 +17,8 @@
 	<link rel="stylesheet" type="text/css" href="css/board_deatil.css">
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
 	<link
-		href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;400&display=swap"
-		rel="stylesheet">
+		href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;400&display=swap"rel="stylesheet">
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 </head>
@@ -77,11 +76,17 @@
 				</tr>
 
 				<tr class="article-body">
-					<td colspan="3"> 
-						첨부파일 다운: <a href="http://localhost:8080/download?filename=${board.files}">다운로드</a>
 
 					
+					<td colspan="3">
+						<c:if test="${pageContext.request.userPrincipal.name != null}"> 
+						첨부파일 다운: <a href="http://localhost:8080/download?filename=${board.files}">다운로드</a>
+						</c:if>
+						<c:if test="${pageContext.request.userPrincipal.name == null}"> 
+							로그인해야 첨부파일 다운로드 가능합니다.
+						</c:if>
 					</td>
+				
 					<td colspan="2"> 
 						<img src="/upload/${board.files}" width="100%" height="100%;"> 
 					</td>
@@ -106,6 +111,10 @@
 			<input type="button" id="up" value="수정" onclick="location.href= 'viewupdate?boardnum=${board.boardnum}'">
 			</c:if>
 		</div>
+	</div>
+
+	<div class="ass">
+		<p style="height: 50px;"></p>
 	</div>
 
 </body>
