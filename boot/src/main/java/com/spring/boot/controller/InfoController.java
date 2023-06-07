@@ -26,12 +26,10 @@ import com.spring.boot.config.UserAuthorize;
 import com.spring.boot.service.InfoService;
 import com.spring.boot.vo.InfoMember;
 import com.spring.boot.vo.Information;
-
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
-
 import com.spring.boot.service.MemberService;
 
 
@@ -51,6 +49,17 @@ public class InfoController {
 
     @Autowired
     MyUserDetailService myUserDetailService;
+
+
+
+    @GetMapping("/denied")
+    public String denied() //접근한 권한이없는 자가 접근할때 가는 페이지
+    {
+         log.info("권한실패후 읽는 지확인");
+        return "denied-page";
+    }
+
+
 
     @Operation(summary = "인덱스 화면", description = "템플릿 화면을 출력합니다.")
     @GetMapping("/main")

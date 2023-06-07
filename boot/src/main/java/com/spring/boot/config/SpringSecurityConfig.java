@@ -13,6 +13,7 @@ import org.springframework.security.core.session.SessionRegistryImpl;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.session.HttpSessionEventPublisher;
 
 import com.spring.boot.service.MemberService;
@@ -60,6 +61,9 @@ public class SpringSecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf().disable().cors().disable(); //csrf 와 cors 보호를 해제한다.
+          // 인증 거부 관련 처리
+        http.exceptionHandling().accessDeniedHandler(accessDeniedHandler());
+      
             http.authorizeHttpRequests(request -> request //권한 및 역할 기반의 경로에 대한 액세스 규칙을 정의하는 데 사용되는 것으로, HttpSecurity 구성 클래스에서 사용됩니다.
                         //이 메서드는 표현식을 사용해 요청 경로 접근 규칙을 정의할 수 있는 Customizer<AuthorizeHttpRequestsConfigurer> 타입의 Consumer를 매개변수로 받습니다.        
                         .dispatcherTypeMatchers(DispatcherType.FORWARD).permitAll() 
@@ -69,7 +73,9 @@ public class SpringSecurityConfig {
                         .requestMatchers(CONTROLLER_URL_ARRAY).permitAll()
                         .requestMatchers(AJAX_URL_ARRAY).permitAll() //ajax 사용 한 url 설정
                         .requestMatchers("/upload/**").permitAll()
-                        .requestMatchers(PERMIT_URL_ARRAY).permitAll() //스웨거 url 인식 설정
+                        .requestMatchers("/denied").permitAll()
+                        .requestMatchers(PERMIT_URL_ARRAY).hasAnyRole("ADMIN")
+            
            
                         .anyRequest().authenticated()  //나머지 요청은 인증이 필요합니다.
                 )
@@ -78,8 +84,7 @@ public class SpringSecurityConfig {
                         .maximumSessions(1)
                         .maxSessionsPreventsLogin(false)
                         .expiredUrl("/login")
-                        .sessionRegistry(sessionRegistry())
-                        
+                        .sessionRegistry(sessionRegistry())    
                 )
                 .formLogin(login -> login
                         .loginPage("/main")
@@ -107,31 +112,29 @@ public class SpringSecurityConfig {
                             }
                             
                         })
-                       .failureUrl("/login").permitAll()
+                       .failureUrl("/login")
                     //.defaultSuccessUrl("/view", true).permitAll() //로그인 페이지는 인증 없이 접근이 가능합니다.
                 )
                 .logout( logout ->
-                {
-                    logout
-                    .logoutUrl("/logout")
-                    .addLogoutHandler((request, response, authentication) -> { 
-                        // 사실 굳이 내가 세션 무효화하지 않아도 됨. 
-                        // LogoutFilter가 내부적으로 해줌.
-                        HttpSession session = request.getSession();
-                        if (session != null) {
-                            session.invalidate();
-                        }
-                    })  // 로그아웃 핸들러 추가
-                    .logoutSuccessHandler((request, response, authentication) -> {
-                        response.sendRedirect(request.getHeader("Referer"));
-                    }) // 로그아웃 성공 핸들러
-                    .deleteCookies("JSESSIONID"); // 로그아웃 후 삭제할 쿠키 지정
-                    
-                    //.logoutSuccessUrl("/view").permitAll();
-                }
+                    {
+                        logout
+                        .logoutUrl("/logout")
+                        .addLogoutHandler((request, response, authentication) -> { 
+                            // 사실 굳이 내가 세션 무효화하지 않아도 됨. 
+                            // LogoutFilter가 내부적으로 해줌.
+                            HttpSession session = request.getSession();
+                            if (session != null) {
+                                session.invalidate();
+                            }
+                        })  // 로그아웃 핸들러 추가
+                        .logoutSuccessHandler((request, response, authentication) -> {
+                            response.sendRedirect(request.getHeader("Referer"));
+                        }) // 로그아웃 성공 핸들러
+                        .deleteCookies("JSESSIONID"); // 로그아웃 후 삭제할 쿠키 지정
+                        
+                        //.logoutSuccessUrl("/view").permitAll();
+                    }
                 ) //로그아웃 처리와 관련된 설정을 구성합니다. 기본 로그아웃 설정이 사용됩니다.
-
-                
                 .httpBasic(basic -> basic
                 .disable()
                 );
@@ -149,4 +152,8 @@ public class SpringSecurityConfig {
         return new SessionRegistryImpl();
     }
 
+    @Bean
+    public AccessDeniedHandler accessDeniedHandler() {
+    return new UserDeniedHandler();
+}
 }

@@ -2,6 +2,7 @@
 <%@taglib prefix="c" uri = "http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fmt" uri = "http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -27,7 +28,11 @@
 		<ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
 		  <li><a href="/" class="nav-link px-2 link-secondary">Home</a></li>
 		  <li><a href="/view" class="nav-link px-2 link-dark">게시판</a></li>
-		  <li><a href="/swagger-ui/index.html" class="nav-link px-2 link-dark">스웨거 진입</a></li>
+		<sec:authorize access="hasRole('ADMIN')">
+			<li><a href="/swagger-ui/index.html" class="nav-link px-2 link-dark">관리자 스웨거</a></li>
+		</sec:authorize>
+
+		<li><a href="/swagger-ui/index.html" class="nav-link px-2 link-dark">스웨거 테스트용 철거예정</a></li>
 		  <li><a href="#" class="nav-link px-2 link-dark">공사중</a></li>
 		  <li><a href="#" class="nav-link px-2 link-dark">공사중</a></li>
 		</ul>
