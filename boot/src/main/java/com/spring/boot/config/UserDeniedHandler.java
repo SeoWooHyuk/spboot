@@ -23,11 +23,6 @@ public class UserDeniedHandler implements AccessDeniedHandler {
     public void handle(HttpServletRequest request, HttpServletResponse response, AccessDeniedException accessDeniedException) throws IOException, ServletException {
         response.setStatus(HttpStatus.FORBIDDEN.value()); //서버에서 클라이언트로 전송되는 응답 코드를 403 Forbidden으로 설정하여, 클라이언트가 요청한 리소스에 접근할 권한이 없음을 알리는 것입니다.
         
-        // logger.info("Exceiption : {}",accessDeniedException);
-        // logger.info("LocalizedMessage : {}",accessDeniedException.getLocalizedMessage());
-        // logger.info("Message : {}",accessDeniedException.getMessage());
-        // logger.info("StackTrace : {}",accessDeniedException.getStackTrace());
-        // request.setAttribute("errMsg",accessDeniedException.getMessage());
         request.getRequestDispatcher("/denied").forward(request, response);
         
     }

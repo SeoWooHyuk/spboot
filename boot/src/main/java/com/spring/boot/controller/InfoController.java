@@ -1,15 +1,20 @@
 package com.spring.boot.controller;
 
 
+import java.security.Principal;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.security.SecurityProperties.User;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.session.SessionInformation;
 import org.springframework.security.core.session.SessionRegistry;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,6 +31,8 @@ import com.spring.boot.config.UserAuthorize;
 import com.spring.boot.service.InfoService;
 import com.spring.boot.vo.InfoMember;
 import com.spring.boot.vo.Information;
+
+
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;
@@ -37,6 +44,7 @@ import com.spring.boot.service.MemberService;
 @Slf4j
 @Tag(name = "InfoController", description = "로그인 로그아웃 회원관리 + 헤더푸터관리 컨트롤러")
 public class InfoController {
+
 
     @Autowired
     SessionRegistry sessionRegistry; // bean에 등록된 세션저장소
@@ -51,14 +59,28 @@ public class InfoController {
     MyUserDetailService myUserDetailService;
 
 
+    public static List currentUserName() {
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+        User user = (User) authentication.getPrincipal();
+
+        return user.getRoles();
+    }
 
     @GetMapping("/denied")
     public String denied() //접근한 권한이없는 자가 접근할때 가는 페이지
     {
-         log.info("권한실패후 읽는 지확인");
+         //log.info("권한실패후 읽는 지확인");
         return "denied-page";
     }
 
+    @GetMapping("/admin") //관리자 접근 페이지
+    public String admin() 
+    {
+      
+        return "admin";
+    }
 
 
     @Operation(summary = "인덱스 화면", description = "템플릿 화면을 출력합니다.")
@@ -76,8 +98,14 @@ public class InfoController {
     }
 
     @GetMapping("/login")
-    public String login(HttpServletRequest request)
+    public String login(HttpServletRequest request , 
+    @RequestParam(value = "err", required = false)String err, 
+    @RequestParam(value = "exception", required = false)String exception, Model model)
     {
+        log.info(""+ exception +"로그인실패시 메세지");
+        model.addAttribute("err", err);
+        model.addAttribute("exception", exception);
+
       /* 로그인 성공 시 이전 페이지로 이동 */
 		String uri = request.getHeader("Referer");
        // log.info(""+ uri +"컨트롤러 확인");
@@ -107,9 +135,14 @@ public class InfoController {
         List<SessionInformation> allSessions  = sessionRegistry.getAllSessions(userDetails,false); 
             //로그인된 객체가 존재하면 allSessions List의 길이가 1을 넘을 것이다.
         if(allSessions.size() > 0)
+        {
             return true; // user 존재
-        else
-            return false; // user 존재 x
+        }
+        else{
+            return false; // user 존재 x 
+        }
+            
+           
     }
     
 

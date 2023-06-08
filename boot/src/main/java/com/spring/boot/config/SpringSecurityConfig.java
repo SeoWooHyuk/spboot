@@ -6,14 +6,20 @@ import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationCredentialsNotFoundException;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.session.SessionRegistry;
 import org.springframework.security.core.session.SessionRegistryImpl;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.access.AccessDeniedHandler;
+import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
 import org.springframework.security.web.session.HttpSessionEventPublisher;
 
 import com.spring.boot.service.MemberService;
@@ -51,7 +57,7 @@ public class SpringSecurityConfig {
     };
 
     private static final String[] CONTROLLER_URL_ARRAY = {
-        "/join", "/joininsert" , "/login" ,"/view" ,"/viewdetail" ,"/main"
+        "/join", "/joininsert" , "/login/**" ,"/view" ,"/viewdetail" ,"/main"
     };
 
     private static final String[] INCLUDE_URL_ARRAY = {
@@ -63,7 +69,8 @@ public class SpringSecurityConfig {
         http.csrf().disable();//csrf 와 cors 보호를 해제한다.
           // 인증 거부 관련 처리
             http.exceptionHandling().//권한없을때 표시방법 
-            accessDeniedHandler(accessDeniedHandler());
+            accessDeniedHandler(accessDeniedHandler())
+           .authenticationEntryPoint(authenticationEntryPoint());
       
             http.authorizeHttpRequests(request -> request //권한 및 역할 기반의 경로에 대한 액세스 규칙을 정의하는 데 사용되는 것으로, HttpSecurity 구성 클래스에서 사용됩니다.
                         //이 메서드는 표현식을 사용해 요청 경로 접근 규칙을 정의할 수 있는 Customizer<AuthorizeHttpRequestsConfigurer> 타입의 Consumer를 매개변수로 받습니다.        
@@ -76,6 +83,7 @@ public class SpringSecurityConfig {
                         .requestMatchers("/upload/**").permitAll()
                         .requestMatchers("/denied").permitAll()
                         .requestMatchers(PERMIT_URL_ARRAY).hasAnyRole("ADMIN")
+                        .requestMatchers("/admin").hasAnyRole("ADMIN")
                         .anyRequest().authenticated()  //나머지 요청은 인증이 필요합니다.
                 )
                 .sessionManagement(session -> session  //중복로그인 방지
@@ -83,7 +91,7 @@ public class SpringSecurityConfig {
                         .maximumSessions(1)
                         .maxSessionsPreventsLogin(false)
                         .expiredUrl("/login")
-                        .sessionRegistry(sessionRegistry())    
+                        .sessionRegistry(sessionRegistry())    //세션을 조회
                 )
                 .formLogin(login -> login
                         .loginPage("/main")
@@ -111,7 +119,8 @@ public class SpringSecurityConfig {
                             }
                             
                         })
-                       .failureUrl("/login")
+                        .failureHandler(simpleUrlAuthenticationFailureHandler())
+                    //   .failureUrl("/login?err=0")
                     //.defaultSuccessUrl("/view", true).permitAll() //로그인 페이지는 인증 없이 접근이 가능합니다.
                 )
                 .logout( logout ->
@@ -145,13 +154,31 @@ public class SpringSecurityConfig {
     public HttpSessionEventPublisher httpSessionEventPublisher() {
         return new HttpSessionEventPublisher();
     }
+    //Spring Framework의 HttpSessionListener 와 HttpSessionAttributeListener를 등록해주는 클래스
 
     @Bean
     public SessionRegistry sessionRegistry() {
         return new SessionRegistryImpl();
     }
-    @Bean
-    public AccessDeniedHandler accessDeniedHandler() { //권한없을때 표시방법 빈주입
+    //로그인한 인증된 유저의 세션을 등록, 삭제, 조회할 수 있도록 도와주는 인터페이스 입니다.
+    //해당 코드에서 SessionRegistryImpl()은 인증된 유저 세션의 등록, 삭제, 조회 등 모든 이벤트를 관리하는 구현 클래스인 SessionRegistryImpl 인스턴스를 생성하여 반환합니다
+    
+
+    public AccessDeniedHandler accessDeniedHandler() { //로그인한자가 권한없을때 표시방법 빈주입
     return new UserDeniedHandler();
     }
+
+
+    public AuthenticationEntryPoint  authenticationEntryPoint() //로그인 안한자가 권한없는 페이지들어갈때 표시방법 권한이없으면 무조건 이페이지로 가라
+    {
+     return new MyAuthenticationEntryPoint();
+    }
+
+
+    public SimpleUrlAuthenticationFailureHandler simpleUrlAuthenticationFailureHandler() //로그인실패시 표시방법
+    {
+        return new UserAuthFailureHandler();
+    }
+
+
 }

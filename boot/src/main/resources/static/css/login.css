@@ -79,7 +79,6 @@ body {
 	background-color:#05BE34;
 	border:solid 2px #05BE34;
 	border-radius:5px;
-	background-image: url(image/naverlogo.png);
 	background-repeat: no-repeat;
 	background-position: left;
 	background-size: 40px 40px;
@@ -107,7 +106,7 @@ body {
 	background-color:#FFE617;
 	border:solid 2px #FFE617;
 	border-radius:5px;
-	background-image: url(image/cacaologo.png);
+	/* background-image: url(image/cacaologo.png); */
 	background-repeat: no-repeat;
 	background-position: left;
 	background-size: 40px 40px;
@@ -135,7 +134,6 @@ body {
 	background-color:#DC4A38;
 	border:solid 2px #DC4A38;
 	border-radius:5px;
-	background-image: url(image/googlelogo.png);
 	background-repeat: no-repeat;
 	background-position: left;
 	background-size: 40px 40px;
@@ -163,7 +161,6 @@ body {
 	background-color:#3A559F;
 	border:solid 2px #3A559F;
 	border-radius:5px;
-	background-image: url(image/facebooklogo.png);
 	background-repeat: no-repeat;
 	background-position: left;
 	background-size: 40px 40px;

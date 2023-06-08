@@ -32,7 +32,7 @@ public class MyUserDetailService implements UserDetailsService {
         //log.info(""+ member.getId() +"셀렉 전달 체크");
         //log.info(""+ member.getPw() +"셀렉 전달 체크");
         
-        log.info(""+ member.getRoles() +"셀렉 유저권한전달 체크");
+        log.info(""+ member.getRoles() +"이 아이디의 셀렉 유저권한전달 체크");
         return User.builder()
                 .username(member.getId())
                 .password(member.getPw())
