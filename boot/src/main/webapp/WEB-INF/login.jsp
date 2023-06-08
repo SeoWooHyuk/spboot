@@ -32,7 +32,7 @@
 				<tr><td><input type="text" id="id" class="txt_input" name="id" placeholder="아이디"></td></tr>
 				<tr><td><input type="password" id="pw" class="txt_input" name="pw" placeholder="비밀번호" ></td></tr>
 				<c:if test="${err != null}">
-					<tr><td><div class="error_next_box" id="passMsg" style="color:red;"></div></td></tr>
+					<tr><td><div class="error_next_box" id="passMsg"  style="color:red;">${exception}</div></td></tr>
 				</c:if>
 				<tr><td><input type="button" id="login_button" name="" value="로그인"></td></tr>
 			</table>

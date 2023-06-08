@@ -1,6 +1,7 @@
 package com.spring.boot.config;
 
 import java.io.IOException;
+import java.net.URLEncoder;
 
 import org.springframework.security.authentication.AuthenticationCredentialsNotFoundException;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -23,7 +24,7 @@ public class UserAuthFailureHandler extends SimpleUrlAuthenticationFailureHandle
                 String errorMessage = "";
                 
                 if (exception instanceof BadCredentialsException) {
-                    errorMessage = "id passworld false";
+                    errorMessage = "아이디하고 비밀번호가 틀립니다.";
                 }
                 else if (exception instanceof AuthenticationException) {
                     errorMessage = "내부적으로 발생한 시스템 문제로 인해 요청을 처리할 수 없습니다. 관리자에게 문의하세요.";
@@ -34,9 +35,11 @@ public class UserAuthFailureHandler extends SimpleUrlAuthenticationFailureHandle
                 else if (exception instanceof AuthenticationCredentialsNotFoundException) {
                     errorMessage = "인증 요청이 거부되었습니다. 관리자에게 문의하세요.";
                 }
-                else if (exception instanceof UsernameNotFoundException) {
+                else {
                     errorMessage = "알 수 없는 이유로 로그인에 실패하였습니다 관리자에게 문의하세요.";
                 }
+                errorMessage = URLEncoder.encode(errorMessage, "UTF-8"); //에러메세지 한글 인코딩
+
                 String url = "/login?err=true&exception="+errorMessage;
                setDefaultFailureUrl(url);
 

@@ -20,9 +20,14 @@ import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
+import org.springframework.security.web.csrf.CsrfFilter;
 import org.springframework.security.web.session.HttpSessionEventPublisher;
+import org.springframework.web.filter.CharacterEncodingFilter;
 
 import com.spring.boot.service.MemberService;
+
+import ch.qos.logback.core.filter.Filter;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 
@@ -57,7 +62,7 @@ public class SpringSecurityConfig {
     };
 
     private static final String[] CONTROLLER_URL_ARRAY = {
-        "/join", "/joininsert" , "/login/**" ,"/view" ,"/viewdetail" ,"/main"
+        "/join", "/joininsert" , "/login/**" ,"/view" ,"/viewdetail" ,"/main" ,"/"
     };
 
     private static final String[] INCLUDE_URL_ARRAY = {

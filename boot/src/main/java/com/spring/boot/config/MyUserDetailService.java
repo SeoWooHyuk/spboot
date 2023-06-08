@@ -27,9 +27,9 @@ public class MyUserDetailService implements UserDetailsService {
 
         Optional<InfoMember> findOne = memberService.findOne(id); //로그인시 셀렉으로 조회
         //log.info(""+ id +" 파라미터전달 체크");
-        log.info(""+ findOne +"파라미터전달 체크2");
-        InfoMember member = findOne.orElseThrow(() -> new UsernameNotFoundException("없는 회원입니다 ㅠ"));
-        //log.info(""+ member.getId() +"셀렉 전달 체크");
+        log.info(""+ findOne +"config 유저디테일서비스 파라미터전달 체크");
+         InfoMember member = findOne.orElseThrow(() -> new UsernameNotFoundException("계정이 존재하지 않습니다. 회원가입 진행 후 로그인 해주세요."));
+        log.info(""+ member.getId() +"셀렉 전달 체크");
         //log.info(""+ member.getPw() +"셀렉 전달 체크");
         
         log.info(""+ member.getRoles() +"이 아이디의 셀렉 유저권한전달 체크");
