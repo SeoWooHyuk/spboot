@@ -59,9 +59,9 @@ body {
 	width: 440px;
 	height: 50px;
 	border: solid 3px white;
-	background: url(../image/search-white.png) no-repeat 410px 5px;
+	background: url() no-repeat 410px 5px;
 	background-size: 40px 40px;
-	margin-left: 30px;
+	margin-left: 30px;;
 }
 .banner_sec1 ul{
 	width: 450px;
@@ -144,6 +144,95 @@ body {
   border-bottom-right-radius: 5px;
   
 }
+
+#tables
+{
+	text-align: center;
+}	
+
+tbody, td, tfoot, th, thead, tr {
+    border-color: inherit;
+    border-style: solid;
+}
+
+
+.slider   {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    border-width: 0.5px;
+    
+  }
+  
+.slider ul {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  height: auto;
+  list-style: none;
+}
+  
+.slider ul li {
+   position: relative;
+   display: block;
+   float: left;
+   margin: 0;
+   padding: 0;
+   width: 565px;
+   height: 400px;
+   z-index: 1;
+}
+
+.slider
+{
+  z-index: 2;
+
+} 
+
+.slider ul li image
+{
+    width: 100%;
+    height: 100%;
+}
+
+
+/* 슬리아드버튼 */
+a.control_prev, a.control_next {
+    position: absolute;
+    top: 40%;
+    z-index: 999;
+    display: block;
+    padding: 4% 3%; 
+    background: #D5D5D5;
+    color: #fff;
+    text-decoration: none;
+    opacity: 0.7;
+    cursor: pointer;
+  }
+  
+  a.control_prev:hover, a.control_next:hover {
+    opacity: 0.9;
+  }
+  
+  a.control_prev {
+    border-radius: 0 5px 5px 0;
+  }
+  
+  a.control_next {
+    right: 0;
+    border-radius: 5px 0 0 5px;
+  }
+
+  a.control_prev:focus {
+    border-radius: 0 2px 2px 0;
+    outline: none;
+  }
+
+  a.control_next:focus {
+    right: 0;
+    border-radius: 2px 0 0 2px;
+    outline: none;
+  }
 
 
 
