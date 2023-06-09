@@ -66,7 +66,7 @@ public class SpringSecurityConfig {
     };
 
     private static final String[] INCLUDE_URL_ARRAY = {
-        "/header"
+        "/header" , "/footer"
     };
 
     @Bean
@@ -82,7 +82,7 @@ public class SpringSecurityConfig {
                         .dispatcherTypeMatchers(DispatcherType.FORWARD).permitAll() 
                         .dispatcherTypeMatchers(DispatcherType.INCLUDE).permitAll() 
                         .requestMatchers(INCLUDE_URL_ARRAY).permitAll()
-                        .requestMatchers("/status", "/images/**","/status", "/css/**","/status","/js/**").permitAll() //: URL 패턴 지정을 통해 인증 없이 접근을 허용합니다.
+                        .requestMatchers("/status/**", "/images/**" ,"/css/**" ,"/js/**").permitAll() //: URL 패턴 지정을 통해 인증 없이 접근을 허용합니다.
                         .requestMatchers(CONTROLLER_URL_ARRAY).permitAll()
                         .requestMatchers(AJAX_URL_ARRAY).permitAll() //ajax 사용 한 url 설정
                         .requestMatchers("/upload/**").permitAll()
@@ -107,10 +107,8 @@ public class SpringSecurityConfig {
 
                             String prevPage = (String) request.getSession().getAttribute("prevPage");
                             String referer = request.getHeader("Referer");  
-                            String referer2 = request.getHeader("/join");  
-                       //     log.info(""+ prevPage +"이전값 확인");
-                          //   log.info(""+ referer +"리페어값 확인");
-                         //   log.info(""+ referer2 +"리페어값2 확인");
+                            log.info(""+ prevPage +"이전값 확인");
+                            log.info(""+ referer + "리페어값 확인");
                             if(prevPage.equals(referer)) //만약 이전페이지 리페어값이 로그인일시 메인으로 가라
                             {
                                 response.sendRedirect("/main");

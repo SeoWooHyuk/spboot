@@ -96,6 +96,14 @@ public class InfoController {
         return "header";
     }
 
+
+    @Operation(summary = "후터 화면", description = "화면 후터을 출력합니다.")
+    @GetMapping("/footer")
+    public String footer()
+    {
+        return "footer";
+    }
+
     @GetMapping("/login")
     public String login(HttpServletRequest request , 
     @RequestParam(value = "err", required = false)String err, 

@@ -3,6 +3,7 @@ package com.spring.boot.security;
 import java.io.IOException;
 import java.net.URLEncoder;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationCredentialsNotFoundException;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.AuthenticationException;
@@ -16,6 +17,9 @@ import jakarta.servlet.http.HttpServletResponse;
 
 @Component
 public class UserAuthFailureHandler extends SimpleUrlAuthenticationFailureHandler {
+
+    @Autowired
+    MyUserDetailService myUserDetailService;
 
     @Override
     public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response,
