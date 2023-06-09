@@ -1,7 +1,5 @@
 package com.spring.boot.controller;
 
-
-import java.security.Principal;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -25,9 +23,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.support.RequestContextUtils;
-import com.spring.boot.config.AdminAuthorize;
-import com.spring.boot.config.MyUserDetailService;
-import com.spring.boot.config.UserAuthorize;
+
+import com.spring.boot.security.AdminAuthorize;
+import com.spring.boot.security.MyUserDetailService;
+import com.spring.boot.security.UserAuthorize;
 import com.spring.boot.service.InfoService;
 import com.spring.boot.vo.InfoMember;
 import com.spring.boot.vo.Information;

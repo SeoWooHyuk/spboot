@@ -1,7 +1,8 @@
 
  $(document).ready(function() { // html 문서가 다 로딩 되면
     $("#login_button").click(function() { // 로그인 버튼이 눌렸을때
-        let username = $("#id").val(); // 사용자 id를 가져와서
+
+        /*테스트용 */
         // searchParams = searchParams = new URLSearchParams(location.search);
         // const urlParams = new URL(location.href).searchParams;
         // const name = urlParams.get('err');
@@ -13,6 +14,16 @@
         //     window.history.pushState({}, "", url);
         //     window.location.reload();
         // }
+
+        let username = $("#id").val(); // 사용자 id를 가져와서
+        let pw = $("#pw").val(); // 사용자 id를 가져와서
+        if(username == "")
+        {
+            alert("아이디를 입력하세요")
+        }else if(pw == ""){
+            alert("비밀번호를 입력하세요");
+        }
+    
  
         $.ajax({ // 서버로 보내서 기존 세션이 존재하는지 (중복인지) 검사해준다.
             url : "/checkUserajax",

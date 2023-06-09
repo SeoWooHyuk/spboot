@@ -1,4 +1,4 @@
-package com.spring.boot.config;
+package com.spring.boot.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
@@ -23,24 +23,25 @@ public class MyUserDetailService implements UserDetailsService {
     MemberService memberService;
 
     @Override
-    public UserDetails loadUserByUsername(String id) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String id)  {
+
 
         Optional<InfoMember> findOne = memberService.findOne(id); //로그인시 셀렉으로 조회
-        //log.info(""+ id +" 파라미터전달 체크");
-        log.info(""+ findOne +"config 유저디테일서비스 파라미터전달 체크");
-         InfoMember member = findOne.orElseThrow(() -> new UsernameNotFoundException("계정이 존재하지 않습니다. 회원가입 진행 후 로그인 해주세요."));
-        log.info(""+ member.getId() +"셀렉 전달 체크");
-        //log.info(""+ member.getPw() +"셀렉 전달 체크");
-        
-        log.info(""+ member.getRoles() +"이 아이디의 셀렉 유저권한전달 체크");
+
+        if(findOne.isEmpty())
+        {
+            log.info("널일때 실행");
+        }
+
+        InfoMember member = findOne.orElseThrow(() -> new UsernameNotFoundException("계정이 존재하지 않습니다. 회원가입 진행 후 로그인 해주세요."));
+
+        //InfoMember member = findOne.get();
+
         return User.builder()
-                .username(member.getId())
-                .password(member.getPw())
-                .roles(member.getRoles())
-                .build();
+        .username(member.getId())
+        .password(member.getPw())
+        .roles(member.getRoles())
+        .build();
+
     }
-
-
-
-
 }

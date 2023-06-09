@@ -1,4 +1,4 @@
-package com.spring.boot.config;
+package com.spring.boot.security;
 
 import java.io.IOException;
 
