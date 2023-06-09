@@ -101,5 +101,7 @@
 </div>
 	<!-- Paging[e] -->
 </section>
+
+<jsp:include page ="/footer"/>	 
 </body>
 </html>

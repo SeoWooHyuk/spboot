@@ -116,6 +116,6 @@
 	<div class="ass">
 		<p style="height: 50px;"></p>
 	</div>
-
+	<jsp:include page ="/footer"/>	 
 </body>
 </html>

@@ -315,7 +315,33 @@
 
 			<div id="tab-3" class="tab-content"> 
 				포폴 사이트 <br>
-				메인 페이지: 주기능 탭바 
+				&nabla; /main 페이지 : 역활 : 사용기술 소개  <br>
+				(배너) 제이쿼리 사용 오토슬라이드 기능 구현 <br>
+				(탭바) 제이쿼리 사용 탭바 기능 구현   <br>
+				탭바: 구성내용 기술스텍(전체)  html table 사용 <br>
+
+				<pre> </pre>
+				&nabla; /header 페이지 / 역활 : 웹 페이지를 구성하는 데 필요한 정보를 제공 <br>
+				사용 기술 -부트스트랩 사용 <br>
+
+				<pre> </pre>
+				&nabla; /footer 페이지 / 역활 :사이트의 정보, 저작권, 개인정보처리방침 등과 같은 정보를 제공 <br>
+
+				<pre> </pre>
+				&nabla; /view/** (게시판)페이지 / 기본적인 게시판으로서 유저가 직접 사용하는 영역 <br>
+				html table  ajax 사용
+
+				<pre> </pre>
+				&nabla; /join (회원가입)페이지 / 사이트의 회원등록 <br>
+				사용기술 -다음주소 api사용 
+
+
+				
+			
+				
+			
+				
+
 
 				
 			</div>

@@ -143,7 +143,9 @@
 		<span id="find_id"><a href=""></a></span>
 		<span id="find_pw"><a href="login">회원가입 취소</a></span>
 		<span id="join"><a href=""></a></span>			
-	</div>	
+	</div>
+	
+	<jsp:include page ="/footer"/>	 
 </body>
 </html>
 

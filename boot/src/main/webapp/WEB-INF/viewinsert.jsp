@@ -59,6 +59,6 @@ $(document).ready(function() {
     </div>
 </form>
     
-    
+<jsp:include page ="/footer"/>	 
 </body>
 </html>

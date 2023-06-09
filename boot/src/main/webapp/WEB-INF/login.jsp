@@ -20,7 +20,7 @@
 <style type="text/css">
 </style>
 <body>		
-
+	<jsp:include page ="/header"/>	
 	<div id="logo" align="center">
 		<p class="text-center">
             <img src="/images/nahwasa-profile.png" class="img-thumbnail" style="width: 200px;" alt="이 글이 보인다면 시큐리티 설정 잘못한거임!">
@@ -57,7 +57,7 @@
 			
 			
 	
-	
+	<jsp:include page ="/footer"/>	 
 </body>
 </html>
 

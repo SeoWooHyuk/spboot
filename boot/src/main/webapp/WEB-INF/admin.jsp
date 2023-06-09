@@ -24,5 +24,6 @@
 
         </div>
     </div>
+    <jsp:include page ="/footer"/>	 
 </body>
 </html>
