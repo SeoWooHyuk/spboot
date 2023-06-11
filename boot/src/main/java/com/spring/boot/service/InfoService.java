@@ -1,14 +1,11 @@
 package com.spring.boot.service;
 
-import org.apache.catalina.User;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
 import com.spring.boot.dao.InfoDao;
 import com.spring.boot.vo.InfoMember;
-import com.spring.boot.vo.Information;
-
 import lombok.extern.slf4j.Slf4j;
 
 @Service
@@ -21,7 +18,7 @@ public class InfoService {
     PasswordEncoder passwordEncoder;
 
     //회원가입
-    public int joininsert(Information info)
+    public int joininsert(InfoMember info)
     {
         
         InfoMember infoMember = InfoMember.createUser(info.getId(), info.getPw(), passwordEncoder);

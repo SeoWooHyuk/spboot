@@ -1,14 +1,10 @@
 package com.spring.boot.service;
 
 import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.spring.boot.dao.InfoDao;
 import com.spring.boot.vo.InfoMember;
-import com.spring.boot.vo.Information;
-
 import lombok.extern.slf4j.Slf4j;
 
 @Service

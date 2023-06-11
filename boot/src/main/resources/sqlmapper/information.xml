@@ -5,7 +5,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="com.spring.boot.dao.InfoDao"> 
 	
-        <select id="loginslist" resultType="com.spring.boot.vo.Information">
+        <select id="loginslist" resultType="com.spring.boot.vo.InfoMember">
                 select * from information
         </select>
 

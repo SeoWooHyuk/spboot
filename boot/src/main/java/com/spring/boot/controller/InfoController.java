@@ -4,10 +4,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.security.SecurityProperties.User;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.session.SessionInformation;
 import org.springframework.security.core.session.SessionRegistry;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -23,15 +20,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.support.RequestContextUtils;
-
 import com.spring.boot.security.AdminAuthorize;
-import com.spring.boot.security.MyUserDetailService;
+import com.spring.boot.security.UserDetailServiceimpi;
 import com.spring.boot.security.UserAuthorize;
 import com.spring.boot.service.InfoService;
 import com.spring.boot.vo.InfoMember;
-import com.spring.boot.vo.Information;
-
-
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;
@@ -55,17 +48,7 @@ public class InfoController {
     MemberService memberService;
 
     @Autowired
-    MyUserDetailService myUserDetailService;
-
-
-    public static List currentUserName() {
-
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-
-        User user = (User) authentication.getPrincipal();
-
-        return user.getRoles();
-    }
+    UserDetailServiceimpi myUserDetailService;
 
     @GetMapping("/denied")
     public String denied() //접근한 권한이없는 자가 접근할때 가는 페이지
@@ -109,6 +92,7 @@ public class InfoController {
     @RequestParam(value = "err", required = false)String err, 
     @RequestParam(value = "exception", required = false)String exception, Model model)
     {
+        
         log.info(""+ exception +"로그인실패시 메세지");
         model.addAttribute("err", err);
         model.addAttribute("exception", exception);
@@ -117,7 +101,7 @@ public class InfoController {
 		String uri = request.getHeader("Referer");
        // log.info(""+ uri +"컨트롤러 확인");
 		// 이전 uri가 null이다 -> 배포 서버에서 나타나는 오류?
-		if (uri==null) {
+		if (uri==null )  {
 			// null일시 이전 페이지에서 addFlashAttribute로 보내준 uri을 저장
 			Map<String, ?> paramMap = RequestContextUtils.getInputFlashMap(request);
 			uri = (String) paramMap.get("referer");
@@ -179,7 +163,7 @@ public class InfoController {
 
 
     @PostMapping("/joininsert")
-    public ResponseEntity<String> joininsert(@RequestBody Information info)  //ResponseEntity란, httpentity를 상속받는, 결과 데이터와 HTTP 상태 코드를 직접 제어할 수 있는 클래스이다.
+    public ResponseEntity<String> joininsert(@RequestBody InfoMember info)  //ResponseEntity란, httpentity를 상속받는, 결과 데이터와 HTTP 상태 코드를 직접 제어할 수 있는 클래스이다.
     //ResponseEntity에는 사용자의  HttpRequest에 대한 응답 데이터가 포함된다.
     {
         try {

@@ -2,12 +2,10 @@ package com.spring.boot.security;
 
 import java.io.IOException;
 import java.net.URLEncoder;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationCredentialsNotFoundException;
+import org.springframework.security.authentication.AuthenticationServiceException;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
 import org.springframework.stereotype.Component;
 
@@ -17,9 +15,6 @@ import jakarta.servlet.http.HttpServletResponse;
 
 @Component
 public class UserAuthFailureHandler extends SimpleUrlAuthenticationFailureHandler {
-
-    @Autowired
-    MyUserDetailService myUserDetailService;
 
     @Override
     public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response,
@@ -33,7 +28,7 @@ public class UserAuthFailureHandler extends SimpleUrlAuthenticationFailureHandle
                 else if (exception instanceof AuthenticationException) {
                     errorMessage = "내부적으로 발생한 시스템 문제로 인해 요청을 처리할 수 없습니다. 관리자에게 문의하세요.";
                 }
-                else if (exception instanceof UsernameNotFoundException) {
+                else if (exception instanceof AuthenticationServiceException) {
                     errorMessage = "계정이 존재하지 않습니다. 회원가입 진행 후 로그인 해주세요.";
                 }
                 else if (exception instanceof AuthenticationCredentialsNotFoundException) {
