@@ -72,7 +72,7 @@ public class SpringSecurityConfig {
     };
 
     private static final String[] CONTROLLER_URL_ARRAY = {
-        "/join", "/joininsert" , "/login" ,"/view" ,"/viewdetail" ,"/main" ,"/"
+        "/join", "/joininsert" , "/login/**" ,"/view" ,"/viewdetail" ,"/main" ,"/"
     };
 
     private static final String[] INCLUDE_URL_ARRAY = {
@@ -85,6 +85,7 @@ public class SpringSecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         // 인증 거부 관련 처리
         http.csrf().disable()//csrf 와 cors 보호를 해제한다.
+        
                     .authorizeHttpRequests(request -> request //권한 및 역할 기반의 경로에 대한 액세스 규칙을 정의하는 데 사용되는 것으로, HttpSecurity 구성 클래스에서 사용됩니다.
                     //이 메서드는 표현식을 사용해 요청 경로 접근 규칙을 정의할 수 있는 Customizer<AuthorizeHttpRequestsConfigurer> 타입의 Consumer를 매개변수로 받습니다.        
                     .dispatcherTypeMatchers(DispatcherType.FORWARD).permitAll() 

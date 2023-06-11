@@ -1,8 +1,11 @@
 package com.spring.boot.security;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.stream.Collectors;
 
+import org.apache.catalina.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -15,27 +18,18 @@ import lombok.Getter;
 @Getter
 public class CustomUserDetails implements UserDetails {
 
- 
-
     private final InfoMember member;
-
     public CustomUserDetails(InfoMember member) {
-        
-        // if (member == null) {
-        //     throw  new IllegalArgumentException("계정이 존재하지 않습니다. 회원가입 진행 후 로그인 해주세요.");
-        // }else
-        // {
-             this.member = member;
-        //}
-        
-       
+        System.out.println(member.getRoles());
+        this.member = member;
     }
+
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return member.getRoleList().stream()
-                .map(SimpleGrantedAuthority::new)
-                .collect(Collectors.toList());
+     List<GrantedAuthority> authorities = new ArrayList<>();
+        authorities.add(new SimpleGrantedAuthority("ROLE_"+member.getRoles().toString())); //ROLE_이놈때문이었어 디테일에서 권한부여가안된이유
+        return authorities;
     }
 
     @Override
@@ -63,6 +57,8 @@ public class CustomUserDetails implements UserDetails {
         }
        
     }
+
+
 
 
     /**

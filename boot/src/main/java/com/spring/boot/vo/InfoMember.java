@@ -3,11 +3,10 @@ package com.spring.boot.vo;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
+import java.util.Optional;
 import org.springframework.security.crypto.password.PasswordEncoder;
-
 import lombok.Getter;
-import lombok.Setter;
+
 
 @Getter
 public class InfoMember  {
@@ -37,6 +36,10 @@ public class InfoMember  {
       //  log.info(""+ id +"인포멤버 크리에트 유저아디 체크");
        // log.info(""+ passwordEncoder +"인포멤버 크리에트 유저비번 체크");
         return new InfoMember(null, id, passwordEncoder.encode(pw),"USER"); //회언가입시 user권한 일반 권한 자동 저장
+    }
+
+    public Optional<InfoMember> map(Object object) {
+        return null;
     }
 
 
