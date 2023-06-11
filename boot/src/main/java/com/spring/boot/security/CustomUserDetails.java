@@ -20,7 +20,6 @@ public class CustomUserDetails implements UserDetails {
 
     private final InfoMember member;
     public CustomUserDetails(InfoMember member) {
-        System.out.println(member.getRoles());
         this.member = member;
     }
 

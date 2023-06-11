@@ -23,7 +23,7 @@
 	<jsp:include page ="/header"/>	
 	<div id="logo" align="center">
 		<p class="text-center">
-            <img src="/images/nahwasa-profile.png" class="img-thumbnail" style="width: 200px;" alt="이 글이 보인다면 시큐리티 설정 잘못한거임!">
+            <img src="/images/cat.jpg" class="img-thumbnail" style="width: 200px;" alt="이 글이 보인다면 시큐리티 설정 잘못한거임!">
         </p>
 	<div id="login_main">	
 		<form name="login" id="login-form" method="POST" action="/login-process">	<!-- 시큐리티로 로그인정보 보냄 -->
