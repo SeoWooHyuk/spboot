@@ -97,8 +97,12 @@ public class InfoController {
         model.addAttribute("err", err);
         model.addAttribute("exception", exception);
 
+        
       /* 로그인 성공 시 이전 페이지로 이동 */
 		String uri = request.getHeader("Referer");
+         if (uri != null && uri.contains("?")) { //파라미터가있을때 파라미터를 제거한다.
+            uri = uri.substring(0, uri.indexOf("?"));
+        }
        // log.info(""+ uri +"컨트롤러 확인");
 		// 이전 uri가 null이다 -> 배포 서버에서 나타나는 오류?
 		if (uri==null )  {

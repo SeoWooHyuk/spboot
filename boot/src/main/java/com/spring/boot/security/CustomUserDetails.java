@@ -1,41 +1,67 @@
 package com.spring.boot.security;
 
-import java.io.Serializable;
 import java.util.Collection;
+import java.util.stream.Collectors;
 
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+
+import com.spring.boot.vo.InfoMember;
 
 import lombok.Getter;
 
 @Getter
-public class CustomUserDetails implements UserDetails , Serializable{
+public class CustomUserDetails implements UserDetails {
 
-    private static final long serialVersionUID = 174726374856727L;
+ 
 
-    private String id;	// DB에서 PK 값
-    private String pw;	// 비밀번호
-    private boolean locked;	//계정 잠김 여부
-    private Collection<GrantedAuthority> authorities;	//권한 목록
+    private final InfoMember member;
 
-
+    public CustomUserDetails(InfoMember member) {
+        
+        // if (member == null) {
+        //     throw  new IllegalArgumentException("계정이 존재하지 않습니다. 회원가입 진행 후 로그인 해주세요.");
+        // }else
+        // {
+             this.member = member;
+        //}
+        
+       
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        // TODO Auto-generated method stub
-        return authorities;
+        return member.getRoleList().stream()
+                .map(SimpleGrantedAuthority::new)
+                .collect(Collectors.toList());
     }
 
     @Override
     public String getPassword() {
         // TODO Auto-generated method stub
-        return pw;
+
+        if (member == null) {
+            return null;
+        }else
+        {
+            return member.getPw();
+        }
+    
     }
 
     @Override
     public String getUsername() {
         // TODO Auto-generated method stub
-        return id;
+       
+        if (member == null) {
+            return null;
+        }else
+        {
+             return member.getId();
+        }
+       
     }
 
 
@@ -48,7 +74,7 @@ public class CustomUserDetails implements UserDetails , Serializable{
     @Override
     public boolean isAccountNonExpired() {
         // TODO Auto-generated method stub
-        return false;
+        return true;
     }
 
 
@@ -61,7 +87,7 @@ public class CustomUserDetails implements UserDetails , Serializable{
     @Override
     public boolean isAccountNonLocked() {
         // TODO Auto-generated method stub
-        return false;
+        return true;
     }
 
 
@@ -74,7 +100,7 @@ public class CustomUserDetails implements UserDetails , Serializable{
     @Override
     public boolean isCredentialsNonExpired() {
         // TODO Auto-generated method stub
-        return false;
+        return true;
     }
 
 

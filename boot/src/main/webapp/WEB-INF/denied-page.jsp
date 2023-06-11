@@ -9,7 +9,7 @@
 <script type="text/javascript">
 window.onload = function(){
 alert("권한이 없는 사용자입니다.");
-    location.href = "/main";
+    location.href = document.referrer;
 };
 </script>
 </body>

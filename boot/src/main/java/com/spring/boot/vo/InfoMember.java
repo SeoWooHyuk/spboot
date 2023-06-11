@@ -1,11 +1,16 @@
 package com.spring.boot.vo;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import lombok.Getter;
+import lombok.Setter;
 
 @Getter
-public class InfoMember {
+public class InfoMember  {
 
     private Long secuid;
     private String id;
@@ -20,6 +25,13 @@ public class InfoMember {
     }
 
     protected InfoMember() {}
+
+    public List<String> getRoleList(){
+        if(this.roles.length()>0){
+            return Arrays.asList(this.roles.split(","));
+        }
+        return new ArrayList<>();
+    }
 
     public static InfoMember createUser(String id, String pw, PasswordEncoder passwordEncoder) {
       //  log.info(""+ id +"인포멤버 크리에트 유저아디 체크");

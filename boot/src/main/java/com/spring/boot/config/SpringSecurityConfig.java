@@ -9,9 +9,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationEventPublisher;
-import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.DefaultAuthenticationEventPublisher;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.session.SessionRegistry;
@@ -74,7 +72,7 @@ public class SpringSecurityConfig {
     };
 
     private static final String[] CONTROLLER_URL_ARRAY = {
-        "/join", "/joininsert" , "/login/**" ,"/view" ,"/viewdetail" ,"/main" ,"/"
+        "/join", "/joininsert" , "/login" ,"/view" ,"/viewdetail" ,"/main" ,"/"
     };
 
     private static final String[] INCLUDE_URL_ARRAY = {
