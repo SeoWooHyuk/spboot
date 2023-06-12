@@ -34,7 +34,6 @@
                 id : username,
             },
             success : function(result){
-
                 if(result == false) {
                     $('#login-form').submit();
                 }else{
@@ -49,6 +48,7 @@
             ,
 			error: function(xhr, status, error) {
 					console.error(error);
+                    $('#login-form').submit();
 			}
         })
     })

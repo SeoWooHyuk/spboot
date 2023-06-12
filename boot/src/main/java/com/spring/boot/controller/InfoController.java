@@ -5,7 +5,6 @@ import java.util.Map;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.session.SessionInformation;
 import org.springframework.security.core.session.SessionRegistry;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -37,7 +36,6 @@ import com.spring.boot.service.MemberService;
 @Slf4j
 @Tag(name = "InfoController", description = "로그인 로그아웃 회원관리 + 헤더푸터관리 컨트롤러")
 public class InfoController {
-
 
     @Autowired
     SessionRegistry sessionRegistry; // bean에 등록된 세션저장소
@@ -93,12 +91,10 @@ public class InfoController {
     @RequestParam(value = "err", required = false)String err, 
     @RequestParam(value = "exception", required = false)String exception, Model model)
     {
-        
         log.info(""+ exception +"로그인실패시 메세지");
+
         model.addAttribute("err", err);
         model.addAttribute("exception", exception);
-
-        
       /* 로그인 성공 시 이전 페이지로 이동 */
 		String uri = request.getHeader("Referer");
          if (uri != null && uri.contains("?")) { //파라미터가있을때 파라미터를 제거한다.
@@ -125,18 +121,26 @@ public class InfoController {
     @ResponseBody
     @Operation(summary = "로그인 중복확인 처리", description = "로그인 중복확인 후 alter로 경고.")
     public boolean checkUserajax(@RequestParam(name = "id") String userid) {
-        //log.info("읽는건가");
-        //TODO session 확인하는 함수 구현
-        UserDetails userDetails = myUserDetailService.loadUserByUsername(userid);
-        List<SessionInformation> allSessions  = sessionRegistry.getAllSessions(userDetails,false); 
-            //로그인된 객체가 존재하면 allSessions List의 길이가 1을 넘을 것이다.
-        if(allSessions.size() > 0)
+        log.info(userid+ "체크유저 아이디 들어오는 거확인");
+        if(userid != null) 
         {
-            return true; // user 존재
+            //TODO session 확인하는 함수 구현
+            UserDetails userDetails = myUserDetailService.loadUserByUsername(userid);
+            List<SessionInformation> allSessions  = sessionRegistry.getAllSessions(userDetails,false); 
+                //로그인된 객체가 존재하면 allSessions List의 길이가 1을 넘을 것이다.
+            if(allSessions.size() > 0)
+            {
+                return true; // user 존재
+            }
+            else{
+                return false; // user 존재 x 
+            }
         }
-        else{
-            return false; // user 존재 x 
+        else 
+        {
+            return false;
         }
+     
             
            
     }

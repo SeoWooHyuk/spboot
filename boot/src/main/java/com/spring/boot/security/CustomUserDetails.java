@@ -23,20 +23,7 @@ public class CustomUserDetails implements UserDetails {
         this.member = member;
     }
 
-    // 중복처리 커스텀 구현
-    @Override
-    public boolean equals(Object obj) {
-        if (obj instanceof CustomUserDetails) {
-            CustomUserDetails other = (CustomUserDetails) obj;
-            return member.getId().equals(other.member.getId());
-        }
-        return false;
-    }
 
-    @Override
-    public int hashCode() {
-        return member.getId().hashCode();
-    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -63,7 +50,7 @@ public class CustomUserDetails implements UserDetails {
         // TODO Auto-generated method stub
        
         if (member == null) {
-            return null;
+            return "";
         }else
         {
              return member.getId();
@@ -71,8 +58,20 @@ public class CustomUserDetails implements UserDetails {
        
     }
 
+    // 중복처리 커스텀 구현
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof CustomUserDetails) {
+            CustomUserDetails other = (CustomUserDetails) obj;
+            return member.getId().equals(other.member.getId());
+        }
+        return false;
+    }
 
-
+    @Override
+    public int hashCode() {
+        return member.getId().hashCode();
+    }
 
     /**
      * 계정 만료 여부

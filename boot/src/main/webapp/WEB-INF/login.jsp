@@ -25,8 +25,8 @@
 		<p class="text-center">
             <img src="/images/cat.jpg" class="img-thumbnail" style="width: 200px;" alt="이 글이 보인다면 시큐리티 설정 잘못한거임!">
         </p>
-	<div id="login_main">	
-		<form name="login" id="login-form" method="POST" action="/login-process">	<!-- 시큐리티로 로그인정보 보냄 -->
+		<div id="login_main">	
+			<form name="login" id="login-form" method="POST" action="/login-process">	<!-- 시큐리티로 로그인정보 보냄 -->
 			<table align="center" border="0" id="login_action">
 				<tr><td><input type="text" id="id" class="txt_input" name="id" placeholder="아이디"></td></tr>
 				<tr><td><input type="password" id="pw" class="txt_input" name="pw" placeholder="비밀번호" ></td></tr>
@@ -35,7 +35,8 @@
 				</c:if>
 				<tr><td><input type="button" id="login_button" name="" value="로그인"></td></tr>
 			</table>
-		</form>
+			</form>
+		</div>
 	</div>
 
 
@@ -55,6 +56,7 @@
 	</div>
 			
 			
+	<p style="height: 50px;"></p>
 	
 	<jsp:include page ="/footer"/>	 
 </body>
