@@ -101,7 +101,10 @@ public class SpringSecurityConfig {
                     .requestMatchers("/status/**", "/images/**" ,"/css/**" ,"/js/**").permitAll() //: URL 패턴 지정을 통해 인증 없이 접근을 허용합니다.
                     .requestMatchers("/upload/**").permitAll()
                     .requestMatchers("/denied").permitAll()
+                    .requestMatchers("/localhost:8080/ws/chat").permitAll()
                     .requestMatchers("/admin").hasAnyRole("ADMIN")
+                    .requestMatchers("/chat").hasAnyRole("ADMIN","USER")
+                   
                     .anyRequest().authenticated()  //나머지 요청은 인증이 필요합니다.
             )
             .sessionManagement(session -> session  //중복로그인 방지
