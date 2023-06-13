@@ -100,7 +100,7 @@
 					<li class="tab-link" data-tab="tab-2">개발 환경 정보</li>
 					<li class="tab-link" data-tab="tab-3">Frontend 기술스텍</li>
 					<li class="tab-link" data-tab="tab-4">Backend 기술스텍</li>
-					<li class="tab-link" data-tab="tab-4">미래에 따른 계획 및 발전 가능성</li>
+					<li class="tab-link" data-tab="tab-5">미래에 따른 계획 및 발전 가능성</li>
 				</ul>
 			</div>
 
@@ -334,20 +334,11 @@
 				<pre> </pre>
 				&nabla; /join (회원가입)페이지 / 사이트의 회원등록 <br>
 				사용기술 -다음주소 api사용 
-
-
-				
-			
-				
-			
-				
-
-
 				
 			</div>
 
 			<div id="tab-4" class="tab-content"> 
-				<h1>모든 작업은 의도와 의미가 중요 </h1>
+				<h1>모든 작업은 의도와 의미가 중요 아니다 api사용이잖아 빽쪽이아니잖아 </h1>
 				문서작업에대하여 기록 !  계획 설계 문서 작업 업무진척 오류 그런것들 기록 <br>
 				어떤 햡력툴을 사용해왔고 업무에대한 조율 팀원들 마찰 힘든점 
 				그리고 페이지마다 기획의도 작업 <br>
@@ -373,10 +364,26 @@
 
 				api업체들이 직접등록했을때 그런이점 db에넣고 매칭해서 이름이중복되는 업체만 보여줘라 구현 해보기  <br>
 
-				그래프작업을할때는 그래프 선의 의미 의도 
+				그래프작업을할때는 그래프 선의 의미 의도 <br>
+
+				<font style="color: red;"></font>예약번호 주문번호 중요 예약시스템 구성 해보기 </font> 
+				출력기능 pdf변환 기능 최대3개 이번에사면 최대3개 다시없는기회 xml타일즈? <br>
+
+				카카오네이버 주변업체드 소개 기능 존재!<br>
+
+				오픈api불러와서 추가기능 ! 데이터가져오면 db 만들어서 적재  공공api 가져와 db에넣어서 스케쥴러 스프링배치 kcbd였나 실제 결제기능api 사용해보기<br>
+
+				개발자 입장에서 기능구현 사용자가원하는 입장에서 생각하는 마음과 자세
 
 				
 			</div>
+
+			<div id="tab-5" class="tab-content"> 
+			
+
+				
+			</div>
+
 
 			<div style="height: 50px;"></div>
 
