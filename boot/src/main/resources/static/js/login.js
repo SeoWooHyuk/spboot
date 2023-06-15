@@ -1,8 +1,5 @@
 
- $(document).ready(function() { // html 문서가 다 로딩 되면
-    $("#login_button").click(function() { // 로그인 버튼이 눌렸을때
-
-        /*테스트용 */
+    /*테스트용 */
         // searchParams = searchParams = new URLSearchParams(location.search);
         // const urlParams = new URL(location.href).searchParams;
         // const name = urlParams.get('err');
@@ -14,7 +11,25 @@
         //     window.history.pushState({}, "", url);
         //     window.location.reload();
         // }
+ 
+ 
+ $(document).ready(function() { // html 문서가 다 로딩 되면
 
+    let lgbutton = document.getElementById("login_button");
+
+    $(document).on("keyup", function(event) {     // 모든 페이지에서 keyup이벤트를 받도록 등록
+        if (event.key === "Enter" && $("#pw").is(":focus")) {  // 키가 엔터키이고 현재 입력중인 요소가 비밀번호 입력칸인 경우
+            event.preventDefault(); // 엔터키의 기본 동작을 막습니다.
+            $("#login_button").click(); // 로그인 버튼을 클릭한 것으로 간주하여 클릭 이벤트를 발생시킵니다.
+            return false;
+        }
+    });
+    
+	lgbutton.onclick = function(){
+        send();
+    }
+ 
+	function send(){
         let username = $("#id").val(); // 사용자 id를 가져와서
         let pw = $("#pw").val(); // 사용자 id를 가져와서
         if(username == "")
@@ -51,5 +66,7 @@
                     $('#login-form').submit();
 			}
         })
-    })
+	}
+
+
 })

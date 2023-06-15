@@ -12,6 +12,7 @@ import org.springframework.security.authentication.AuthenticationEventPublisher;
 import org.springframework.security.authentication.DefaultAuthenticationEventPublisher;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.session.SessionRegistry;
 import org.springframework.security.core.session.SessionRegistryImpl;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -30,7 +31,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 
 @Configuration
-@EnableMethodSecurity
+@EnableWebSecurity
 @Slf4j
 public class SpringSecurityConfig {
 
@@ -84,10 +85,18 @@ public class SpringSecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         // 인증 거부 관련 처리
-        http.csrf().disable();//csrf 와 cors 보호를 해제한다.
-        http.exceptionHandling()//권한없을때 표시방법 
-        .accessDeniedHandler(accessDeniedHandler())
-        .authenticationEntryPoint(authenticationEntryPoint());
+        http.csrf(csrf -> csrf 
+        .disable()
+        );
+        //csrf 와 cors 보호를 해제한다.
+        http.headers(headers -> headers
+        .frameOptions().sameOrigin()
+        ); 
+        
+        http.exceptionHandling( (exceptionHandling) -> exceptionHandling
+          .accessDeniedHandler(accessDeniedHandler())
+          .authenticationEntryPoint(authenticationEntryPoint())
+        );
         
             http.authorizeHttpRequests(request -> request //권한 및 역할 기반의 경로에 대한 액세스 규칙을 정의하는 데 사용되는 것으로, HttpSecurity 구성 클래스에서 사용됩니다.
                     //이 메서드는 표현식을 사용해 요청 경로 접근 규칙을 정의할 수 있는 Customizer<AuthorizeHttpRequestsConfigurer> 타입의 Consumer를 매개변수로 받습니다.        

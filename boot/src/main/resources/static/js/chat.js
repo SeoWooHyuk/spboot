@@ -5,7 +5,9 @@ $(document).ready(function(){
 	}	
 
 	let data = {};//전송 데이터(JSON)
-	let websocket  = new WebSocket("ws://localhost:8080/ws/chat");
+	//let websocket  = new WebSocket("ws://localhost:8080/ws/chat");
+	var websocket = new SockJS("ws://localhost:8080/ws/chat");
+	
 	websocket.onmessage = onMessage;
 	websocket.onopen = onOpen;
 	websocket.onclose = onClose;
@@ -13,7 +15,6 @@ $(document).ready(function(){
 	let btnSend = getId('btnSend');
 	let talk = getId('talk');
 	let msg = getId('msg');
-	let testcheck = true;
 
 	function send(){
 		if(msg.value.trim() != ''){
@@ -75,15 +76,7 @@ $(document).ready(function(){
 				</div>`;
 				talk.innerHTML += item;
 				talk.scrollTop=talk.scrollHeight;//스크롤바 하단으로 이동
-			}
-
-				
-			
-			
-	
-			
-		
-			
+			}	
 		}
 	
 
