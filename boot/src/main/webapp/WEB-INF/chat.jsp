@@ -15,7 +15,6 @@
 	<script language=JavaScript src="${common_context_path_url}"></script>
 </head>
 <script language=JavaScript>
-	const username = '<c:out value="${pageContext.request.userPrincipal.name}"/>';
 </script>
 <style type="text/css">
 </style>
@@ -26,14 +25,15 @@
 
 	<div id='chatt'>
 		<h1>WebSocket Chatting</h1>
-		<input type='text' id='mid' value='${pageContext.request.userPrincipal.name}'>
-		<input type='button' value='로그인' id='btnLogin'>
+		<input type='hidden' id='mid' value='${pageContext.request.userPrincipal.name}'>
+		<input type='button' value='나가기' id='disconn'> 
+		<!-- <input type='button' value='로그인' id='btnLogin'> -->
 		<br/>
 
-		<div id='talk'></div>
+		<div id='talk' style="overflow-x: hidden;"></div>
 
 		<div id='sendZone'>
-			<textarea id='msg' value='' ></textarea>
+			<textarea id='msg' style=" border: 2px solid #8041D9; resize : none; font-size: large; font-weight: 900;"></textarea>
 			<input type='button' value='전송' id='btnSend'>
 		</div>
 	</div>
