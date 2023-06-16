@@ -13,13 +13,10 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.4.0/sockjs.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-	
-	
-
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;400&display=swap" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="css/chat.css">
-	<script src="js/chat.js" type="text/javascript"></script>
+	<link rel="stylesheet" type="text/css" href="/css/chat.css">
+	<script src="/js/chat.js" type="text/javascript"></script>
 	<script language=JavaScript src="${common_context_path_url}"></script>
 </head>
 <script language=JavaScript>
