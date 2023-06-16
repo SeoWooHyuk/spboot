@@ -17,10 +17,10 @@
 	href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
 	rel="stylesheet">
 	<link href="css/sb-admin-2.min.css" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="css/board_select.css">
+	<link rel="stylesheet" type="text/css" href="/css/board_select.css">
 	
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-	<script src="js/view.js" type="text/javascript"></script>
+	<script src="/js/view.js" type="text/javascript"></script>
 	
 </head>
 <body>

@@ -14,7 +14,8 @@
 	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
 </head>
-<body>		
+<body>
+			
 	
 	<div class="b-example-divider"></div>
 
@@ -37,10 +38,10 @@
   
 		<div class="col-md-3 text-end">
 		<c:if test="${pageContext.request.userPrincipal.name != null}"> 
-			<button type="button" class="btn btn-outline-primary me-2" onclick="location.href= 'logout'">logout</button>
+			<button type="button" class="btn btn-outline-primary me-2" onclick="location.href= '/logout'">logout</button>
 		</c:if>
 		<c:if test="${pageContext.request.userPrincipal.name == null}"> 
-			<button type="button" class="btn btn-outline-primary me-2" onclick="location.href= 'login'">Login</button>
+			<button type="button" class="btn btn-outline-primary me-2" onclick="location.href= '/login'">Login</button>
 			<button type="button" class="btn btn-primary" onclick="location.href= 'join'">Sign-up</button>
 		</c:if>
 	

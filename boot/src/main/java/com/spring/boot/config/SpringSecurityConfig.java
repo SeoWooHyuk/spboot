@@ -77,14 +77,12 @@ public class SpringSecurityConfig {
     };
 
     private static final String[] INCLUDE_URL_ARRAY = {
-        "/header" , "/footer", "/status/**", "/images/**" ,"/css/**" ,"/js/**"
+        "/header" , "/footer", "/status/**", "/images/**" ,"/css/**" ,"/js/**" ,"/"
     };
 
-    private static final String[] test_URL_ARRAY = {
-       "/chat/**"
+    private static final String[] Chat_URL_ARRAY = {
+       "/chat/rooms"
     };
-
-  
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -110,15 +108,17 @@ public class SpringSecurityConfig {
                     .requestMatchers(INCLUDE_URL_ARRAY).permitAll()
                     .requestMatchers(CONTROLLER_URL_ARRAY).permitAll()
                     .requestMatchers(AJAX_URL_ARRAY).permitAll() //ajax 사용 한 url 설정
-                    .requestMatchers(test_URL_ARRAY).permitAll() 
                     .requestMatchers(PERMIT_URL_ARRAY).hasAnyRole("ADMIN")
                     .requestMatchers("/upload/**").permitAll()
                     .requestMatchers("/denied").permitAll()
-                    // .requestMatchers("/localhost:8080/ws/chat").permitAll()
+                    .requestMatchers(Chat_URL_ARRAY).permitAll()
                     .requestMatchers("/admin").hasAnyRole("ADMIN")
-                   // .requestMatchers("/chat").hasAnyRole("ADMIN","USER")
-                   
+                    .requestMatchers("/chat/room").hasAnyRole("ADMIN","USER")
                     .anyRequest().authenticated()  //나머지 요청은 인증이 필요합니다.
+                   // .requestMatchers("/localhost:8080/ws/chat").permitAll()
+                 
+                   
+           
             )
             .sessionManagement(session -> session  //중복로그인 방지
                     .maximumSessions(1)

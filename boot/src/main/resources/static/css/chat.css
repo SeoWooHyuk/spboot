@@ -1,6 +1,8 @@
 *{
 	box-sizing: border-box;
+	font-family: 'Noto Sans KR', sans-serif;
 }
+
 
 #chatt{
 	width: 800px;

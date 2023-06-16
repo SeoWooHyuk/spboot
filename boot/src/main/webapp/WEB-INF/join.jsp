@@ -11,8 +11,8 @@
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;400&display=swap" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="css/login.css">
-    <script src="js/join.js" type="text/javascript"></script>
+	<link rel="stylesheet" type="text/css" href="/css/login.css">
+    <script src="/js/join.js" type="text/javascript"></script>
 </head>
 <script type="text/javascript">
 

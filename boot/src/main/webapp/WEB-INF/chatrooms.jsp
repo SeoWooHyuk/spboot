@@ -7,35 +7,34 @@
 <head>
 <meta charset="UTF-8">
 <title>웹소켓 채팅방 목록</title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;400&display=swap" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
-	<link rel="stylesheet" type="text/css" href="css/chat.css">
-	<script src="js/chat.js" type="text/javascript"></script>
+	<link rel="stylesheet" type="text/css" href="/css/chat.css">
 	<script language=JavaScript src="${common_context_path_url}"></script>
+<script language=JavaScript src="${common_context_path_url}"></script>
 </head>
 <script language=JavaScript>
 </script>
 <style type="text/css">
 </style>
-
-
 <body>		
-	<div id="checkperson"></div>
+	<jsp:include page ="/header"/>	
 
 	<div id='chatt'>
 		<h1>WebSocket Chattingroom</h1>
+		로그인 후에 방개설이 가능합니다.
 		<br/>
         <ul>
         <c:forEach items="${list}" var="room">
-         <li><a href="<c:url value='/chat/room'><c:param name='roomId' value='${room.roomId}'/></c:url>">${room.name}</a></li>
+         <li><a href="<c:url value='/chat/room'><c:param name='roomId' value='${room.roomId}'/></c:url>">${room.name} 방</a></li>
         </c:forEach>
         </ul>
 
         <form action="/chat/room" method="post">
         <input type="text" name="name" class="form-control">
 		<div class="btn btn-secondary">
-			<input type='submit' value='개설하기' id='btnSend'>
+			<input type='submit' value='개설하기' id='btnSend' style="width: 150px; height: 30px;">
 		</div>
         </form>
 	</div>

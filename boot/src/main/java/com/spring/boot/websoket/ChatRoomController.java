@@ -29,7 +29,7 @@ public class ChatRoomController {
 
         log.info("# All Chat Rooms");
         ModelAndView mv = new ModelAndView();
-        mv.setViewName("redirect:chat/romms");
+        mv.setViewName("chatrooms");
         mv.addObject("list", repository.findAllRooms());
 
         return mv;
@@ -41,15 +41,16 @@ public class ChatRoomController {
 
         log.info("# Create Chat Room , name: " + name);
         rttr.addFlashAttribute("roomName", repository.createChatRoomDTO(name));
-        return "chat";
+        return "redirect:/chat/rooms";
     }
 
     //채팅방 조회
     @GetMapping("/room")
-    public void getRoom(String roomId, Model model){
+    public String getRoom(String roomId, Model model){
 
         log.info("# get Chat Room, roomID : " + roomId);
 
         model.addAttribute("chat", repository.findRoomById(roomId));
+        return "chat";
     }
 }
