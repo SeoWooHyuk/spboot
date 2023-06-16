@@ -73,11 +73,15 @@ public class SpringSecurityConfig {
     };
 
     private static final String[] CONTROLLER_URL_ARRAY = {
-        "/join", "/joininsert" , "/login/**" ,"/view" ,"/viewdetail" ,"/main" ,"/"
+        "/join", "/joininsert" , "/login/**" ,"/view" ,"/viewdetail" ,"/main" 
     };
 
     private static final String[] INCLUDE_URL_ARRAY = {
-        "/header" , "/footer"
+        "/header" , "/footer", "/status/**", "/images/**" ,"/css/**" ,"/js/**"
+    };
+
+    private static final String[] test_URL_ARRAY = {
+       "/chat/**"
     };
 
   
@@ -106,13 +110,13 @@ public class SpringSecurityConfig {
                     .requestMatchers(INCLUDE_URL_ARRAY).permitAll()
                     .requestMatchers(CONTROLLER_URL_ARRAY).permitAll()
                     .requestMatchers(AJAX_URL_ARRAY).permitAll() //ajax 사용 한 url 설정
+                    .requestMatchers(test_URL_ARRAY).permitAll() 
                     .requestMatchers(PERMIT_URL_ARRAY).hasAnyRole("ADMIN")
-                    .requestMatchers("/status/**", "/images/**" ,"/css/**" ,"/js/**").permitAll() //: URL 패턴 지정을 통해 인증 없이 접근을 허용합니다.
                     .requestMatchers("/upload/**").permitAll()
                     .requestMatchers("/denied").permitAll()
-                    .requestMatchers("/localhost:8080/ws/chat").permitAll()
+                    // .requestMatchers("/localhost:8080/ws/chat").permitAll()
                     .requestMatchers("/admin").hasAnyRole("ADMIN")
-                    .requestMatchers("/chat").hasAnyRole("ADMIN","USER")
+                   // .requestMatchers("/chat").hasAnyRole("ADMIN","USER")
                    
                     .anyRequest().authenticated()  //나머지 요청은 인증이 필요합니다.
             )

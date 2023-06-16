@@ -32,7 +32,8 @@
 		</sec:authorize>
 
 		<li><a href="/admin" class="nav-link px-2 link-dark">관리자 페이지</a></li>
-		<li><a href="/chat/rooms" class="nav-link px-2 link-dark">스톰브 채팅방 리스트</a></li>
+		  <li><a href="/chat" class="nav-link px-2 link-dark">웹소켓 채팅</a></li>
+		  <li><a href="/chat/rooms" class="nav-link px-2 link-dark">채팅방목록</a></li>
 		</ul>
   
 		<div class="col-md-3 text-end">

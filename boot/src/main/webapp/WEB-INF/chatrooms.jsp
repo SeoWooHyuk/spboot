@@ -6,18 +6,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>웹소켓</title>
-	<!-- <script src="https://cdn.jsdelivr.net/sockjs/1/sockjs.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/webstomp-client@1.2.6/dist/webstomp.min.js"></script> -->
-
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.4.0/sockjs.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-	
-	
-
+<title>웹소켓 채팅방 목록</title>
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;400&display=swap" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
 	<link rel="stylesheet" type="text/css" href="css/chat.css">
 	<script src="js/chat.js" type="text/javascript"></script>
 	<script language=JavaScript src="${common_context_path_url}"></script>
@@ -32,18 +24,20 @@
 	<div id="checkperson"></div>
 
 	<div id='chatt'>
-		<h1>WebSocket Chatting</h1>
-		<input type='hidden' id='mid' value='${pageContext.request.userPrincipal.name}'>
-		<input type='button' value='나가기' id='disconn'> 
-		<!-- <input type='button' value='로그인' id='btnLogin'> -->
+		<h1>WebSocket Chattingroom</h1>
 		<br/>
+        <ul>
+        <c:forEach items="${list}" var="room">
+         <li><a href="<c:url value='/chat/room'><c:param name='roomId' value='${room.roomId}'/></c:url>">${room.name}</a></li>
+        </c:forEach>
+        </ul>
 
-		<div id='talk' style="overflow-x: hidden;"></div>
-
-		<div id='sendZone'>
-			<textarea id='msg' style=" border: 2px solid #8041D9; resize : none; font-size: large; font-weight: 900;"></textarea>
-			<input type='button' value='전송' id='btnSend'>
+        <form action="/chat/room" method="post">
+        <input type="text" name="name" class="form-control">
+		<div class="btn btn-secondary">
+			<input type='submit' value='개설하기' id='btnSend'>
 		</div>
+        </form>
 	</div>
 
 	<jsp:include page ="/footer"/>	 

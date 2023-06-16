@@ -20,7 +20,7 @@ public class UserAuthenticationEntryPoint implements AuthenticationEntryPoint {
     @Override
     public void commence(HttpServletRequest request, HttpServletResponse response,AuthenticationException authException) throws IOException, ServletException {
 
-        redirectStrategy.sendRedirect(request, response, "denied");
+        redirectStrategy.sendRedirect(request, response, "/denied");
         
     }
 

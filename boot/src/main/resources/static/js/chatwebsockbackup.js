@@ -7,10 +7,7 @@ $(document).ready(function(){
 	let data = {};//전송 데이터(JSON)
 	//let websocket  = new WebSocket("ws://localhost:8080/ws/chat");
 	let websocket = new SockJS("/ws/chat", null, {transports: ["websocket", "xhr-streaming", "xhr-polling"]});
-	let stompClient = Stomp.over(websocket);
-	stompClient.connect({}, onConnected, onError);	
-
-
+	
 	websocket.onmessage = onMessage;
 	websocket.onopen = onOpen;
 	websocket.onclose = onClose;
