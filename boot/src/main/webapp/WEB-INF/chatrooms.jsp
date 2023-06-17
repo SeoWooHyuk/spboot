@@ -11,13 +11,17 @@
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;400&display=swap" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="/css/chat.css">
+	<script src="/js/chatrooms.js" type="text/javascript"></script>
 	<script language=JavaScript src="${common_context_path_url}"></script>
-<script language=JavaScript src="${common_context_path_url}"></script>
 </head>
+
 <script language=JavaScript>
+var roomName = '<c:out value="${roomName.name}"/>';
 </script>
+
 <style type="text/css">
 </style>
+
 <body>		
 	<jsp:include page ="/header"/>	
 
@@ -31,10 +35,10 @@
         </c:forEach>
         </ul>
 
-        <form action="/chat/room" method="post">
-        <input type="text" name="name" class="form-control">
+        <form action="/chat/room" method="post" name="form">
+        <input type="text" name="name" id="name" class="form-control">
 		<div class="btn btn-secondary">
-			<input type='submit' value='개설하기' id='btnSend' style="width: 150px; height: 30px;">
+			<button class="btn btn-secondary">개설하기</button>
 		</div>
         </form>
 	</div>

@@ -20,6 +20,11 @@
 	<script language=JavaScript src="${common_context_path_url}"></script>
 </head>
 <script language=JavaScript>
+
+var roomName =  '<c:out value="${chat.name}"/>';
+var roomId =  '<c:out value="${chat.roomId}"/>';
+var username =  '<c:out value="${pageContext.request.userPrincipal.name}"/>';
+
 </script>
 <style type="text/css">
 </style>
@@ -29,7 +34,7 @@
 	<div id="checkperson"></div>
 
 	<div id='chatt'>
-		<h1>WebSocket Chatting</h1>
+		<h1>WebSocket Chatting 방제목 : ${chat.name}</h1>
 		<input type='hidden' id='mid' value='${pageContext.request.userPrincipal.name}'>
 		<input type='button' value='나가기' id='disconn'> 
 		<!-- <input type='button' value='로그인' id='btnLogin'> -->

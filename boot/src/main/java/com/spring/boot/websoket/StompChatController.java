@@ -4,7 +4,9 @@ import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Controller;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 
+@Log4j2
 @Controller
 @RequiredArgsConstructor //생성자 주입
 public class StompChatController {
@@ -15,12 +17,14 @@ public class StompChatController {
     //"/pub/chat/enter"
     @MessageMapping(value = "/chat/enter")
     public void enter(ChatMessageVo message){
+        log.info("# get Chat Room, roomID : 엔터 ");
         message.setMessage(message.getWriter() + "님이 채팅방에 참여하였습니다.");
         template.convertAndSend("/sub/chat/room/" + message.getRoomId(), message);
     }
 
     @MessageMapping(value = "/chat/message")
     public void message(ChatMessageVo message){
+        log.info("# get Chat Room, roomID : 메세지");
         template.convertAndSend("/sub/chat/room/" + message.getRoomId(), message);
     }
 }

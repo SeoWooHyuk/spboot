@@ -4,28 +4,20 @@ $(document).ready(function(){
 	return document.getElementById(id);
 	}	
 
-	console.log(roomName);
-	console.log(roomId);
-	console.log(username);
-
 	let data = {};//전송 데이터(JSON)
-	let websocket = new SockJS("/stomp/chat", null, {transports: ["websocket", "xhr-streaming", "xhr-polling"]});
-	var stomp = Stomp.over(websocket);
+	//let websocket  = new WebSocket("ws://localhost:8080/ws/chat");
+	let websocket = new SockJS("/ws/chat", null, {transports: ["websocket", "xhr-streaming", "xhr-polling"]});
+	let stompClient = Stomp.over(websocket);
+	stompClient.connect({}, onConnected, onError);	
 
-    //2. connection이 맺어지면 실행
-	stomp.connect({}, function (){
-	console.log("STOMP Connection")
 
+	websocket.onmessage = onMessage;
+	websocket.onopen = onOpen;
+	websocket.onclose = onClose;
 	let mid = getId('mid');
 	let btnSend = getId('btnSend');
 	let talk = getId('talk');
 	let msg = getId('msg');
-	
-	stomp.subscribe("/sub/chat/room/" + roomId, function (chat) {
-		const content = JSON.parse(chat.body);
-		onMessage(content);
-		stomp.send('/pub/chat/enter', {}, JSON.stringify({roomId: roomId, writer: mid.value}));
-	});	
 
 	function send(){
 		if(msg.value.trim() != ''){
@@ -34,7 +26,8 @@ $(document).ready(function(){
 			data.date = new Date().toLocaleString();
 			data.checks = false;
 			data.checkd = false;
-			stomp.send('/pub/chat/message', {}, JSON.stringify({roomId: roomId, message: msg.value, writer: mid.value}));
+			var temp = JSON.stringify(data);
+			websocket.send(temp);
 		}
 		msg.value ='';
 	}
@@ -47,50 +40,53 @@ $(document).ready(function(){
 		data.date = new Date().toLocaleString();
 		data.checks = false;
 		data.checkd = true;
-		stomp.send('/pub/chat/message', {}, JSON.stringify({roomId: roomId, message: msg.value, writer: username}));
-		stomp.close();
+		var temp = JSON.stringify(data);
+		websocket.send(temp);
+		websocket.close();
 	})
 
 	//채팅창에 들어왔을 때
-	function onOpen() {
+	function onOpen(evt) {
 	
 		data.mid = getId('mid').value + "님 환영합니다.";
 		data.msg = msg.value;
 		data.date = new Date().toLocaleString();
 		data.checks = true;
 		data.checkd = false;
-		stomp.send('/pub/chat/enter', {}, JSON.stringify({roomId: roomId, writer: mid.value}));
+		var temp = JSON.stringify(data);
+		websocket.send(temp);
 	
 	}
 
 	//채팅방 나갈때
-	function onClose() {
+	function onClose(evt) {
 		location.href = document.referrer;
 	}
 	
-	
+		function onMessage(msg){
+			data = JSON.parse(msg.data);
+			let css;
+			let csson = 'class=on' 
+			let cssout = 'class=out' 
+			if(data.mid == mid.value){
+				css = 'class=other';
+			}else{
+				
+				css = 'class=me';
+			}
 
-	function onMessage(chat){
-		console.log(chat.writer + "메세지 챗");
-		let css;
-		let csson = 'class=on' 
-		let cssout = 'class=out' 
-		if(data.mid == mid.value){
-			css = 'class=other';
-		}else{
-			
-			css = 'class=me';
-		}
-
-		if(data.checkd)
-		{
-			let item = `<div ${cssout} >
-			<span><b>${data.mid}</b></span> [ ${data.date}]<br/>
-			<span>${data.msg}</span>
-			</div>`;
-			talk.innerHTML += item;
-			talk.scrollTop=talk.scrollHeight;//스크롤바 하단으로 이동
-		}else{
+			if(data.checkd)
+			{
+				let item = `<div ${cssout} >
+				<span><b>${data.mid}</b></span> [ ${data.date}]<br/>
+				<span>${data.msg}</span>
+				</div>`;
+				talk.innerHTML += item;
+				talk.scrollTop=talk.scrollHeight;//스크롤바 하단으로 이동
+			}
+			else
+			{
+				
 			if(data.checks)
 			{
 				let item = `<div ${csson} >
@@ -99,7 +95,8 @@ $(document).ready(function(){
 				</div>`;
 				talk.innerHTML += item;
 				talk.scrollTop=talk.scrollHeight;//스크롤바 하단으로 이동
-			}else{
+			}
+			else{
 				let item = `<div ${css} >
 				<span><b>${data.mid}</b></span> [ ${data.date}]<br/>
 				<span>${data.msg}</span>
@@ -107,8 +104,11 @@ $(document).ready(function(){
 				talk.innerHTML += item;
 				talk.scrollTop=talk.scrollHeight;//스크롤바 하단으로 이동
 			}	
-		}	
-	}
+			}
+			
+
+			
+		}
 	
 
 	msg.onkeyup = function(ev){
@@ -125,6 +125,6 @@ $(document).ready(function(){
 
 	
 
-	}); //스톰프 커넥
+	
 
 });
