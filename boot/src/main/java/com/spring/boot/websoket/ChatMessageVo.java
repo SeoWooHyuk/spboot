@@ -7,8 +7,10 @@ import lombok.Setter;
 @Setter
 public class ChatMessageVo {
     private String roomId;
-    private String writer;
+    private String mid; //글쓴이
     private String data;
+    private boolean checks;
+    private boolean checkd;
     private String message;
 
 }

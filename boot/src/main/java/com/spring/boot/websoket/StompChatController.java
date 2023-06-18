@@ -18,7 +18,7 @@ public class StompChatController {
     @MessageMapping(value = "/chat/enter")
     public void enter(ChatMessageVo message){
         log.info("# get Chat Room, roomID : 엔터 ");
-        message.setMessage(message.getWriter() + "님이 채팅방에 참여하였습니다.");
+        message.setMessage(message.getMid() + "님이 채팅방에 참여하였습니다.");
         template.convertAndSend("/sub/chat/room/" + message.getRoomId(), message);
     }
 

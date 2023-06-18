@@ -20,11 +20,8 @@
 	<script language=JavaScript src="${common_context_path_url}"></script>
 </head>
 <script language=JavaScript>
-
 var roomName =  '<c:out value="${chat.name}"/>';
 var roomId =  '<c:out value="${chat.roomId}"/>';
-var username =  '<c:out value="${pageContext.request.userPrincipal.name}"/>';
-
 </script>
 <style type="text/css">
 </style>
