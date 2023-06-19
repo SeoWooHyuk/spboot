@@ -27,7 +27,9 @@ var roomName = '<c:out value="${roomName.name}"/>';
 
 	<div id='chatt'>
 		<h1>WebSocket Chattingroom</h1>
+		<sec:authorize access="isAnonymous()">
 		로그인 후에 방개설이 가능합니다.
+		</sec:authorize>
 		<br/>
         <ul>
         <c:forEach items="${list}" var="room">
@@ -37,9 +39,11 @@ var roomName = '<c:out value="${roomName.name}"/>';
 
         <form action="/chat/room" method="post" name="form">
         <input type="text" name="name" id="name" class="form-control">
+		<sec:authorize access="isAuthenticated()">
 		<div class="btn btn-secondary">
 			<button class="btn btn-secondary">개설하기</button>
 		</div>
+		</sec:authorize>
         </form>
 	</div>
 

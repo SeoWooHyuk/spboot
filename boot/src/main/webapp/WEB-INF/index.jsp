@@ -54,6 +54,9 @@
 								<a href="#self"><li>#tomcat </li></a>
 								<a href="#self"><li>#se-taglibs </li></a>
 								<a href="#self"><li>#swegger </li></a>
+								<a href="#self"><li>#websocket </li></a>
+								<a href="#self"><li>#stomp </li></a>
+								<a href="#self"><li>#sockjs </li></a>
 								
 							</ul>
 						</div>
@@ -231,6 +234,14 @@
 							</td>
 						</tr>
 
+						<tr><td style="height: 15px;"></td></tr>
+						<tr>
+							<td>websocket + stomp</td>
+							<td style="text-align: left;">서버와 클라이언트 간의 실시간 양방향 통신을 가능하게 합니다. <br>
+								HTTP 통신과 달리 클라이언트와 서버는 핸드쉐이크(handshake)를 통해 클라이언트는 HTTP 연결을 유지한 상태에서 데이터를 전송할 수 있습니다
+							</td>
+						</tr>
+
 						
 					</tbody>
 				</table>
@@ -302,7 +313,8 @@
 						<tr><td style="height: 10px;"></td></tr>
 						<tr>
 							<td>Library</td>
-							<td style="text-align: left;">Security(6.1) , spring-security-taglibs(6.1) , jstl(2.0.0) , JSON(20230207) ,commons-io(2.12) , springdoc-openapi(2.1.0) , lombok</td>
+							<td style="text-align: left;">Security(6.1) , spring-security-taglibs(6.1) , jstl(2.0.0) , JSON(20230207) ,commons-io(2.12) , <br>
+								 springdoc-openapi(2.1.0) , lombok , websocket + stomp</td>
 						</tr>
 					
 					</tbody>
@@ -314,7 +326,7 @@
 			</div>
 
 			<div id="tab-3" class="tab-content"> 
-				포폴 사이트 <br>
+				개인 공부 + 포폴 사이트 <br>
 				&nabla; /main 페이지 : 역활 : 사용기술 소개  <br>
 				(배너) 제이쿼리 사용 오토슬라이드 기능 구현 <br>
 				(탭바) 제이쿼리 사용 탭바 기능 구현   <br>
@@ -338,48 +350,32 @@
 			</div>
 
 			<div id="tab-4" class="tab-content"> 
-				<h1>모든 작업은 의도와 의미가 중요 아니다 api사용이잖아 빽쪽이아니잖아 </h1>
-				문서작업에대하여 기록 !  계획 설계 문서 작업 업무진척 오류 그런것들 기록 <br>
-				어떤 햡력툴을 사용해왔고 업무에대한 조율 팀원들 마찰 힘든점 
-				그리고 페이지마다 기획의도 작업 <br>
+				개인 공부 + 포폴 사이트 <br>
+				&nabla; /시큐리티 : 역활 : 인증 인가에 따른 접근부여  <br>
+	
+				<pre> </pre>
+				&nabla; /웹소켓 + 스톰프 / 역활 : 채팅시스템 구현 <br>
+				사용 기술 -부트스트랩 사용 <br>
 
-				토론이라는 공간과 개념 기능이 있어야한다. 이런것들이 완성되고 보강해야한다.<br>
+				<pre> </pre>
+				&nabla; /스웨거 / 역활 : RESTful API 문서화 및 테스트를 위한 라이브러리 <br>
+				현프로젝트는 rest 클린화부터 스웨거를 사용하기위한 세팅이안되어있음
 
-				해볼것 실제 결제기능 구현해보기 마일리지 정책 구현 discount 가능까지구현해보기<br>
-				
-				각데이터들을 가져오는 방법! 업소에대한 정보! 공공 api 활용! 이걸db화하고 이걸직접 로직구현 노출 연습 <br>
-
-				슬라이드 이미지 노출 기준 이런걸잡는다!! 최신항목 등 기본순 고가순 저가순 등 제일중요한건 검색기능!! <br>
-
-				카테고리를 나눈 기준! 사용자 입장 기준  대중소 카테고리로 나눈다! <font style="color: red;"> 기준</font> !!! <br>
-
-				비회원 로그인 예약 구현  해보기!!!! 비로그인 예약시스템 기준점과 로직이달라서 고민해보기 <br>
-
-				<font style="color: red;">무슨기능을넣었을때 사용한이유 설명해보기 </font> <br>
-
-				썸네일 사용 db컬럼 하나더만들어놈 썸네일 메인이미지 썸네일 구분하면 db페이지에서 구분가능 기준점이나 로직이나 방향 생각해본게있냐  <br>
-
-				인스타같은방식은 	<font style="color: red;">무한스크롤방식가다가 자료가없으면 끊김형식 </font> <br>
-				
-
-				api업체들이 직접등록했을때 그런이점 db에넣고 매칭해서 이름이중복되는 업체만 보여줘라 구현 해보기  <br>
-
-				그래프작업을할때는 그래프 선의 의미 의도 <br>
-
-				<font style="color: red;"></font>예약번호 주문번호 중요 예약시스템 구성 해보기 </font> 
-				출력기능 pdf변환 기능 최대3개 이번에사면 최대3개 다시없는기회 xml타일즈? <br>
-
-				카카오네이버 주변업체드 소개 기능 존재!<br>
-
-				오픈api불러와서 추가기능 ! 데이터가져오면 db 만들어서 적재  공공api 가져와 db에넣어서 스케쥴러 스프링배치 kcbd였나 실제 결제기능api 사용해보기<br>
-
-				개발자 입장에서 기능구현 사용자가원하는 입장에서 생각하는 마음과 자세
-
+				<pre> </pre>
+				&nabla; /aws / 역활 : 배포를 위하여 사용 <br>
 				
 			</div>
 
 			<div id="tab-5" class="tab-content"> 
-			
+				현재 비동기통신이라 생각했던 ajax로 게시판 구현했던거는 비동기통신이라고 애매한 구현 비동기를 동기식으로 바꿔구현했던것<br>
+				비동기개념 다시숙지  비동기개념 요청과 응답이 동시에 일어나지 않아도 되기 때문에 요청을 보낸 후에 다른 작업을 할 수 있다.<br>
+				쓰레드 숙지 <br>
+
+				인증인가에따른  시큐리티만사용했던거는 현업에서 자주사용하는 jwt사용으로 새로 프로젝트 작성된<br>
+				
+				현재 이페이지 rest 클린화가안되어있음 rest규칙에따른 작성필요 <br>
+
+				개발자로 발전하기위해 공부예정
 
 				
 			</div>

@@ -42,7 +42,7 @@
 		</c:if>
 		<c:if test="${pageContext.request.userPrincipal.name == null}"> 
 			<button type="button" class="btn btn-outline-primary me-2" onclick="location.href= '/login'">Login</button>
-			<button type="button" class="btn btn-primary" onclick="location.href= 'join'">Sign-up</button>
+			<button type="button" class="btn btn-primary" onclick="location.href= '/join'">Sign-up</button>
 		</c:if>
 	
 
