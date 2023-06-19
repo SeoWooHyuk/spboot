@@ -1,5 +1,6 @@
 package com.spring.boot.websoket;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Controller;
@@ -10,6 +11,7 @@ import lombok.extern.log4j.Log4j2;
 @Controller
 @RequiredArgsConstructor //생성자 주입
 public class StompChatController {
+
      private final SimpMessagingTemplate template; //특정 Broker로 메세지를 전달
 
     //Client가 SEND할 수 있는 경로
@@ -20,6 +22,7 @@ public class StompChatController {
         log.info("# get Chat Room, roomID : 엔터 ");
         message.setMessage(message.getMid() + "님이 채팅방에 참여하였습니다.");
         template.convertAndSend("/sub/chat/room/" + message.getRoomId(), message);
+        
     }
 
     @MessageMapping(value = "/chat/message")
@@ -27,6 +30,7 @@ public class StompChatController {
         log.info("# get Chat Room, roomID : 메세지");
         template.convertAndSend("/sub/chat/room/" + message.getRoomId(), message);
     }
+
 }
 
 // @MessageMapping 을 통해 WebSocket으로 들어오는 메세지 발행을 처리한다. Client에서는 prefix를 붙여 "/pub/chat/enter"로 발행 요청을 하면 Controller가 해당 메세지를 받아 처리하는데, 메세지가 발행되면 "/sub/chat/room/[roomId]"로 메세지가 전송되는 것을 볼 수 있다.
