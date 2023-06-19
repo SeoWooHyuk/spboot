@@ -1,7 +1,11 @@
 package com.spring.boot.websoket;
 
+import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
+
 import org.springframework.context.annotation.Configuration;
 import org.springframework.messaging.simp.config.MessageBrokerRegistry;
+import org.springframework.messaging.simp.stomp.StompSession;
 import org.springframework.web.socket.config.annotation.EnableWebSocketMessageBroker;
 import org.springframework.web.socket.config.annotation.StompEndpointRegistry;
 import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerConfigurer;
@@ -10,7 +14,10 @@ import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerCo
 @Configuration
 public class WebSoketConfig implements WebSocketMessageBrokerConfigurer { //stomp사용
     
-     @Override
+    
+    // private List<StompSession> sessions = new CopyOnWriteArrayList<>();
+
+    @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
     
          registry.addEndpoint("/stomp/chat")

@@ -31,7 +31,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import com.spring.boot.service.MemberService;
 
-
 @Controller
 @Slf4j
 @Tag(name = "InfoController", description = "로그인 로그아웃 회원관리 + 헤더푸터관리 컨트롤러")

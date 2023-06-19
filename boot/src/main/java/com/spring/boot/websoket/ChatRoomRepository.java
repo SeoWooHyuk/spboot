@@ -9,7 +9,9 @@ import java.util.Map;
 import org.springframework.stereotype.Repository;
 
 import jakarta.annotation.PostConstruct;
+import lombok.extern.log4j.Log4j2;
 
+@Log4j2
 @Repository //해당 클래스를 루트 컨테이너에 빈(Bean) 객체로 생성해주는 어노테이션입니다.
 public class ChatRoomRepository {
      private Map<String, ChatRoomVo> chatRoomDTOMap;

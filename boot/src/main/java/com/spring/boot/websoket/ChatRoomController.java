@@ -49,8 +49,8 @@ public class ChatRoomController {
     public String getRoom(String roomId, Model model){
 
         log.info("# get Chat Room, roomID : " + roomId);
-
         model.addAttribute("chat", repository.findRoomById(roomId));
+        
         return "chat";
     }
 }
