@@ -99,7 +99,7 @@ public class InfoController {
         if (uri != null && uri.contains("?")) { //파라미터가있을때 파라미터를 제거한다.
             uri = uri.substring(0, uri.indexOf("?"));
         }
-        log.info(""+ uri +"uri 확인1");
+        log.info(""+ uri +"/uri 확인1");
 
 
 		if (uri==null  || uri.length() == 0)  {
