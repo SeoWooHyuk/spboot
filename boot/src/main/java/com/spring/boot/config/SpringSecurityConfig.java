@@ -73,7 +73,7 @@ public class SpringSecurityConfig {
     };
 
     private static final String[] CONTROLLER_URL_ARRAY = {
-        "/join", "/joininsert" , "/login/**" ,"/view" ,"/viewdetail" ,"/main" 
+        "/join", "/joininsert" , "/login/**" ,"/view" ,"/viewdetail" ,"/main" ,"/getEnvValue"
     };
 
     private static final String[] INCLUDE_URL_ARRAY = {
