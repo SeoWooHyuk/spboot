@@ -90,22 +90,24 @@ public class InfoController {
     @RequestParam(value = "err", required = false)String err, 
     @RequestParam(value = "exception", required = false)String exception, Model model)
     {
-        log.info(""+ exception +"로그인실패시 메세지");
+    
 
         model.addAttribute("err", err);
         model.addAttribute("exception", exception);
       /* 로그인 성공 시 이전 페이지로 이동 */
 		String uri = request.getHeader("Referer");
-         if (uri != null && uri.contains("?")) { //파라미터가있을때 파라미터를 제거한다.
+        if (uri != null && uri.contains("?")) { //파라미터가있을때 파라미터를 제거한다.
             uri = uri.substring(0, uri.indexOf("?"));
         }
-       // log.info(""+ uri +"컨트롤러 확인");
-		// 이전 uri가 null이다 -> 배포 서버에서 나타나는 오류?
-		if (uri==null )  {
+        log.info(""+ uri +"uri 확인1");
+
+
+		if (uri==null  || uri.length() == 0)  {
 			// null일시 이전 페이지에서 addFlashAttribute로 보내준 uri을 저장
 			Map<String, ?> paramMap = RequestContextUtils.getInputFlashMap(request);
-			uri = (String) paramMap.get("referer");
-			
+			// uri = (String) paramMap.get("referer"); aws 배포환경에서는 보안때문 null발생시킬수있어
+            uri = request.getHeader("Origin");
+			log.info(""+ uri +"uri 확인2");
 			// 이전 url 정보 담기
 			request.getSession().setAttribute("prevPage", uri);
 

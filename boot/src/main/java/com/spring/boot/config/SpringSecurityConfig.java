@@ -136,8 +136,9 @@ public class SpringSecurityConfig {
                     .successHandler((request, response, authentication) ->{
 
                         String prevPage = (String) request.getSession().getAttribute("prevPage");
+
                         String referer = request.getHeader("Referer");  
-                        if (referer != null && referer.contains("?")) { //파라미터가있을때 파라미터를 제거한다.
+                        if (referer != null && referer.contains("?")) { //파라미터가있을때 파라미터를 제거한다. 아아디비번틀렷을시를 위한설정
                             referer = referer.substring(0, referer.indexOf("?"));
                         }
                         
