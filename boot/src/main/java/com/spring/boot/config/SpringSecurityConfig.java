@@ -92,7 +92,9 @@ public class SpringSecurityConfig {
         );
         //csrf 와 cors 보호를 해제한다.
         http.headers(headers -> headers
-        .frameOptions().sameOrigin()
+        .frameOptions(oprions -> oprions
+        .sameOrigin()
+        )
         ); 
         
         http.exceptionHandling( (exceptionHandling) -> exceptionHandling
