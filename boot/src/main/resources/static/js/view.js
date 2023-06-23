@@ -77,8 +77,8 @@
 
 		drawtoboardcount: function(data){
 			//console.log(data.pagination); 
-			const totCnt = data.totalPagewrite.totCnt;  //총게시글수 
-			const totalPageCnt = data.totalPagewrite.totalPageCnt; //총페이지 수
+			const totCnt = data.boardMap.totCnt;  //총게시글수 
+			const totalPageCnt = data.boardMap.totalPageCnt; //총페이지 수
 			var html = '총게시물 ' + totCnt + '/  (페이지' +pageindexjs + '/' + totalPageCnt+')' ;
 		
 			$("#toboardcount").html(html);
@@ -86,10 +86,10 @@
 
 		pagindata: function(data){
 			
-			let prev = data.pagination.xprev;
-			let next = data.pagination.xnext;
-			let startDate = data.pagination.firstRecordIndex;
-			let endDate = data.pagination.lastPageNoOnPageList;
+			let prev = data.boardMap.pagination.xprev;
+			let next = data.boardMap.pagination.xnext;
+			let startDate = data.boardMap.pagination.firstRecordIndex;
+			let endDate = data.boardMap.pagination.lastPageNoOnPageList;
 			let html ='';
 
 				html +=    '<div class="dataTables_paginate paging_simple_numbers" id="dataTable_paginate">';    
