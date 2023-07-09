@@ -47,7 +47,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
                 select * from boards where boardnum= #{boardnum}
         </select>
 
-        <insert id="boardinsert">
+        <insert id="boardinsert" >
                 insert into  boards(boardnum,id,writes,title,files) values(#{boardnum},#{id},#{writes},#{title},#{files})
         </insert>
 
