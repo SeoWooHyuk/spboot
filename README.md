@@ -1,4 +1,8 @@
 # spboot
+| 사용툴   |  vscode   |     |
+|---|---|---|
+| 2022.06.07 ~ 2022.07.06 | Worked at noaats | Consultant Business Analyst |
+| 2022.07.11 ~ Present |  Currently working at RedWoodK | Junior Engineer |
 사용 튤  vscode <br>
 프레임워크 스프링부트 version3.1 <br>
 
