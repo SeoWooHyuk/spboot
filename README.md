@@ -1,11 +1,11 @@
 # spboot 
 | Skill Set   |     | 
 |---|---|
-| 사용툴   |  vscode   | 
+| tool   |  vscode   | 
 | Framework | springboot | 
 | version |  3.10 | 
 | jdk |  17 |
-| Library |  17 |
+| Library | mybatis, mysql, security, aws(ec2), ajax, jquery, ajax, websoket, sockjs-client, stomp-websocket|
 | Server |  17 |
 
 
