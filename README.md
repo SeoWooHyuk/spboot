@@ -1,9 +1,13 @@
-# spboot
-| 사용툴   |  vscode   |  
+# spboot 
 |---|---|
+| 사용툴   |  vscode   | 
 | Framework | springboot | 
 | version |  3.10 | 
 | jdk |  17 |
+| Library |  17 |
+| Server |  17 |
+
+
 
 사용 튤  vscode <br>
 프레임워크 스프링부트 version3.1 <br>
