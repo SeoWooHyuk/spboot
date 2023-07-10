@@ -7,7 +7,7 @@
 | Build Tool | Gradle | 
 | version |  3.10 | 
 | jdk |  17 |
-| Library | mybatis, mysql, security, aws(ec2), ajax, jquery, ajax, websoket, sockjs-client, stomp-websocket|
+| Library | mybatis, mysql, security, aws(ec2), ajax, jquery, ajax, websoket, sockjs-client, stomp-websocket,security-taglibs,tomcat-embed-jasper, jsp.jstl |
 | Server |  Apache, Tomcat |
 | Environment |   Window, AWS(Ec2) |
 | Environment |   Notion |
