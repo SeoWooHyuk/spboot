@@ -4,21 +4,22 @@
 | Languages | JAVA | 
 | tool   | Vscode,GitHub ,putty,Filezilla  | 
 | Framework | springboot | 
+| Build Tool | Gradle | 
 | version |  3.10 | 
 | jdk |  17 |
 | Library | mybatis, mysql, security, aws(ec2), ajax, jquery, ajax, websoket, sockjs-client, stomp-websocket|
-| Server |  17 |
+| Server |  Apache, Tomcat |
+| Environment |   Window, AWS(Ec2) |
+| Environment |   Notion |
+
+
+| 목적  |  자기개발 목적   | 
+|---|---|
+| springboot | 스프링부트 공부 |
+| security | 공부 목적 |
+| ajax | 게시판 리스트 출력 + 페이징처리 공부 | 
+| websoket sockjs stomp | 웹소켓 공부  | 
 
 
 
-사용 튤  vscode <br>
-프레임워크 스프링부트 version3.1 <br>
-
-jsp  게시판 <br>
-목적 자기개발 목적 <br>
-
-주요목적 <br>
-security 공부 목적   <br>
-ajax 를 이용한 게시판리스트 출력 <br>
-websoket sockjs stomp 채팅방 공부목적 사용 <br>
 
