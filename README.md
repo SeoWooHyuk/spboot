@@ -1,7 +1,8 @@
 # spboot 
 | Skill Set   |     | 
 |---|---|
-| tool   |  vscode   | 
+| Languages | JAVA | 
+| tool   | Vscode,GitHub ,putty,Filezilla  | 
 | Framework | springboot | 
 | version |  3.10 | 
 | jdk |  17 |
