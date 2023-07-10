@@ -1,5 +1,6 @@
 # spboot
 | 사용툴   |  vscode   |    
+|---|---|---|
 | Framework | springboot | 
 | version |  3.10 | 
 | jdk |  17 |
